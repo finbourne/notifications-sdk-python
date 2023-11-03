@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from finbourne_notifications.models.event_type_schema import EventTypeSchema
+from lusid_notifications.models.event_type_schema import EventTypeSchema
 
 # TODO update the JSON string below
 json = "{}"

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from finbourne_notifications.models.manual_event_header import ManualEventHeader
+from lusid_notifications.models.manual_event_header import ManualEventHeader
 
 # TODO update the JSON string below
 json = "{}"

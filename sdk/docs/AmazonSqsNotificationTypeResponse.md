@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from finbourne_notifications.models.amazon_sqs_notification_type_response import AmazonSqsNotificationTypeResponse
+from lusid_notifications.models.amazon_sqs_notification_type_response import AmazonSqsNotificationTypeResponse
 
 # TODO update the JSON string below
 json = "{}"

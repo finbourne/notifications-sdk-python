@@ -1,16 +1,16 @@
 [tool.poetry]
-name = "finbourne-notifications-sdk"
+name = "lusid-notifications-sdk"
 version = "2.0.1"
 description = "FINBOURNE Notifications API"
 authors = ["FINBOURNE Technology <info@finbourne.com>"]
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/finbourne/notifications-sdk-python"
-keywords = ["OpenAPI", "OpenAPI-Generator", "FINBOURNE Notifications API", "finbourne-notifications-sdk"]
+keywords = ["OpenAPI", "OpenAPI-Generator", "FINBOURNE Notifications API", "lusid-notifications-sdk"]
 packages = [
-    {include = "finbourne_notifications"}
+    {include = "lusid_notifications"}
 ]
-include = ["finbourne_notifications/**/*"]
+include = ["lusid_notifications/**/*"]
 
 [tool.poetry.dependencies]
 python = "^3.8"

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from finbourne_notifications.models.attempt import Attempt
+from lusid_notifications.models.attempt import Attempt
 
 # TODO update the JSON string below
 json = "{}"

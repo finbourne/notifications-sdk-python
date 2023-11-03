@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from finbourne_notifications.models.update_subscription import UpdateSubscription
+from lusid_notifications.models.update_subscription import UpdateSubscription
 
 # TODO update the JSON string below
 json = "{}"

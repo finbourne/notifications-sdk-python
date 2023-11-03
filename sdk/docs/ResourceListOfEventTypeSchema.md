@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from finbourne_notifications.models.resource_list_of_event_type_schema import ResourceListOfEventTypeSchema
+from lusid_notifications.models.resource_list_of_event_type_schema import ResourceListOfEventTypeSchema
 
 # TODO update the JSON string below
 json = "{}"

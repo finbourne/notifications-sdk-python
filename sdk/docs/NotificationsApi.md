@@ -1,4 +1,4 @@
-# finbourne_notifications.NotificationsApi
+# lusid_notifications.NotificationsApi
 
 All URIs are relative to *https://fbn-ci.lusid.com/notification*
 
@@ -23,13 +23,13 @@ Method | HTTP request | Description
 from __future__ import print_function
 import time
 import os
-import finbourne_notifications
-from finbourne_notifications.rest import ApiException
-from finbourne_notifications.models.create_notification_request import CreateNotificationRequest
-from finbourne_notifications.models.notification import Notification
+import lusid_notifications
+from lusid_notifications.rest import ApiException
+from lusid_notifications.models.create_notification_request import CreateNotificationRequest
+from lusid_notifications.models.notification import Notification
 from pprint import pprint
 
-from finbourne_notifications import (
+from lusid_notifications import (
 	  ApiClientFactory,
 	  ApplicationMetadataApi,
 	  EnvironmentVariablesConfigurationLoader,
@@ -37,7 +37,7 @@ from finbourne_notifications import (
 	  ArgsConfigurationLoader
 )
 
-# Use the finbourne_notifications ApiClientFactory to build Api instances with a configured api client
+# Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
 # By default this will read config from environment variables
 # Then from a secrets.json file found in the current working directory
 api_client_factory = ApiClientFactory()
@@ -67,7 +67,7 @@ api_client_factory = ApiClientFactory(config_loaders=config_loaders)
 # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
 async with api_client_factory:
     # Create an instance of the API class
-    api_instance = api_client_factory.build(finbourne_notifications.NotificationsApi)
+    api_instance = api_client_factory.build(lusid_notifications.NotificationsApi)
     scope = 'scope_example' # str | The scope that identifies a subscription
     code = 'code_example' # str | The code that identifies a subscription
     create_notification_request = {"notificationId":"TestId","displayName":"TestDisplayName","description":"TestDescription","notificationType":{"Type":"Email","Subject":"Event with message of {{body.message}}","PlainTextBody":"Event with message {{body.message}} and subject {{body.subject}}","HtmlBody":"<p>Event with message {{body.message}} and subject {{body.subject}}</p>","EmailAddressTo":["recipient@finbourne.com"],"EmailAddressCc":["recipientcc@finbourne.com"],"EmailAddressBcc":["recipientbcc@finbourne.com"]}} # CreateNotificationRequest | The data to create a notification
@@ -124,11 +124,11 @@ Name | Type | Description  | Notes
 from __future__ import print_function
 import time
 import os
-import finbourne_notifications
-from finbourne_notifications.rest import ApiException
+import lusid_notifications
+from lusid_notifications.rest import ApiException
 from pprint import pprint
 
-from finbourne_notifications import (
+from lusid_notifications import (
 	  ApiClientFactory,
 	  ApplicationMetadataApi,
 	  EnvironmentVariablesConfigurationLoader,
@@ -136,7 +136,7 @@ from finbourne_notifications import (
 	  ArgsConfigurationLoader
 )
 
-# Use the finbourne_notifications ApiClientFactory to build Api instances with a configured api client
+# Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
 # By default this will read config from environment variables
 # Then from a secrets.json file found in the current working directory
 api_client_factory = ApiClientFactory()
@@ -166,7 +166,7 @@ api_client_factory = ApiClientFactory(config_loaders=config_loaders)
 # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
 async with api_client_factory:
     # Create an instance of the API class
-    api_instance = api_client_factory.build(finbourne_notifications.NotificationsApi)
+    api_instance = api_client_factory.build(lusid_notifications.NotificationsApi)
     scope = 'scope_example' # str | The scope that identifies a subscription
     code = 'code_example' # str | The code that identifies a subscription
     id = 'id_example' # str | The unique identifier of the notification
@@ -222,12 +222,12 @@ void (empty response body)
 from __future__ import print_function
 import time
 import os
-import finbourne_notifications
-from finbourne_notifications.rest import ApiException
-from finbourne_notifications.models.notification import Notification
+import lusid_notifications
+from lusid_notifications.rest import ApiException
+from lusid_notifications.models.notification import Notification
 from pprint import pprint
 
-from finbourne_notifications import (
+from lusid_notifications import (
 	  ApiClientFactory,
 	  ApplicationMetadataApi,
 	  EnvironmentVariablesConfigurationLoader,
@@ -235,7 +235,7 @@ from finbourne_notifications import (
 	  ArgsConfigurationLoader
 )
 
-# Use the finbourne_notifications ApiClientFactory to build Api instances with a configured api client
+# Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
 # By default this will read config from environment variables
 # Then from a secrets.json file found in the current working directory
 api_client_factory = ApiClientFactory()
@@ -265,7 +265,7 @@ api_client_factory = ApiClientFactory(config_loaders=config_loaders)
 # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
 async with api_client_factory:
     # Create an instance of the API class
-    api_instance = api_client_factory.build(finbourne_notifications.NotificationsApi)
+    api_instance = api_client_factory.build(lusid_notifications.NotificationsApi)
     scope = 'scope_example' # str | The scope that identifies a subscription
     code = 'code_example' # str | The code that identifies a subscription
     id = 'id_example' # str | The unique identifier of the notification
@@ -323,12 +323,12 @@ Name | Type | Description  | Notes
 from __future__ import print_function
 import time
 import os
-import finbourne_notifications
-from finbourne_notifications.rest import ApiException
-from finbourne_notifications.models.resource_list_of_notification import ResourceListOfNotification
+import lusid_notifications
+from lusid_notifications.rest import ApiException
+from lusid_notifications.models.resource_list_of_notification import ResourceListOfNotification
 from pprint import pprint
 
-from finbourne_notifications import (
+from lusid_notifications import (
 	  ApiClientFactory,
 	  ApplicationMetadataApi,
 	  EnvironmentVariablesConfigurationLoader,
@@ -336,7 +336,7 @@ from finbourne_notifications import (
 	  ArgsConfigurationLoader
 )
 
-# Use the finbourne_notifications ApiClientFactory to build Api instances with a configured api client
+# Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
 # By default this will read config from environment variables
 # Then from a secrets.json file found in the current working directory
 api_client_factory = ApiClientFactory()
@@ -366,7 +366,7 @@ api_client_factory = ApiClientFactory(config_loaders=config_loaders)
 # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
 async with api_client_factory:
     # Create an instance of the API class
-    api_instance = api_client_factory.build(finbourne_notifications.NotificationsApi)
+    api_instance = api_client_factory.build(lusid_notifications.NotificationsApi)
     scope = 'scope_example' # str | The scope that identifies a subscription
     code = 'code_example' # str | The code that identifies a subscription
 
@@ -422,13 +422,13 @@ Name | Type | Description  | Notes
 from __future__ import print_function
 import time
 import os
-import finbourne_notifications
-from finbourne_notifications.rest import ApiException
-from finbourne_notifications.models.notification import Notification
-from finbourne_notifications.models.update_notification_request import UpdateNotificationRequest
+import lusid_notifications
+from lusid_notifications.rest import ApiException
+from lusid_notifications.models.notification import Notification
+from lusid_notifications.models.update_notification_request import UpdateNotificationRequest
 from pprint import pprint
 
-from finbourne_notifications import (
+from lusid_notifications import (
 	  ApiClientFactory,
 	  ApplicationMetadataApi,
 	  EnvironmentVariablesConfigurationLoader,
@@ -436,7 +436,7 @@ from finbourne_notifications import (
 	  ArgsConfigurationLoader
 )
 
-# Use the finbourne_notifications ApiClientFactory to build Api instances with a configured api client
+# Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
 # By default this will read config from environment variables
 # Then from a secrets.json file found in the current working directory
 api_client_factory = ApiClientFactory()
@@ -466,7 +466,7 @@ api_client_factory = ApiClientFactory(config_loaders=config_loaders)
 # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
 async with api_client_factory:
     # Create an instance of the API class
-    api_instance = api_client_factory.build(finbourne_notifications.NotificationsApi)
+    api_instance = api_client_factory.build(lusid_notifications.NotificationsApi)
     scope = 'scope_example' # str | The scope that identifies a subscription
     code = 'code_example' # str | The code that identifies a subscription
     id = 'id_example' # str | The unique identifier of the notification

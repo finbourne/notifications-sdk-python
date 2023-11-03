@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from finbourne_notifications.models.manual_event import ManualEvent
+from lusid_notifications.models.manual_event import ManualEvent
 
 # TODO update the JSON string below
 json = "{}"

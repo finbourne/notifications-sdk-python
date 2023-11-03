@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from finbourne_notifications.models.webhook_notification_type import WebhookNotificationType
+from lusid_notifications.models.webhook_notification_type import WebhookNotificationType
 
 # TODO update the JSON string below
 json = "{}"

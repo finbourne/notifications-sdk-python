@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from finbourne_notifications.models.event_field_definition import EventFieldDefinition
+from lusid_notifications.models.event_field_definition import EventFieldDefinition
 
 # TODO update the JSON string below
 json = "{}"

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from finbourne_notifications.models.resource_list_of_subscription import ResourceListOfSubscription
+from lusid_notifications.models.resource_list_of_subscription import ResourceListOfSubscription
 
 # TODO update the JSON string below
 json = "{}"

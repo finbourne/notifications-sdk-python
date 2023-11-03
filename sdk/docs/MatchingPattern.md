@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from finbourne_notifications.models.matching_pattern import MatchingPattern
+from lusid_notifications.models.matching_pattern import MatchingPattern
 
 # TODO update the JSON string below
 json = "{}"

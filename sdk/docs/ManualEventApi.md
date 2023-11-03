@@ -1,4 +1,4 @@
-# finbourne_notifications.ManualEventApi
+# lusid_notifications.ManualEventApi
 
 All URIs are relative to *https://fbn-ci.lusid.com/notification*
 
@@ -19,13 +19,13 @@ Method | HTTP request | Description
 from __future__ import print_function
 import time
 import os
-import finbourne_notifications
-from finbourne_notifications.rest import ApiException
-from finbourne_notifications.models.manual_event import ManualEvent
-from finbourne_notifications.models.manual_event_request import ManualEventRequest
+import lusid_notifications
+from lusid_notifications.rest import ApiException
+from lusid_notifications.models.manual_event import ManualEvent
+from lusid_notifications.models.manual_event_request import ManualEventRequest
 from pprint import pprint
 
-from finbourne_notifications import (
+from lusid_notifications import (
 	  ApiClientFactory,
 	  ApplicationMetadataApi,
 	  EnvironmentVariablesConfigurationLoader,
@@ -33,7 +33,7 @@ from finbourne_notifications import (
 	  ArgsConfigurationLoader
 )
 
-# Use the finbourne_notifications ApiClientFactory to build Api instances with a configured api client
+# Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
 # By default this will read config from environment variables
 # Then from a secrets.json file found in the current working directory
 api_client_factory = ApiClientFactory()
@@ -63,7 +63,7 @@ api_client_factory = ApiClientFactory(config_loaders=config_loaders)
 # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
 async with api_client_factory:
     # Create an instance of the API class
-    api_instance = api_client_factory.build(finbourne_notifications.ManualEventApi)
+    api_instance = api_client_factory.build(lusid_notifications.ManualEventApi)
     manual_event_request = {"Body":{"subject":"TestSubject","message":"TestMessage","jsonMessage":{"TestField1":"TestValue1","TestField2":"TestValue2"}}} # ManualEventRequest | The data required to trigger a manual event.
 
     try:

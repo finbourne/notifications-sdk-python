@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from finbourne_notifications.models.sms_notification_type_response import SmsNotificationTypeResponse
+from lusid_notifications.models.sms_notification_type_response import SmsNotificationTypeResponse
 
 # TODO update the JSON string below
 json = "{}"
