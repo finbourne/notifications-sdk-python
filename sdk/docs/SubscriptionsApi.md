@@ -22,19 +22,19 @@ Method | HTTP request | Description
 ```python
 from __future__ import print_function
 import time
-import os
 import lusid_notifications
 from lusid_notifications.rest import ApiException
 from lusid_notifications.models.create_subscription import CreateSubscription
 from lusid_notifications.models.subscription import Subscription
 from pprint import pprint
 
+import os
 from lusid_notifications import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    SubscriptionsApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
@@ -119,17 +119,17 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import os
 import lusid_notifications
 from lusid_notifications.rest import ApiException
 from pprint import pprint
 
+import os
 from lusid_notifications import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    SubscriptionsApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
@@ -215,18 +215,18 @@ void (empty response body)
 ```python
 from __future__ import print_function
 import time
-import os
 import lusid_notifications
 from lusid_notifications.rest import ApiException
 from lusid_notifications.models.subscription import Subscription
 from pprint import pprint
 
+import os
 from lusid_notifications import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    SubscriptionsApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
@@ -314,18 +314,18 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import os
 import lusid_notifications
 from lusid_notifications.rest import ApiException
 from lusid_notifications.models.resource_list_of_subscription import ResourceListOfSubscription
 from pprint import pprint
 
+import os
 from lusid_notifications import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    SubscriptionsApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
@@ -416,19 +416,19 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import os
 import lusid_notifications
 from lusid_notifications.rest import ApiException
 from lusid_notifications.models.subscription import Subscription
 from lusid_notifications.models.update_subscription import UpdateSubscription
 from pprint import pprint
 
+import os
 from lusid_notifications import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    SubscriptionsApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client

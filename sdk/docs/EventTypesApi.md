@@ -19,18 +19,18 @@ Method | HTTP request | Description
 ```python
 from __future__ import print_function
 import time
-import os
 import lusid_notifications
 from lusid_notifications.rest import ApiException
 from lusid_notifications.models.event_type_schema import EventTypeSchema
 from pprint import pprint
 
+import os
 from lusid_notifications import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    EventTypesApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
@@ -116,18 +116,18 @@ Name | Type | Description  | Notes
 ```python
 from __future__ import print_function
 import time
-import os
 import lusid_notifications
 from lusid_notifications.rest import ApiException
 from lusid_notifications.models.resource_list_of_event_type_schema import ResourceListOfEventTypeSchema
 from pprint import pprint
 
+import os
 from lusid_notifications import (
-	  ApiClientFactory,
-	  ApplicationMetadataApi,
-	  EnvironmentVariablesConfigurationLoader,
-	  SecretsFileConfigurationLoader,
-	  ArgsConfigurationLoader
+    ApiClientFactory,
+    EventTypesApi,
+    EnvironmentVariablesConfigurationLoader,
+    SecretsFileConfigurationLoader,
+    ArgsConfigurationLoader
 )
 
 # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
