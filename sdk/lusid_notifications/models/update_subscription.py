@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic import BaseModel, Field, constr, validator
+from pydantic.v1 import BaseModel, Field, constr, validator
 from lusid_notifications.models.matching_pattern import MatchingPattern
 
 class UpdateSubscription(BaseModel):

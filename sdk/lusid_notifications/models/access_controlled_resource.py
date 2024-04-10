@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist, constr
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr
 from lusid_notifications.models.access_controlled_action import AccessControlledAction
 from lusid_notifications.models.identifier_part_schema import IdentifierPartSchema
 from lusid_notifications.models.link import Link
