@@ -19,14 +19,14 @@ import pprint
 import re  # noqa: F401
 
 from typing import Any, List, Optional
-from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
+from pydantic.v1 import BaseModel, Field, StrictStr, ValidationError, validator
 from lusid_notifications.models.amazon_sqs_notification_type_response import AmazonSqsNotificationTypeResponse
 from lusid_notifications.models.amazon_sqs_principal_auth_notification_type_response import AmazonSqsPrincipalAuthNotificationTypeResponse
 from lusid_notifications.models.email_notification_type_response import EmailNotificationTypeResponse
 from lusid_notifications.models.sms_notification_type_response import SmsNotificationTypeResponse
 from lusid_notifications.models.webhook_notification_type_response import WebhookNotificationTypeResponse
 from typing import Union, Any, List, TYPE_CHECKING
-from pydantic import StrictStr, Field
+from pydantic.v1 import StrictStr, Field
 
 NOTIFICATIONTYPERESPONSE_ONE_OF_SCHEMAS = ["AmazonSqsNotificationTypeResponse", "AmazonSqsPrincipalAuthNotificationTypeResponse", "EmailNotificationTypeResponse", "SmsNotificationTypeResponse", "WebhookNotificationTypeResponse"]
 
