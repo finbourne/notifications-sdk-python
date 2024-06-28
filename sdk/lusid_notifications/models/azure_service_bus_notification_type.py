@@ -21,22 +21,24 @@ import json
 from typing import Any, Dict
 from pydantic.v1 import BaseModel, Field, constr, validator
 
-class AmazonSqsNotificationType(BaseModel):
+class AzureServiceBusNotificationType(BaseModel):
     """
-    The information required to create or update an AWS SQS notification  # noqa: E501
+    The information required to create or update an Azure Service Bus notification  # noqa: E501
     """
     type: constr(strict=True, min_length=1) = Field(..., description="The type of delivery mechanism for this notification")
-    api_key_ref: constr(strict=True, min_length=1) = Field(..., alias="apiKeyRef", description="Reference to API key from Configuration Store")
-    api_secret_ref: constr(strict=True, min_length=1) = Field(..., alias="apiSecretRef", description="Reference to API secret from Configuration Store")
-    body: constr(strict=True, max_length=1024, min_length=1) = Field(..., description="The body of the Amazon Queue Message")
-    queue_url_ref: constr(strict=True, min_length=1) = Field(..., alias="queueUrlRef", description="Reference to queue url from Configuration Store")
-    __properties = ["type", "apiKeyRef", "apiSecretRef", "body", "queueUrlRef"]
+    namespace: constr(strict=True, min_length=1) = Field(..., description="Reference to namespace from Configuration Store")
+    queue_name: constr(strict=True, min_length=1) = Field(..., alias="queueName", description="Reference to queue name from Configuration Store")
+    body: constr(strict=True, max_length=1024, min_length=1) = Field(..., description="The body of the Azure Service Bus Message")
+    tenant_id: constr(strict=True, min_length=1) = Field(..., alias="tenantId", description="Reference to tenant id from Configuration Store")
+    client_id: constr(strict=True, min_length=1) = Field(..., alias="clientId", description="Reference to client id from Configuration Store")
+    client_secret: constr(strict=True, min_length=1) = Field(..., alias="clientSecret", description="Reference to client secret from Configuration Store")
+    __properties = ["type", "namespace", "queueName", "body", "tenantId", "clientId", "clientSecret"]
 
     @validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('AmazonSqs', 'AmazonSqsPrincipalAuth', 'AzureServiceBus', 'Email', 'Sms', 'Webhook'):
-            raise ValueError("must be one of enum values ('AmazonSqs', 'AmazonSqsPrincipalAuth', 'AzureServiceBus', 'Email', 'Sms', 'Webhook')")
+        if value not in ('AzureServiceBus'):
+            raise ValueError("must be one of enum values ('AzureServiceBus')")
         return value
 
     @validator('body')
@@ -60,8 +62,8 @@ class AmazonSqsNotificationType(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> AmazonSqsNotificationType:
-        """Create an instance of AmazonSqsNotificationType from a JSON string"""
+    def from_json(cls, json_str: str) -> AzureServiceBusNotificationType:
+        """Create an instance of AzureServiceBusNotificationType from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -73,19 +75,21 @@ class AmazonSqsNotificationType(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> AmazonSqsNotificationType:
-        """Create an instance of AmazonSqsNotificationType from a dict"""
+    def from_dict(cls, obj: dict) -> AzureServiceBusNotificationType:
+        """Create an instance of AzureServiceBusNotificationType from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return AmazonSqsNotificationType.parse_obj(obj)
+            return AzureServiceBusNotificationType.parse_obj(obj)
 
-        _obj = AmazonSqsNotificationType.parse_obj({
+        _obj = AzureServiceBusNotificationType.parse_obj({
             "type": obj.get("type"),
-            "api_key_ref": obj.get("apiKeyRef"),
-            "api_secret_ref": obj.get("apiSecretRef"),
+            "namespace": obj.get("namespace"),
+            "queue_name": obj.get("queueName"),
             "body": obj.get("body"),
-            "queue_url_ref": obj.get("queueUrlRef")
+            "tenant_id": obj.get("tenantId"),
+            "client_id": obj.get("clientId"),
+            "client_secret": obj.get("clientSecret")
         })
         return _obj
