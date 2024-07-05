@@ -25,7 +25,7 @@ class EmailNotificationType(BaseModel):
     """
     The information required to create or update an Email notification  # noqa: E501
     """
-    type: constr(strict=True, min_length=1) = Field(..., description="The type of delivery mechanism for this notification")
+    type: StrictStr = Field(..., description="The type of delivery mechanism for this notification")
     subject: constr(strict=True, max_length=1024, min_length=1) = Field(..., description="The subject of the email")
     plain_text_body: constr(strict=True, max_length=2147483647, min_length=1) = Field(..., alias="plainTextBody", description="The plain text body of the email")
     html_body: Optional[constr(strict=True)] = Field(None, alias="htmlBody", description="The HTML body of the email (if any)")

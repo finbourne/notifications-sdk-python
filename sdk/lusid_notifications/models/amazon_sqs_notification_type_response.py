@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr, validator
 
 class AmazonSqsNotificationTypeResponse(BaseModel):
     """
@@ -31,6 +31,16 @@ class AmazonSqsNotificationTypeResponse(BaseModel):
     body: Optional[StrictStr] = Field(None, description="The body of the Amazon Queue Message")
     queue_url_ref: Optional[StrictStr] = Field(None, alias="queueUrlRef", description="Reference to queue url from Configuration Store")
     __properties = ["type", "apiKeyRef", "apiSecretRef", "body", "queueUrlRef"]
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in ('AmazonSqs', 'AmazonSqsPrincipalAuth', 'Email', 'Sms', 'Webhook'):
+            raise ValueError("must be one of enum values ('AmazonSqs', 'AmazonSqsPrincipalAuth', 'Email', 'Sms', 'Webhook')")
+        return value
 
     class Config:
         """Pydantic configuration"""

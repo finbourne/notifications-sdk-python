@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr, validator
 
 class WebhookNotificationTypeResponse(BaseModel):
     """
@@ -33,6 +33,16 @@ class WebhookNotificationTypeResponse(BaseModel):
     content_type: Optional[StrictStr] = Field(None, alias="contentType", description="The type of the content e.g. Json")
     content: Optional[Any] = Field(None, description="The content of the request")
     __properties = ["type", "httpMethod", "url", "authenticationType", "authenticationConfigurationItemPaths", "contentType", "content"]
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in ('Webhook'):
+            raise ValueError("must be one of enum values ('Webhook')")
+        return value
 
     class Config:
         """Pydantic configuration"""

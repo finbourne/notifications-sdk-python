@@ -22,14 +22,13 @@ from typing import Any, List, Optional
 from pydantic.v1 import BaseModel, Field, StrictStr, ValidationError, validator
 from lusid_notifications.models.amazon_sqs_notification_type import AmazonSqsNotificationType
 from lusid_notifications.models.amazon_sqs_principal_auth_notification_type import AmazonSqsPrincipalAuthNotificationType
-from lusid_notifications.models.azure_service_bus_notification_type import AzureServiceBusNotificationType
 from lusid_notifications.models.email_notification_type import EmailNotificationType
 from lusid_notifications.models.sms_notification_type import SmsNotificationType
 from lusid_notifications.models.webhook_notification_type import WebhookNotificationType
 from typing import Union, Any, List, TYPE_CHECKING
 from pydantic.v1 import StrictStr, Field
 
-NOTIFICATIONTYPE_ONE_OF_SCHEMAS = ["AmazonSqsNotificationType", "AmazonSqsPrincipalAuthNotificationType", "AzureServiceBusNotificationType", "EmailNotificationType", "SmsNotificationType", "WebhookNotificationType"]
+NOTIFICATIONTYPE_ONE_OF_SCHEMAS = ["AmazonSqsNotificationType", "AmazonSqsPrincipalAuthNotificationType", "EmailNotificationType", "SmsNotificationType", "WebhookNotificationType"]
 
 class NotificationType(BaseModel):
     """
@@ -39,16 +38,14 @@ class NotificationType(BaseModel):
     oneof_schema_1_validator: Optional[AmazonSqsNotificationType] = None
     # data type: AmazonSqsPrincipalAuthNotificationType
     oneof_schema_2_validator: Optional[AmazonSqsPrincipalAuthNotificationType] = None
-    # data type: AzureServiceBusNotificationType
-    oneof_schema_3_validator: Optional[AzureServiceBusNotificationType] = None
     # data type: EmailNotificationType
-    oneof_schema_4_validator: Optional[EmailNotificationType] = None
+    oneof_schema_3_validator: Optional[EmailNotificationType] = None
     # data type: SmsNotificationType
-    oneof_schema_5_validator: Optional[SmsNotificationType] = None
+    oneof_schema_4_validator: Optional[SmsNotificationType] = None
     # data type: WebhookNotificationType
-    oneof_schema_6_validator: Optional[WebhookNotificationType] = None
+    oneof_schema_5_validator: Optional[WebhookNotificationType] = None
     if TYPE_CHECKING:
-        actual_instance: Union[AmazonSqsNotificationType, AmazonSqsPrincipalAuthNotificationType, AzureServiceBusNotificationType, EmailNotificationType, SmsNotificationType, WebhookNotificationType]
+        actual_instance: Union[AmazonSqsNotificationType, AmazonSqsPrincipalAuthNotificationType, EmailNotificationType, SmsNotificationType, WebhookNotificationType]
     else:
         actual_instance: Any
     one_of_schemas: List[str] = Field(NOTIFICATIONTYPE_ONE_OF_SCHEMAS, const=True)
@@ -81,11 +78,6 @@ class NotificationType(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `AmazonSqsPrincipalAuthNotificationType`")
         else:
             match += 1
-        # validate data type: AzureServiceBusNotificationType
-        if not isinstance(v, AzureServiceBusNotificationType):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `AzureServiceBusNotificationType`")
-        else:
-            match += 1
         # validate data type: EmailNotificationType
         if not isinstance(v, EmailNotificationType):
             error_messages.append(f"Error! Input type `{type(v)}` is not `EmailNotificationType`")
@@ -103,10 +95,10 @@ class NotificationType(BaseModel):
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in NotificationType with oneOf schemas: AmazonSqsNotificationType, AmazonSqsPrincipalAuthNotificationType, AzureServiceBusNotificationType, EmailNotificationType, SmsNotificationType, WebhookNotificationType. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in NotificationType with oneOf schemas: AmazonSqsNotificationType, AmazonSqsPrincipalAuthNotificationType, EmailNotificationType, SmsNotificationType, WebhookNotificationType. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in NotificationType with oneOf schemas: AmazonSqsNotificationType, AmazonSqsPrincipalAuthNotificationType, AzureServiceBusNotificationType, EmailNotificationType, SmsNotificationType, WebhookNotificationType. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in NotificationType with oneOf schemas: AmazonSqsNotificationType, AmazonSqsPrincipalAuthNotificationType, EmailNotificationType, SmsNotificationType, WebhookNotificationType. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -133,12 +125,6 @@ class NotificationType(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into AzureServiceBusNotificationType
-        try:
-            instance.actual_instance = AzureServiceBusNotificationType.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
         # deserialize data into EmailNotificationType
         try:
             instance.actual_instance = EmailNotificationType.from_json(json_str)
@@ -160,10 +146,10 @@ class NotificationType(BaseModel):
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into NotificationType with oneOf schemas: AmazonSqsNotificationType, AmazonSqsPrincipalAuthNotificationType, AzureServiceBusNotificationType, EmailNotificationType, SmsNotificationType, WebhookNotificationType. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into NotificationType with oneOf schemas: AmazonSqsNotificationType, AmazonSqsPrincipalAuthNotificationType, EmailNotificationType, SmsNotificationType, WebhookNotificationType. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into NotificationType with oneOf schemas: AmazonSqsNotificationType, AmazonSqsPrincipalAuthNotificationType, AzureServiceBusNotificationType, EmailNotificationType, SmsNotificationType, WebhookNotificationType. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into NotificationType with oneOf schemas: AmazonSqsNotificationType, AmazonSqsPrincipalAuthNotificationType, EmailNotificationType, SmsNotificationType, WebhookNotificationType. Details: " + ", ".join(error_messages))
         else:
             return instance
 
