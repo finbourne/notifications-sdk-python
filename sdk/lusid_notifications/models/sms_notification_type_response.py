@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist, validator
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist
 
 class SmsNotificationTypeResponse(BaseModel):
     """
@@ -29,16 +29,6 @@ class SmsNotificationTypeResponse(BaseModel):
     body: Optional[StrictStr] = Field(None, description="The body of the SMS")
     recipients: Optional[conlist(StrictStr)] = Field(None, description="The phone numbers to which the SMS will be sent to (E.164 format)")
     __properties = ["type", "body", "recipients"]
-
-    @validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in ('Sms'):
-            raise ValueError("must be one of enum values ('Sms')")
-        return value
 
     class Config:
         """Pydantic configuration"""

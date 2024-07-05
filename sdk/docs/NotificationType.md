@@ -10,6 +10,11 @@ Name | Type | Description | Notes
 **api_secret_ref** | **str** | Reference to API secret from Configuration Store | 
 **body** | **str** | The body of the SMS | 
 **queue_url_ref** | **str** | Reference to queue url from Configuration Store | 
+**namespace** | **str** | Reference to namespace from Configuration Store | 
+**queue_name** | **str** | Reference to queue name from Configuration Store | 
+**tenant_id** | **str** | Reference to tenant id from Configuration Store | 
+**client_id** | **str** | Reference to client id from Configuration Store | 
+**client_secret** | **str** | Reference to client secret from Configuration Store | 
 **subject** | **str** | The subject of the email | 
 **plain_text_body** | **str** | The plain text body of the email | 
 **html_body** | **str** | The HTML body of the email (if any) | [optional] 

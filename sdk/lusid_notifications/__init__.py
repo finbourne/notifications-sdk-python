@@ -42,6 +42,8 @@ from lusid_notifications.models.amazon_sqs_principal_auth_notification_type impo
 from lusid_notifications.models.amazon_sqs_principal_auth_notification_type_response import AmazonSqsPrincipalAuthNotificationTypeResponse
 from lusid_notifications.models.attempt import Attempt
 from lusid_notifications.models.attempt_status import AttemptStatus
+from lusid_notifications.models.azure_service_bus_notification_type import AzureServiceBusNotificationType
+from lusid_notifications.models.azure_service_bus_type_response import AzureServiceBusTypeResponse
 from lusid_notifications.models.create_notification_request import CreateNotificationRequest
 from lusid_notifications.models.create_subscription import CreateSubscription
 from lusid_notifications.models.delivery import Delivery
@@ -106,6 +108,8 @@ __all__ = [
     "AmazonSqsPrincipalAuthNotificationTypeResponse",
     "Attempt",
     "AttemptStatus",
+    "AzureServiceBusNotificationType",
+    "AzureServiceBusTypeResponse",
     "CreateNotificationRequest",
     "CreateSubscription",
     "Delivery",

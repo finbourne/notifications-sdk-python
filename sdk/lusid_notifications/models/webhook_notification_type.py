@@ -25,7 +25,7 @@ class WebhookNotificationType(BaseModel):
     """
     The information required to create or update a Webhook notification  # noqa: E501
     """
-    type: StrictStr = Field(..., description="The type of delivery mechanism for this notification")
+    type: constr(strict=True, min_length=1) = Field(..., description="The type of delivery mechanism for this notification")
     http_method: constr(strict=True, min_length=1) = Field(..., alias="httpMethod", description="The HTTP method such as GET, POST, etc. to use on the request")
     url: constr(strict=True, max_length=16384, min_length=1) = Field(..., description="The URL to send the request to")
     authentication_type: constr(strict=True, min_length=1) = Field(..., alias="authenticationType", description="The type of authentication to use on the request, can be one of the following values:  - Lusid -  Internal LUSID call  - BasicAuth - User specified Username and password  - BearerToken - Authorization header with Bearer scheme and user specified key  - None - No Authorization required on the webhook call")

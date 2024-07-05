@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist, validator
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist
 
 class EmailNotificationTypeResponse(BaseModel):
     """
@@ -33,16 +33,6 @@ class EmailNotificationTypeResponse(BaseModel):
     email_address_cc: Optional[conlist(StrictStr)] = Field(None, alias="emailAddressCc", description="'Cc' recipients of the email")
     email_address_bcc: Optional[conlist(StrictStr)] = Field(None, alias="emailAddressBcc", description="'Bcc' recipients of the email")
     __properties = ["type", "subject", "plainTextBody", "htmlBody", "emailAddressTo", "emailAddressCc", "emailAddressBcc"]
-
-    @validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in ('Email'):
-            raise ValueError("must be one of enum values ('Email')")
-        return value
 
     class Config:
         """Pydantic configuration"""
