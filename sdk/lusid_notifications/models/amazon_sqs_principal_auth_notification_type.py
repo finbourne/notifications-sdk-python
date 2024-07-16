@@ -19,13 +19,13 @@ import json
 
 
 from typing import Any, Dict
-from pydantic.v1 import BaseModel, Field, constr, validator
+from pydantic.v1 import BaseModel, Field, StrictStr, constr, validator
 
 class AmazonSqsPrincipalAuthNotificationType(BaseModel):
     """
     The information required to create or update an AWS SQS notification with principal authentication  # noqa: E501
     """
-    type: constr(strict=True, min_length=1) = Field(..., description="The type of delivery mechanism for this notification")
+    type: StrictStr = Field(..., description="The type of delivery mechanism for this notification")
     body: constr(strict=True, max_length=1024, min_length=1) = Field(..., description="The body of the Amazon Queue Message")
     queue_url_ref: constr(strict=True, min_length=1) = Field(..., alias="queueUrlRef", description="Reference to queue url from Configuration Store")
     __properties = ["type", "body", "queueUrlRef"]
@@ -33,7 +33,7 @@ class AmazonSqsPrincipalAuthNotificationType(BaseModel):
     @validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('AmazonSqsPrincipalAuth'):
+        if not value == 'AmazonSqsPrincipalAuth':
             raise ValueError("must be one of enum values ('AmazonSqsPrincipalAuth')")
         return value
 

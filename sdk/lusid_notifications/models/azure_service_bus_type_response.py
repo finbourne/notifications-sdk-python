@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr, validator
 
 class AzureServiceBusTypeResponse(BaseModel):
     """
@@ -33,6 +33,16 @@ class AzureServiceBusTypeResponse(BaseModel):
     client_id_ref: Optional[StrictStr] = Field(None, alias="clientIdRef", description="Reference to client id from Configuration Store")
     client_secret_ref: Optional[StrictStr] = Field(None, alias="clientSecretRef", description="Reference to client secret from Configuration Store")
     __properties = ["type", "namespaceRef", "queueNameRef", "body", "tenantIdRef", "clientIdRef", "clientSecretRef"]
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in ('AzureServiceBus'):
+            raise ValueError("must be one of enum values ('AzureServiceBus')")
+        return value
 
     class Config:
         """Pydantic configuration"""

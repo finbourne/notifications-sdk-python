@@ -19,13 +19,13 @@ import json
 
 
 from typing import Any, Dict
-from pydantic.v1 import BaseModel, Field, constr, validator
+from pydantic.v1 import BaseModel, Field, StrictStr, constr, validator
 
 class AzureServiceBusNotificationType(BaseModel):
     """
     The information required to create or update an Azure Service Bus notification  # noqa: E501
     """
-    type: constr(strict=True, min_length=1) = Field(..., description="The type of delivery mechanism for this notification")
+    type: StrictStr = Field(..., description="The type of delivery mechanism for this notification")
     namespace: constr(strict=True, min_length=1) = Field(..., description="Reference to namespace from Configuration Store")
     queue_name: constr(strict=True, min_length=1) = Field(..., alias="queueName", description="Reference to queue name from Configuration Store")
     body: constr(strict=True, max_length=1024, min_length=1) = Field(..., description="The body of the Azure Service Bus Message")

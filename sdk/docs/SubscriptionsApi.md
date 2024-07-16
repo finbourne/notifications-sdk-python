@@ -68,7 +68,7 @@ api_client_factory = ApiClientFactory(config_loaders=config_loaders)
 async with api_client_factory:
     # Create an instance of the API class
     api_instance = api_client_factory.build(lusid_notifications.SubscriptionsApi)
-    create_subscription = {"id":{"scope":"TestScope","code":"TestCode"},"displayName":"TestDisplayName","description":"TestDescription","status":"Active","matchingPattern":{"eventType":"Manual","filter":"Body.Message eq 'TestMessage'"},"useAsAuth":"Auth user"} # CreateSubscription | The data to create a subscription
+    create_subscription = {"id":{"scope":"TestScope","code":"TestCode"},"displayName":"TestDisplayName","description":"TestDescription","status":"Active","matchingPattern":{"eventType":"Manual","filter":"Body.Message eq 'TestMessage'"},"useAsAuth":"TestClient"} # CreateSubscription | The data to create a subscription
 
     try:
         # [EXPERIMENTAL] CreateSubscription: Create a new subscription.
@@ -464,7 +464,7 @@ async with api_client_factory:
     api_instance = api_client_factory.build(lusid_notifications.SubscriptionsApi)
     scope = 'scope_example' # str | The scope that identifies a subscription
     code = 'code_example' # str | The code that identifies a subscription
-    update_subscription = {"displayName":"TestDisplayName","description":"TestDescription","status":"Active","matchingPattern":{"eventType":"Manual","filter":"Body.Message eq 'TestMessage'"},"useAsAuth":"Auth user"} # UpdateSubscription | The data to update a subscription
+    update_subscription = {"displayName":"TestDisplayName","description":"TestDescription","status":"Active","matchingPattern":{"eventType":"Manual","filter":"Body.Message eq 'TestMessage'"},"useAsAuth":"TestClient"} # UpdateSubscription | The data to update a subscription
 
     try:
         # [EXPERIMENTAL] UpdateSubscription: Update an existing subscription.

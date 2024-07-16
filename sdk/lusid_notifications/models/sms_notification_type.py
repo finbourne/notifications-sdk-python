@@ -25,7 +25,7 @@ class SmsNotificationType(BaseModel):
     """
     The information required to create or update an SMS notification  # noqa: E501
     """
-    type: constr(strict=True, min_length=1) = Field(..., description="The type of delivery mechanism for this notification")
+    type: StrictStr = Field(..., description="The type of delivery mechanism for this notification")
     body: constr(strict=True, max_length=1024, min_length=1) = Field(..., description="The body of the SMS")
     recipients: conlist(StrictStr, max_items=10, min_items=1) = Field(..., description="The phone numbers to which the SMS will be sent to (E.164 format)")
     __properties = ["type", "body", "recipients"]
