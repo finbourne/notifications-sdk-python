@@ -46,15 +46,15 @@ class EventTypesApi:
         self.api_client = api_client
 
     @overload
-    async def get_event_type(self, event_type : Annotated[constr(strict=True, max_length=512, min_length=0), Field(..., description="The event type to retrieve schema for.")], **kwargs) -> EventTypeSchema:  # noqa: E501
+    async def get_event_type(self, event_type : Annotated[constr(strict=True, max_length=512, min_length=1), Field(..., description="The event type to retrieve schema for.")], **kwargs) -> EventTypeSchema:  # noqa: E501
         ...
 
     @overload
-    def get_event_type(self, event_type : Annotated[constr(strict=True, max_length=512, min_length=0), Field(..., description="The event type to retrieve schema for.")], async_req: Optional[bool]=True, **kwargs) -> EventTypeSchema:  # noqa: E501
+    def get_event_type(self, event_type : Annotated[constr(strict=True, max_length=512, min_length=1), Field(..., description="The event type to retrieve schema for.")], async_req: Optional[bool]=True, **kwargs) -> EventTypeSchema:  # noqa: E501
         ...
 
     @validate_arguments
-    def get_event_type(self, event_type : Annotated[constr(strict=True, max_length=512, min_length=0), Field(..., description="The event type to retrieve schema for.")], async_req: Optional[bool]=None, **kwargs) -> Union[EventTypeSchema, Awaitable[EventTypeSchema]]:  # noqa: E501
+    def get_event_type(self, event_type : Annotated[constr(strict=True, max_length=512, min_length=1), Field(..., description="The event type to retrieve schema for.")], async_req: Optional[bool]=None, **kwargs) -> Union[EventTypeSchema, Awaitable[EventTypeSchema]]:  # noqa: E501
         """[EXPERIMENTAL] GetEventType: Gets the specified event type schema.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -85,7 +85,7 @@ class EventTypesApi:
         return self.get_event_type_with_http_info(event_type, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_event_type_with_http_info(self, event_type : Annotated[constr(strict=True, max_length=512, min_length=0), Field(..., description="The event type to retrieve schema for.")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_event_type_with_http_info(self, event_type : Annotated[constr(strict=True, max_length=512, min_length=1), Field(..., description="The event type to retrieve schema for.")], **kwargs) -> ApiResponse:  # noqa: E501
         """[EXPERIMENTAL] GetEventType: Gets the specified event type schema.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
