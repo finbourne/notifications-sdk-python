@@ -26,6 +26,6 @@ manual_event_body_dict = manual_event_body_instance.to_dict()
 # create an instance of ManualEventBody from a dict
 manual_event_body_form_dict = manual_event_body.from_dict(manual_event_body_dict)
 ```
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
 

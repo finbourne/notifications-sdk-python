@@ -27,6 +27,6 @@ resource_list_of_notification_dict = resource_list_of_notification_instance.to_d
 # create an instance of ResourceListOfNotification from a dict
 resource_list_of_notification_form_dict = resource_list_of_notification.from_dict(resource_list_of_notification_dict)
 ```
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
 

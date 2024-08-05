@@ -27,6 +27,6 @@ resource_list_of_event_type_schema_dict = resource_list_of_event_type_schema_ins
 # create an instance of ResourceListOfEventTypeSchema from a dict
 resource_list_of_event_type_schema_form_dict = resource_list_of_event_type_schema.from_dict(resource_list_of_event_type_schema_dict)
 ```
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
 

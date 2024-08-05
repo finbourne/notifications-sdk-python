@@ -15,66 +15,52 @@ Method | HTTP request | Description
 
 ### Example
 
-* OAuth Authentication (oauth2):
 ```python
-from __future__ import print_function
-import time
-import lusid_notifications
-from lusid_notifications.rest import ApiException
-from lusid_notifications.models.event_type_schema import EventTypeSchema
+import asyncio
+from lusid_notifications.exceptions import ApiException
+from lusid_notifications.models import *
 from pprint import pprint
-
-import os
 from lusid_notifications import (
     ApiClientFactory,
-    EventTypesApi,
-    EnvironmentVariablesConfigurationLoader,
-    SecretsFileConfigurationLoader,
-    ArgsConfigurationLoader
+    EventTypesApi
 )
 
-# Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
-# By default this will read config from environment variables
-# Then from a secrets.json file found in the current working directory
-api_client_factory = ApiClientFactory()
+async def main():
 
-# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+    with open("secrets.json", "w") as file:
+        file.write('''
+{
+    "api":
+    {
+        "tokenUrl":"<your-token-url>",
+        "notificationsUrl":"https://<your-domain>.lusid.com/notification",
+        "username":"<your-username>",
+        "password":"<your-password>",
+        "clientId":"<your-client-id>",
+        "clientSecret":"<your-client-secret>"
+    }
+}''')
 
-api_url = "https://fbn-prd.lusid.com/notification"
-# Path to a secrets.json file containing authentication credentials
-# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
-# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
-secrets_path = os.getenv("FBN_SECRETS_PATH")
-app_name="LusidJupyterNotebook"
+    # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+    api_client_factory = ApiClientFactory()
 
-config_loaders = [
-	EnvironmentVariablesConfigurationLoader(),
-	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
-	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
-]
-api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+    async with api_client_factory:
+        # Create an instance of the API class
+        api_instance = api_client_factory.build(EventTypesApi)
+        event_type = 'event_type_example' # str | The event type to retrieve schema for.
 
+        try:
+            # [EXPERIMENTAL] GetEventType: Gets the specified event type schema.
+            api_response = await api_instance.get_event_type(event_type)
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling EventTypesApi->get_event_type: %s\n" % e)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-
-
-
-# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-async with api_client_factory:
-    # Create an instance of the API class
-    api_instance = api_client_factory.build(lusid_notifications.EventTypesApi)
-    event_type = 'event_type_example' # str | The event type to retrieve schema for.
-
-    try:
-        # [EXPERIMENTAL] GetEventType: Gets the specified event type schema.
-        api_response = await api_instance.get_event_type(event_type)
-        print("The response of EventTypesApi->get_event_type:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling EventTypesApi->get_event_type: %s\n" % e)
+asyncio.run(main())
 ```
-
 
 ### Parameters
 
@@ -85,10 +71,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**EventTypeSchema**](EventTypeSchema.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -103,7 +85,7 @@ Name | Type | Description  | Notes
 **404** | No event type exists with the specified type |  -  |
 **0** | Error response |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
 # **list_event_types**
 > ResourceListOfEventTypeSchema list_event_types()
@@ -112,65 +94,51 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* OAuth Authentication (oauth2):
 ```python
-from __future__ import print_function
-import time
-import lusid_notifications
-from lusid_notifications.rest import ApiException
-from lusid_notifications.models.resource_list_of_event_type_schema import ResourceListOfEventTypeSchema
+import asyncio
+from lusid_notifications.exceptions import ApiException
+from lusid_notifications.models import *
 from pprint import pprint
-
-import os
 from lusid_notifications import (
     ApiClientFactory,
-    EventTypesApi,
-    EnvironmentVariablesConfigurationLoader,
-    SecretsFileConfigurationLoader,
-    ArgsConfigurationLoader
+    EventTypesApi
 )
 
-# Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
-# By default this will read config from environment variables
-# Then from a secrets.json file found in the current working directory
-api_client_factory = ApiClientFactory()
+async def main():
 
-# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+    with open("secrets.json", "w") as file:
+        file.write('''
+{
+    "api":
+    {
+        "tokenUrl":"<your-token-url>",
+        "notificationsUrl":"https://<your-domain>.lusid.com/notification",
+        "username":"<your-username>",
+        "password":"<your-password>",
+        "clientId":"<your-client-id>",
+        "clientSecret":"<your-client-secret>"
+    }
+}''')
 
-api_url = "https://fbn-prd.lusid.com/notification"
-# Path to a secrets.json file containing authentication credentials
-# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
-# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
-secrets_path = os.getenv("FBN_SECRETS_PATH")
-app_name="LusidJupyterNotebook"
+    # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+    api_client_factory = ApiClientFactory()
 
-config_loaders = [
-	EnvironmentVariablesConfigurationLoader(),
-	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
-	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
-]
-api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+    async with api_client_factory:
+        # Create an instance of the API class
+        api_instance = api_client_factory.build(EventTypesApi)
 
+        try:
+            # [EXPERIMENTAL] ListEventTypes: Lists all of the available event types.
+            api_response = await api_instance.list_event_types()
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling EventTypesApi->list_event_types: %s\n" % e)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-
-
-
-# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-async with api_client_factory:
-    # Create an instance of the API class
-    api_instance = api_client_factory.build(lusid_notifications.EventTypesApi)
-
-    try:
-        # [EXPERIMENTAL] ListEventTypes: Lists all of the available event types.
-        api_response = await api_instance.list_event_types()
-        print("The response of EventTypesApi->list_event_types:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling EventTypesApi->list_event_types: %s\n" % e)
+asyncio.run(main())
 ```
-
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -178,10 +146,6 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**ResourceListOfEventTypeSchema**](ResourceListOfEventTypeSchema.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -195,5 +159,5 @@ This endpoint does not need any parameter.
 **404** | No event types found |  -  |
 **0** | Error response |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 

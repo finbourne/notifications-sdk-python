@@ -18,67 +18,57 @@ Method | HTTP request | Description
 
 ### Example
 
-* OAuth Authentication (oauth2):
 ```python
-from __future__ import print_function
-import time
-import lusid_notifications
-from lusid_notifications.rest import ApiException
-from lusid_notifications.models.create_subscription import CreateSubscription
-from lusid_notifications.models.subscription import Subscription
+import asyncio
+from lusid_notifications.exceptions import ApiException
+from lusid_notifications.models import *
 from pprint import pprint
-
-import os
 from lusid_notifications import (
     ApiClientFactory,
-    SubscriptionsApi,
-    EnvironmentVariablesConfigurationLoader,
-    SecretsFileConfigurationLoader,
-    ArgsConfigurationLoader
+    SubscriptionsApi
 )
 
-# Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
-# By default this will read config from environment variables
-# Then from a secrets.json file found in the current working directory
-api_client_factory = ApiClientFactory()
+async def main():
 
-# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+    with open("secrets.json", "w") as file:
+        file.write('''
+{
+    "api":
+    {
+        "tokenUrl":"<your-token-url>",
+        "notificationsUrl":"https://<your-domain>.lusid.com/notification",
+        "username":"<your-username>",
+        "password":"<your-password>",
+        "clientId":"<your-client-id>",
+        "clientSecret":"<your-client-secret>"
+    }
+}''')
 
-api_url = "https://fbn-prd.lusid.com/notification"
-# Path to a secrets.json file containing authentication credentials
-# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
-# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
-secrets_path = os.getenv("FBN_SECRETS_PATH")
-app_name="LusidJupyterNotebook"
+    # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+    api_client_factory = ApiClientFactory()
 
-config_loaders = [
-	EnvironmentVariablesConfigurationLoader(),
-	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
-	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
-]
-api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+    async with api_client_factory:
+        # Create an instance of the API class
+        api_instance = api_client_factory.build(SubscriptionsApi)
 
+        # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
+        # Change the lines below to switch approach
+        # create_subscription = CreateSubscription()
+        # create_subscription = CreateSubscription.from_json("")
+        create_subscription = CreateSubscription.from_dict({"id":{"scope":"TestScope","code":"TestCode"},"displayName":"TestDisplayName","description":"TestDescription","status":"Active","matchingPattern":{"eventType":"Manual","filter":"Body.Message eq 'TestMessage'"},"useAsAuth":"TestClient"}) # CreateSubscription | The data to create a subscription
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
+        try:
+            # [EXPERIMENTAL] CreateSubscription: Create a new subscription.
+            api_response = await api_instance.create_subscription(create_subscription)
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling SubscriptionsApi->create_subscription: %s\n" % e)
 
-
-
-# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-async with api_client_factory:
-    # Create an instance of the API class
-    api_instance = api_client_factory.build(lusid_notifications.SubscriptionsApi)
-    create_subscription = {"id":{"scope":"TestScope","code":"TestCode"},"displayName":"TestDisplayName","description":"TestDescription","status":"Active","matchingPattern":{"eventType":"Manual","filter":"Body.Message eq 'TestMessage'"},"useAsAuth":"TestClient"} # CreateSubscription | The data to create a subscription
-
-    try:
-        # [EXPERIMENTAL] CreateSubscription: Create a new subscription.
-        api_response = await api_instance.create_subscription(create_subscription)
-        print("The response of SubscriptionsApi->create_subscription:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling SubscriptionsApi->create_subscription: %s\n" % e)
+asyncio.run(main())
 ```
-
 
 ### Parameters
 
@@ -89,10 +79,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Subscription**](Subscription.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -106,7 +92,7 @@ Name | Type | Description  | Notes
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
 # **delete_subscription**
 > delete_subscription(scope, code)
@@ -115,64 +101,51 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* OAuth Authentication (oauth2):
 ```python
-from __future__ import print_function
-import time
-import lusid_notifications
-from lusid_notifications.rest import ApiException
+import asyncio
+from lusid_notifications.exceptions import ApiException
+from lusid_notifications.models import *
 from pprint import pprint
-
-import os
 from lusid_notifications import (
     ApiClientFactory,
-    SubscriptionsApi,
-    EnvironmentVariablesConfigurationLoader,
-    SecretsFileConfigurationLoader,
-    ArgsConfigurationLoader
+    SubscriptionsApi
 )
 
-# Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
-# By default this will read config from environment variables
-# Then from a secrets.json file found in the current working directory
-api_client_factory = ApiClientFactory()
+async def main():
 
-# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+    with open("secrets.json", "w") as file:
+        file.write('''
+{
+    "api":
+    {
+        "tokenUrl":"<your-token-url>",
+        "notificationsUrl":"https://<your-domain>.lusid.com/notification",
+        "username":"<your-username>",
+        "password":"<your-password>",
+        "clientId":"<your-client-id>",
+        "clientSecret":"<your-client-secret>"
+    }
+}''')
 
-api_url = "https://fbn-prd.lusid.com/notification"
-# Path to a secrets.json file containing authentication credentials
-# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
-# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
-secrets_path = os.getenv("FBN_SECRETS_PATH")
-app_name="LusidJupyterNotebook"
+    # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+    api_client_factory = ApiClientFactory()
 
-config_loaders = [
-	EnvironmentVariablesConfigurationLoader(),
-	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
-	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
-]
-api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+    async with api_client_factory:
+        # Create an instance of the API class
+        api_instance = api_client_factory.build(SubscriptionsApi)
+        scope = 'scope_example' # str | The scope that identifies a subscription
+        code = 'code_example' # str | The code that identifies a subscription
 
+        try:
+            # [EXPERIMENTAL] DeleteSubscription: Delete a subscription.
+            await api_instance.delete_subscription(scope, code)        except ApiException as e:
+            print("Exception when calling SubscriptionsApi->delete_subscription: %s\n" % e)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-
-
-
-# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-async with api_client_factory:
-    # Create an instance of the API class
-    api_instance = api_client_factory.build(lusid_notifications.SubscriptionsApi)
-    scope = 'scope_example' # str | The scope that identifies a subscription
-    code = 'code_example' # str | The code that identifies a subscription
-
-    try:
-        # [EXPERIMENTAL] DeleteSubscription: Delete a subscription.
-        await api_instance.delete_subscription(scope, code)
-    except Exception as e:
-        print("Exception when calling SubscriptionsApi->delete_subscription: %s\n" % e)
+asyncio.run(main())
 ```
-
 
 ### Parameters
 
@@ -184,10 +157,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 void (empty response body)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -202,7 +171,7 @@ void (empty response body)
 **404** | No subscription exists in current scope |  -  |
 **0** | Error response |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
 # **get_subscription**
 > Subscription get_subscription(scope, code)
@@ -211,67 +180,53 @@ void (empty response body)
 
 ### Example
 
-* OAuth Authentication (oauth2):
 ```python
-from __future__ import print_function
-import time
-import lusid_notifications
-from lusid_notifications.rest import ApiException
-from lusid_notifications.models.subscription import Subscription
+import asyncio
+from lusid_notifications.exceptions import ApiException
+from lusid_notifications.models import *
 from pprint import pprint
-
-import os
 from lusid_notifications import (
     ApiClientFactory,
-    SubscriptionsApi,
-    EnvironmentVariablesConfigurationLoader,
-    SecretsFileConfigurationLoader,
-    ArgsConfigurationLoader
+    SubscriptionsApi
 )
 
-# Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
-# By default this will read config from environment variables
-# Then from a secrets.json file found in the current working directory
-api_client_factory = ApiClientFactory()
+async def main():
 
-# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+    with open("secrets.json", "w") as file:
+        file.write('''
+{
+    "api":
+    {
+        "tokenUrl":"<your-token-url>",
+        "notificationsUrl":"https://<your-domain>.lusid.com/notification",
+        "username":"<your-username>",
+        "password":"<your-password>",
+        "clientId":"<your-client-id>",
+        "clientSecret":"<your-client-secret>"
+    }
+}''')
 
-api_url = "https://fbn-prd.lusid.com/notification"
-# Path to a secrets.json file containing authentication credentials
-# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
-# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
-secrets_path = os.getenv("FBN_SECRETS_PATH")
-app_name="LusidJupyterNotebook"
+    # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+    api_client_factory = ApiClientFactory()
 
-config_loaders = [
-	EnvironmentVariablesConfigurationLoader(),
-	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
-	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
-]
-api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+    async with api_client_factory:
+        # Create an instance of the API class
+        api_instance = api_client_factory.build(SubscriptionsApi)
+        scope = 'scope_example' # str | The scope that identifies a subscription
+        code = 'code_example' # str | The code that identifies a subscription
 
+        try:
+            # [EXPERIMENTAL] GetSubscription: Get a subscription.
+            api_response = await api_instance.get_subscription(scope, code)
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling SubscriptionsApi->get_subscription: %s\n" % e)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-
-
-
-# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-async with api_client_factory:
-    # Create an instance of the API class
-    api_instance = api_client_factory.build(lusid_notifications.SubscriptionsApi)
-    scope = 'scope_example' # str | The scope that identifies a subscription
-    code = 'code_example' # str | The code that identifies a subscription
-
-    try:
-        # [EXPERIMENTAL] GetSubscription: Get a subscription.
-        api_response = await api_instance.get_subscription(scope, code)
-        print("The response of SubscriptionsApi->get_subscription:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling SubscriptionsApi->get_subscription: %s\n" % e)
+asyncio.run(main())
 ```
-
 
 ### Parameters
 
@@ -283,10 +238,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Subscription**](Subscription.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -301,7 +252,7 @@ Name | Type | Description  | Notes
 **404** | No subscription exists in current scope |  -  |
 **0** | Error response |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
 # **list_subscriptions**
 > ResourceListOfSubscription list_subscriptions(filter=filter, sort_by=sort_by, page=page, limit=limit)
@@ -310,69 +261,55 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* OAuth Authentication (oauth2):
 ```python
-from __future__ import print_function
-import time
-import lusid_notifications
-from lusid_notifications.rest import ApiException
-from lusid_notifications.models.resource_list_of_subscription import ResourceListOfSubscription
+import asyncio
+from lusid_notifications.exceptions import ApiException
+from lusid_notifications.models import *
 from pprint import pprint
-
-import os
 from lusid_notifications import (
     ApiClientFactory,
-    SubscriptionsApi,
-    EnvironmentVariablesConfigurationLoader,
-    SecretsFileConfigurationLoader,
-    ArgsConfigurationLoader
+    SubscriptionsApi
 )
 
-# Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
-# By default this will read config from environment variables
-# Then from a secrets.json file found in the current working directory
-api_client_factory = ApiClientFactory()
+async def main():
 
-# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+    with open("secrets.json", "w") as file:
+        file.write('''
+{
+    "api":
+    {
+        "tokenUrl":"<your-token-url>",
+        "notificationsUrl":"https://<your-domain>.lusid.com/notification",
+        "username":"<your-username>",
+        "password":"<your-password>",
+        "clientId":"<your-client-id>",
+        "clientSecret":"<your-client-secret>"
+    }
+}''')
 
-api_url = "https://fbn-prd.lusid.com/notification"
-# Path to a secrets.json file containing authentication credentials
-# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
-# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
-secrets_path = os.getenv("FBN_SECRETS_PATH")
-app_name="LusidJupyterNotebook"
+    # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+    api_client_factory = ApiClientFactory()
 
-config_loaders = [
-	EnvironmentVariablesConfigurationLoader(),
-	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
-	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
-]
-api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+    async with api_client_factory:
+        # Create an instance of the API class
+        api_instance = api_client_factory.build(SubscriptionsApi)
+        filter = 'filter_example' # str | Expression to filter the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>. (optional)
+        sort_by = 'sort_by_example' # str | Fields to order the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a> (optional)
+        page = 'page_example' # str | Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied the filter  field should not be supplied. (optional)
+        limit = 56 # int | The maximum number of subscriptions to retrieve. (optional)
 
+        try:
+            # [EXPERIMENTAL] ListSubscriptions: List subscriptions.
+            api_response = await api_instance.list_subscriptions(filter=filter, sort_by=sort_by, page=page, limit=limit)
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling SubscriptionsApi->list_subscriptions: %s\n" % e)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-
-
-
-# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-async with api_client_factory:
-    # Create an instance of the API class
-    api_instance = api_client_factory.build(lusid_notifications.SubscriptionsApi)
-    filter = 'filter_example' # str | Expression to filter the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>. (optional)
-    sort_by = 'sort_by_example' # str | Fields to order the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a> (optional)
-    page = 'page_example' # str | Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied the filter  field should not be supplied. (optional)
-    limit = 56 # int | The maximum number of subscriptions to retrieve. (optional)
-
-    try:
-        # [EXPERIMENTAL] ListSubscriptions: List subscriptions.
-        api_response = await api_instance.list_subscriptions(filter=filter, sort_by=sort_by, page=page, limit=limit)
-        print("The response of SubscriptionsApi->list_subscriptions:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling SubscriptionsApi->list_subscriptions: %s\n" % e)
+asyncio.run(main())
 ```
-
 
 ### Parameters
 
@@ -387,10 +324,6 @@ Name | Type | Description  | Notes
 
 [**ResourceListOfSubscription**](ResourceListOfSubscription.md)
 
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
 ### HTTP request headers
 
  - **Content-Type**: Not defined
@@ -403,7 +336,7 @@ Name | Type | Description  | Notes
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
 # **update_subscription**
 > Subscription update_subscription(scope, code, update_subscription)
@@ -412,69 +345,59 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* OAuth Authentication (oauth2):
 ```python
-from __future__ import print_function
-import time
-import lusid_notifications
-from lusid_notifications.rest import ApiException
-from lusid_notifications.models.subscription import Subscription
-from lusid_notifications.models.update_subscription import UpdateSubscription
+import asyncio
+from lusid_notifications.exceptions import ApiException
+from lusid_notifications.models import *
 from pprint import pprint
-
-import os
 from lusid_notifications import (
     ApiClientFactory,
-    SubscriptionsApi,
-    EnvironmentVariablesConfigurationLoader,
-    SecretsFileConfigurationLoader,
-    ArgsConfigurationLoader
+    SubscriptionsApi
 )
 
-# Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
-# By default this will read config from environment variables
-# Then from a secrets.json file found in the current working directory
-api_client_factory = ApiClientFactory()
+async def main():
 
-# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+    with open("secrets.json", "w") as file:
+        file.write('''
+{
+    "api":
+    {
+        "tokenUrl":"<your-token-url>",
+        "notificationsUrl":"https://<your-domain>.lusid.com/notification",
+        "username":"<your-username>",
+        "password":"<your-password>",
+        "clientId":"<your-client-id>",
+        "clientSecret":"<your-client-secret>"
+    }
+}''')
 
-api_url = "https://fbn-prd.lusid.com/notification"
-# Path to a secrets.json file containing authentication credentials
-# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
-# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
-secrets_path = os.getenv("FBN_SECRETS_PATH")
-app_name="LusidJupyterNotebook"
+    # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+    api_client_factory = ApiClientFactory()
 
-config_loaders = [
-	EnvironmentVariablesConfigurationLoader(),
-	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
-	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
-]
-api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+    async with api_client_factory:
+        # Create an instance of the API class
+        api_instance = api_client_factory.build(SubscriptionsApi)
+        scope = 'scope_example' # str | The scope that identifies a subscription
+        code = 'code_example' # str | The code that identifies a subscription
 
+        # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
+        # Change the lines below to switch approach
+        # update_subscription = UpdateSubscription()
+        # update_subscription = UpdateSubscription.from_json("")
+        update_subscription = UpdateSubscription.from_dict({"displayName":"TestDisplayName","description":"TestDescription","status":"Active","matchingPattern":{"eventType":"Manual","filter":"Body.Message eq 'TestMessage'"},"useAsAuth":"TestClient"}) # UpdateSubscription | The data to update a subscription
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
+        try:
+            # [EXPERIMENTAL] UpdateSubscription: Update an existing subscription.
+            api_response = await api_instance.update_subscription(scope, code, update_subscription)
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling SubscriptionsApi->update_subscription: %s\n" % e)
 
-
-
-# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-async with api_client_factory:
-    # Create an instance of the API class
-    api_instance = api_client_factory.build(lusid_notifications.SubscriptionsApi)
-    scope = 'scope_example' # str | The scope that identifies a subscription
-    code = 'code_example' # str | The code that identifies a subscription
-    update_subscription = {"displayName":"TestDisplayName","description":"TestDescription","status":"Active","matchingPattern":{"eventType":"Manual","filter":"Body.Message eq 'TestMessage'"},"useAsAuth":"TestClient"} # UpdateSubscription | The data to update a subscription
-
-    try:
-        # [EXPERIMENTAL] UpdateSubscription: Update an existing subscription.
-        api_response = await api_instance.update_subscription(scope, code, update_subscription)
-        print("The response of SubscriptionsApi->update_subscription:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling SubscriptionsApi->update_subscription: %s\n" % e)
+asyncio.run(main())
 ```
-
 
 ### Parameters
 
@@ -487,10 +410,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Subscription**](Subscription.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -505,5 +424,5 @@ Name | Type | Description  | Notes
 **404** | No subscription exists in current scope |  -  |
 **0** | Error response |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 

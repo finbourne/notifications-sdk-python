@@ -26,6 +26,6 @@ update_notification_request_dict = update_notification_request_instance.to_dict(
 # create an instance of UpdateNotificationRequest from a dict
 update_notification_request_form_dict = update_notification_request.from_dict(update_notification_request_dict)
 ```
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
 

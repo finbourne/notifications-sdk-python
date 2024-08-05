@@ -14,67 +14,57 @@ Method | HTTP request | Description
 
 ### Example
 
-* OAuth Authentication (oauth2):
 ```python
-from __future__ import print_function
-import time
-import lusid_notifications
-from lusid_notifications.rest import ApiException
-from lusid_notifications.models.manual_event import ManualEvent
-from lusid_notifications.models.manual_event_request import ManualEventRequest
+import asyncio
+from lusid_notifications.exceptions import ApiException
+from lusid_notifications.models import *
 from pprint import pprint
-
-import os
 from lusid_notifications import (
     ApiClientFactory,
-    ManualEventApi,
-    EnvironmentVariablesConfigurationLoader,
-    SecretsFileConfigurationLoader,
-    ArgsConfigurationLoader
+    ManualEventApi
 )
 
-# Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
-# By default this will read config from environment variables
-# Then from a secrets.json file found in the current working directory
-api_client_factory = ApiClientFactory()
+async def main():
 
-# The ApiClientFactory can be passed an iterable of configuration loaders to read configuration from
+    with open("secrets.json", "w") as file:
+        file.write('''
+{
+    "api":
+    {
+        "tokenUrl":"<your-token-url>",
+        "notificationsUrl":"https://<your-domain>.lusid.com/notification",
+        "username":"<your-username>",
+        "password":"<your-password>",
+        "clientId":"<your-client-id>",
+        "clientSecret":"<your-client-secret>"
+    }
+}''')
 
-api_url = "https://fbn-prd.lusid.com/notification"
-# Path to a secrets.json file containing authentication credentials
-# See https://support.lusid.com/knowledgebase/article/KA-01667/en-us
-# for a detailed guide to setting up the SDK make authenticated calls to LUSID APIs
-secrets_path = os.getenv("FBN_SECRETS_PATH")
-app_name="LusidJupyterNotebook"
+    # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
+    # By default this will read config from environment variables
+    # Then from a secrets.json file found in the current working directory
+    api_client_factory = ApiClientFactory()
 
-config_loaders = [
-	EnvironmentVariablesConfigurationLoader(),
-	SecretsFileConfigurationLoader(api_secrets_file=secrets_path),
-	ArgsConfigurationLoader(api_url=api_url, app_name=app_name)
-]
-api_client_factory = ApiClientFactory(config_loaders=config_loaders)
+    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
+    async with api_client_factory:
+        # Create an instance of the API class
+        api_instance = api_client_factory.build(ManualEventApi)
 
+        # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
+        # Change the lines below to switch approach
+        # manual_event_request = ManualEventRequest()
+        # manual_event_request = ManualEventRequest.from_json("")
+        manual_event_request = ManualEventRequest.from_dict({"body":{"subject":"TestSubject","message":"TestMessage","jsonMessage":{"TestField1":"TestValue1","TestField2":"TestValue2"}}}) # ManualEventRequest | The data required to trigger a manual event.
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
+        try:
+            # [EXPERIMENTAL] TriggerManualEvent: Trigger a manual event.
+            api_response = await api_instance.trigger_manual_event(manual_event_request)
+            pprint(api_response)
+        except ApiException as e:
+            print("Exception when calling ManualEventApi->trigger_manual_event: %s\n" % e)
 
-
-
-# Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-async with api_client_factory:
-    # Create an instance of the API class
-    api_instance = api_client_factory.build(lusid_notifications.ManualEventApi)
-    manual_event_request = {"body":{"subject":"TestSubject","message":"TestMessage","jsonMessage":{"TestField1":"TestValue1","TestField2":"TestValue2"}}} # ManualEventRequest | The data required to trigger a manual event.
-
-    try:
-        # [EXPERIMENTAL] TriggerManualEvent: Trigger a manual event.
-        api_response = await api_instance.trigger_manual_event(manual_event_request)
-        print("The response of ManualEventApi->trigger_manual_event:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ManualEventApi->trigger_manual_event: %s\n" % e)
+asyncio.run(main())
 ```
-
 
 ### Parameters
 
@@ -85,10 +75,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ManualEvent**](ManualEvent.md)
-
-### Authorization
-
-[oauth2](../README.md#oauth2)
 
 ### HTTP request headers
 
@@ -102,5 +88,5 @@ Name | Type | Description  | Notes
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 

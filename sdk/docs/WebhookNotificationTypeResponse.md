@@ -30,6 +30,6 @@ webhook_notification_type_response_dict = webhook_notification_type_response_ins
 # create an instance of WebhookNotificationTypeResponse from a dict
 webhook_notification_type_response_form_dict = webhook_notification_type_response.from_dict(webhook_notification_type_response_dict)
 ```
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
 
