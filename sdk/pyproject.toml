@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "lusid-notifications-sdk"
-version = "2.1.35"
+version = "2.1.36"
 description = "FINBOURNE Notifications API"
 authors = ["FINBOURNE Technology <info@finbourne.com>"]
 license = "MIT"
