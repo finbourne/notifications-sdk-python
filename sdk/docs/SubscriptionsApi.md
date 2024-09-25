@@ -21,6 +21,7 @@ Method | HTTP request | Description
 ```python
 import asyncio
 from lusid_notifications.exceptions import ApiException
+from lusid_notifications.extensions.configuration_options import ConfigurationOptions
 from lusid_notifications.models import *
 from pprint import pprint
 from lusid_notifications import (
@@ -47,6 +48,14 @@ async def main():
     # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -61,6 +70,9 @@ async def main():
         create_subscription = CreateSubscription.from_dict({"id":{"scope":"TestScope","code":"TestCode"},"displayName":"TestDisplayName","description":"TestDescription","status":"Active","matchingPattern":{"eventType":"Manual","filter":"Body.Message eq 'TestMessage'"},"useAsAuth":"TestClient"}) # CreateSubscription | The data to create a subscription
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.create_subscription(create_subscription, opts=opts)
+
             # [EXPERIMENTAL] CreateSubscription: Create a new subscription.
             api_response = await api_instance.create_subscription(create_subscription)
             pprint(api_response)
@@ -104,6 +116,7 @@ Name | Type | Description  | Notes
 ```python
 import asyncio
 from lusid_notifications.exceptions import ApiException
+from lusid_notifications.extensions.configuration_options import ConfigurationOptions
 from lusid_notifications.models import *
 from pprint import pprint
 from lusid_notifications import (
@@ -130,6 +143,14 @@ async def main():
     # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -140,6 +161,9 @@ async def main():
         code = 'code_example' # str | The code that identifies a subscription
 
         try:
+            # uncomment the below to set overrides at the request level
+            # await api_instance.delete_subscription(scope, code, opts=opts)
+
             # [EXPERIMENTAL] DeleteSubscription: Delete a subscription.
             await api_instance.delete_subscription(scope, code)        except ApiException as e:
             print("Exception when calling SubscriptionsApi->delete_subscription: %s\n" % e)
@@ -183,6 +207,7 @@ void (empty response body)
 ```python
 import asyncio
 from lusid_notifications.exceptions import ApiException
+from lusid_notifications.extensions.configuration_options import ConfigurationOptions
 from lusid_notifications.models import *
 from pprint import pprint
 from lusid_notifications import (
@@ -209,6 +234,14 @@ async def main():
     # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -219,6 +252,9 @@ async def main():
         code = 'code_example' # str | The code that identifies a subscription
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.get_subscription(scope, code, opts=opts)
+
             # [EXPERIMENTAL] GetSubscription: Get a subscription.
             api_response = await api_instance.get_subscription(scope, code)
             pprint(api_response)
@@ -264,6 +300,7 @@ Name | Type | Description  | Notes
 ```python
 import asyncio
 from lusid_notifications.exceptions import ApiException
+from lusid_notifications.extensions.configuration_options import ConfigurationOptions
 from lusid_notifications.models import *
 from pprint import pprint
 from lusid_notifications import (
@@ -290,6 +327,14 @@ async def main():
     # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -302,6 +347,9 @@ async def main():
         limit = 56 # int | The maximum number of subscriptions to retrieve. (optional)
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.list_subscriptions(filter=filter, sort_by=sort_by, page=page, limit=limit, opts=opts)
+
             # [EXPERIMENTAL] ListSubscriptions: List subscriptions.
             api_response = await api_instance.list_subscriptions(filter=filter, sort_by=sort_by, page=page, limit=limit)
             pprint(api_response)
@@ -348,6 +396,7 @@ Name | Type | Description  | Notes
 ```python
 import asyncio
 from lusid_notifications.exceptions import ApiException
+from lusid_notifications.extensions.configuration_options import ConfigurationOptions
 from lusid_notifications.models import *
 from pprint import pprint
 from lusid_notifications import (
@@ -374,6 +423,14 @@ async def main():
     # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -390,6 +447,9 @@ async def main():
         update_subscription = UpdateSubscription.from_dict({"displayName":"TestDisplayName","description":"TestDescription","status":"Active","matchingPattern":{"eventType":"Manual","filter":"Body.Message eq 'TestMessage'"},"useAsAuth":"TestClient"}) # UpdateSubscription | The data to update a subscription
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.update_subscription(scope, code, update_subscription, opts=opts)
+
             # [EXPERIMENTAL] UpdateSubscription: Update an existing subscription.
             api_response = await api_instance.update_subscription(scope, code, update_subscription)
             pprint(api_response)

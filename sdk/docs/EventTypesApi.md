@@ -18,6 +18,7 @@ Method | HTTP request | Description
 ```python
 import asyncio
 from lusid_notifications.exceptions import ApiException
+from lusid_notifications.extensions.configuration_options import ConfigurationOptions
 from lusid_notifications.models import *
 from pprint import pprint
 from lusid_notifications import (
@@ -44,6 +45,14 @@ async def main():
     # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -53,6 +62,9 @@ async def main():
         event_type = 'event_type_example' # str | The event type to retrieve schema for.
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.get_event_type(event_type, opts=opts)
+
             # [EXPERIMENTAL] GetEventType: Gets the specified event type schema.
             api_response = await api_instance.get_event_type(event_type)
             pprint(api_response)
@@ -97,6 +109,7 @@ Name | Type | Description  | Notes
 ```python
 import asyncio
 from lusid_notifications.exceptions import ApiException
+from lusid_notifications.extensions.configuration_options import ConfigurationOptions
 from lusid_notifications.models import *
 from pprint import pprint
 from lusid_notifications import (
@@ -123,6 +136,14 @@ async def main():
     # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -131,6 +152,9 @@ async def main():
         api_instance = api_client_factory.build(EventTypesApi)
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.list_event_types(opts=opts)
+
             # [EXPERIMENTAL] ListEventTypes: Lists all of the available event types.
             api_response = await api_instance.list_event_types()
             pprint(api_response)

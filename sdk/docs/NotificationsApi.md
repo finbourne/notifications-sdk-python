@@ -21,6 +21,7 @@ Method | HTTP request | Description
 ```python
 import asyncio
 from lusid_notifications.exceptions import ApiException
+from lusid_notifications.extensions.configuration_options import ConfigurationOptions
 from lusid_notifications.models import *
 from pprint import pprint
 from lusid_notifications import (
@@ -47,6 +48,14 @@ async def main():
     # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -63,6 +72,9 @@ async def main():
         create_notification_request = CreateNotificationRequest.from_dict({"notificationId":"TestId","displayName":"TestDisplayName","description":"TestDescription","notificationType":{"type":"Email","subject":"Event with message of {{body.message}}","plainTextBody":"Event with message {{body.message}} and subject {{body.subject}}","htmlBody":"<p>Event with message {{body.message}} and subject {{body.subject}}</p>","emailAddressTo":["recipient@finbourne.com"],"emailAddressCc":["recipientcc@finbourne.com"],"emailAddressBcc":["recipientbcc@finbourne.com"]}}) # CreateNotificationRequest | The data to create a notification
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.create_notification(scope, code, create_notification_request, opts=opts)
+
             # [EXPERIMENTAL] CreateNotification: Add a Notification to a Subscription.
             api_response = await api_instance.create_notification(scope, code, create_notification_request)
             pprint(api_response)
@@ -108,6 +120,7 @@ Name | Type | Description  | Notes
 ```python
 import asyncio
 from lusid_notifications.exceptions import ApiException
+from lusid_notifications.extensions.configuration_options import ConfigurationOptions
 from lusid_notifications.models import *
 from pprint import pprint
 from lusid_notifications import (
@@ -134,6 +147,14 @@ async def main():
     # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -145,6 +166,9 @@ async def main():
         id = 'id_example' # str | The unique identifier of the notification
 
         try:
+            # uncomment the below to set overrides at the request level
+            # await api_instance.delete_notification(scope, code, id, opts=opts)
+
             # [EXPERIMENTAL] DeleteNotification: Delete a notification for a given subscription.
             await api_instance.delete_notification(scope, code, id)        except ApiException as e:
             print("Exception when calling NotificationsApi->delete_notification: %s\n" % e)
@@ -189,6 +213,7 @@ void (empty response body)
 ```python
 import asyncio
 from lusid_notifications.exceptions import ApiException
+from lusid_notifications.extensions.configuration_options import ConfigurationOptions
 from lusid_notifications.models import *
 from pprint import pprint
 from lusid_notifications import (
@@ -215,6 +240,14 @@ async def main():
     # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -226,6 +259,9 @@ async def main():
         id = 'id_example' # str | The unique identifier of the notification
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.get_notification(scope, code, id, opts=opts)
+
             # [EXPERIMENTAL] GetNotification: Get a notification on a subscription.
             api_response = await api_instance.get_notification(scope, code, id)
             pprint(api_response)
@@ -272,6 +308,7 @@ Name | Type | Description  | Notes
 ```python
 import asyncio
 from lusid_notifications.exceptions import ApiException
+from lusid_notifications.extensions.configuration_options import ConfigurationOptions
 from lusid_notifications.models import *
 from pprint import pprint
 from lusid_notifications import (
@@ -298,6 +335,14 @@ async def main():
     # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -308,6 +353,9 @@ async def main():
         code = 'code_example' # str | The code that identifies a subscription
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.list_notifications(scope, code, opts=opts)
+
             # [EXPERIMENTAL] ListNotifications: List all notifications on a subscription.
             api_response = await api_instance.list_notifications(scope, code)
             pprint(api_response)
@@ -353,6 +401,7 @@ Name | Type | Description  | Notes
 ```python
 import asyncio
 from lusid_notifications.exceptions import ApiException
+from lusid_notifications.extensions.configuration_options import ConfigurationOptions
 from lusid_notifications.models import *
 from pprint import pprint
 from lusid_notifications import (
@@ -379,6 +428,14 @@ async def main():
     # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -396,6 +453,9 @@ async def main():
         update_notification_request = UpdateNotificationRequest.from_dict({"displayName":"TestDisplayName","description":"Example description","notificationType":{"type":"Email","subject":"Event with message of {{body.message}}","plainTextBody":"Event with message {{body.message}} and subject {{body.subject}}","htmlBody":"<p>Event with message {{body.message}} and subject {{body.subject}}</p>","emailAddressTo":["recipient@finbourne.com"],"emailAddressCc":["recipientcc@finbourne.com"],"emailAddressBcc":["recipientbcc@finbourne.com"]}}) # UpdateNotificationRequest | The data to update a notification
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.update_notification(scope, code, id, update_notification_request, opts=opts)
+
             # [EXPERIMENTAL] UpdateNotification: Update a Notification for a Subscription
             api_response = await api_instance.update_notification(scope, code, id, update_notification_request)
             pprint(api_response)

@@ -17,6 +17,7 @@ Method | HTTP request | Description
 ```python
 import asyncio
 from lusid_notifications.exceptions import ApiException
+from lusid_notifications.extensions.configuration_options import ConfigurationOptions
 from lusid_notifications.models import *
 from pprint import pprint
 from lusid_notifications import (
@@ -43,6 +44,14 @@ async def main():
     # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
+
+    # uncomment the below to use configuration overrides
+    # opts = ConfigurationOptions();
+    # opts.total_timeout_ms = 30_000
+
+    # uncomment the below to use an api client factory with overrides
+    # api_client_factory = ApiClientFactory(opts=opts)
+
     api_client_factory = ApiClientFactory()
 
     # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
@@ -57,6 +66,9 @@ async def main():
         manual_event_request = ManualEventRequest.from_dict({"body":{"subject":"TestSubject","message":"TestMessage","jsonMessage":{"TestField1":"TestValue1","TestField2":"TestValue2"}}}) # ManualEventRequest | The data required to trigger a manual event.
 
         try:
+            # uncomment the below to set overrides at the request level
+            # api_response = await api_instance.trigger_manual_event(manual_event_request, opts=opts)
+
             # [EXPERIMENTAL] TriggerManualEvent: Trigger a manual event.
             api_response = await api_instance.trigger_manual_event(manual_event_request)
             pprint(api_response)
