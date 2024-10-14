@@ -65,9 +65,9 @@ async def main():
 
         # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
         # Change the lines below to switch approach
-        # create_subscription = CreateSubscription()
         # create_subscription = CreateSubscription.from_json("")
-        create_subscription = CreateSubscription.from_dict({"id":{"scope":"TestScope","code":"TestCode"},"displayName":"TestDisplayName","description":"TestDescription","status":"Active","matchingPattern":{"eventType":"Manual","filter":"Body.Message eq 'TestMessage'"},"useAsAuth":"TestClient"}) # CreateSubscription | The data to create a subscription
+        # create_subscription = CreateSubscription.from_dict({})
+        create_subscription = CreateSubscription()
 
         try:
             # uncomment the below to set overrides at the request level
@@ -442,9 +442,9 @@ async def main():
 
         # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
         # Change the lines below to switch approach
-        # update_subscription = UpdateSubscription()
         # update_subscription = UpdateSubscription.from_json("")
-        update_subscription = UpdateSubscription.from_dict({"displayName":"TestDisplayName","description":"TestDescription","status":"Active","matchingPattern":{"eventType":"Manual","filter":"Body.Message eq 'TestMessage'"},"useAsAuth":"TestClient"}) # UpdateSubscription | The data to update a subscription
+        # update_subscription = UpdateSubscription.from_dict({})
+        update_subscription = UpdateSubscription()
 
         try:
             # uncomment the below to set overrides at the request level

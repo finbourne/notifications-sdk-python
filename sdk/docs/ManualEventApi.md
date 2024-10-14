@@ -61,9 +61,9 @@ async def main():
 
         # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
         # Change the lines below to switch approach
-        # manual_event_request = ManualEventRequest()
         # manual_event_request = ManualEventRequest.from_json("")
-        manual_event_request = ManualEventRequest.from_dict({"body":{"subject":"TestSubject","message":"TestMessage","jsonMessage":{"TestField1":"TestValue1","TestField2":"TestValue2"}}}) # ManualEventRequest | The data required to trigger a manual event.
+        # manual_event_request = ManualEventRequest.from_dict({})
+        manual_event_request = ManualEventRequest()
 
         try:
             # uncomment the below to set overrides at the request level

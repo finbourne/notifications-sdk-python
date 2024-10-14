@@ -67,9 +67,9 @@ async def main():
 
         # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
         # Change the lines below to switch approach
-        # create_notification_request = CreateNotificationRequest()
         # create_notification_request = CreateNotificationRequest.from_json("")
-        create_notification_request = CreateNotificationRequest.from_dict({"notificationId":"TestId","displayName":"TestDisplayName","description":"TestDescription","notificationType":{"type":"Email","subject":"Event with message of {{body.message}}","plainTextBody":"Event with message {{body.message}} and subject {{body.subject}}","htmlBody":"<p>Event with message {{body.message}} and subject {{body.subject}}</p>","emailAddressTo":["recipient@finbourne.com"],"emailAddressCc":["recipientcc@finbourne.com"],"emailAddressBcc":["recipientbcc@finbourne.com"]}}) # CreateNotificationRequest | The data to create a notification
+        # create_notification_request = CreateNotificationRequest.from_dict({})
+        create_notification_request = CreateNotificationRequest()
 
         try:
             # uncomment the below to set overrides at the request level
@@ -448,9 +448,9 @@ async def main():
 
         # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
         # Change the lines below to switch approach
-        # update_notification_request = UpdateNotificationRequest()
         # update_notification_request = UpdateNotificationRequest.from_json("")
-        update_notification_request = UpdateNotificationRequest.from_dict({"displayName":"TestDisplayName","description":"Example description","notificationType":{"type":"Email","subject":"Event with message of {{body.message}}","plainTextBody":"Event with message {{body.message}} and subject {{body.subject}}","htmlBody":"<p>Event with message {{body.message}} and subject {{body.subject}}</p>","emailAddressTo":["recipient@finbourne.com"],"emailAddressCc":["recipientcc@finbourne.com"],"emailAddressBcc":["recipientbcc@finbourne.com"]}}) # UpdateNotificationRequest | The data to update a notification
+        # update_notification_request = UpdateNotificationRequest.from_dict({})
+        update_notification_request = UpdateNotificationRequest()
 
         try:
             # uncomment the below to set overrides at the request level
