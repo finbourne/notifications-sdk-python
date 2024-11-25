@@ -19,33 +19,32 @@ Method | HTTP request | Description
 ### Example
 
 ```python
-import asyncio
 from lusid_notifications.exceptions import ApiException
 from lusid_notifications.extensions.configuration_options import ConfigurationOptions
 from lusid_notifications.models import *
 from pprint import pprint
 from lusid_notifications import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     NotificationsApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "notificationsUrl":"https://<your-domain>.lusid.com/notification",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "notificationsUrl":"https://<your-domain>.lusid.com/notification",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
+    # Use the lusid_notifications SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -54,34 +53,35 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(NotificationsApi)
-        scope = 'scope_example' # str | The scope that identifies a subscription
-        code = 'code_example' # str | The code that identifies a subscription
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(NotificationsApi)
+    scope = 'scope_example' # str | The scope that identifies a subscription
+    code = 'code_example' # str | The code that identifies a subscription
 
-        # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
-        # Change the lines below to switch approach
-        # create_notification_request = CreateNotificationRequest.from_json("")
-        # create_notification_request = CreateNotificationRequest.from_dict({})
-        create_notification_request = CreateNotificationRequest()
+    # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
+    # Change the lines below to switch approach
+    # create_notification_request = CreateNotificationRequest.from_json("")
+    # create_notification_request = CreateNotificationRequest.from_dict({})
+    create_notification_request = CreateNotificationRequest()
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # api_response = await api_instance.create_notification(scope, code, create_notification_request, opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        # api_response =  api_instance.create_notification(scope, code, create_notification_request, opts=opts)
 
-            # [EXPERIMENTAL] CreateNotification: Add a Notification to a Subscription.
-            api_response = await api_instance.create_notification(scope, code, create_notification_request)
-            pprint(api_response)
-        except ApiException as e:
-            print("Exception when calling NotificationsApi->create_notification: %s\n" % e)
+        # [EXPERIMENTAL] CreateNotification: Add a Notification to a Subscription.
+        api_response = api_instance.create_notification(scope, code, create_notification_request)
+        pprint(api_response)
 
-asyncio.run(main())
+    except ApiException as e:
+        print("Exception when calling NotificationsApi->create_notification: %s\n" % e)
+
+main()
 ```
 
 ### Parameters
@@ -118,33 +118,32 @@ Name | Type | Description  | Notes
 ### Example
 
 ```python
-import asyncio
 from lusid_notifications.exceptions import ApiException
 from lusid_notifications.extensions.configuration_options import ConfigurationOptions
 from lusid_notifications.models import *
 from pprint import pprint
 from lusid_notifications import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     NotificationsApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "notificationsUrl":"https://<your-domain>.lusid.com/notification",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "notificationsUrl":"https://<your-domain>.lusid.com/notification",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
+    # Use the lusid_notifications SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -153,27 +152,28 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(NotificationsApi)
-        scope = 'scope_example' # str | The scope that identifies a subscription
-        code = 'code_example' # str | The code that identifies a subscription
-        id = 'id_example' # str | The unique identifier of the notification
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(NotificationsApi)
+    scope = 'scope_example' # str | The scope that identifies a subscription
+    code = 'code_example' # str | The code that identifies a subscription
+    id = 'id_example' # str | The unique identifier of the notification
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # await api_instance.delete_notification(scope, code, id, opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        #  api_instance.delete_notification(scope, code, id, opts=opts)
 
-            # [EXPERIMENTAL] DeleteNotification: Delete a notification for a given subscription.
-            await api_instance.delete_notification(scope, code, id)        except ApiException as e:
-            print("Exception when calling NotificationsApi->delete_notification: %s\n" % e)
+        # [EXPERIMENTAL] DeleteNotification: Delete a notification for a given subscription.
+        api_instance.delete_notification(scope, code, id)
+    except ApiException as e:
+        print("Exception when calling NotificationsApi->delete_notification: %s\n" % e)
 
-asyncio.run(main())
+main()
 ```
 
 ### Parameters
@@ -211,33 +211,32 @@ void (empty response body)
 ### Example
 
 ```python
-import asyncio
 from lusid_notifications.exceptions import ApiException
 from lusid_notifications.extensions.configuration_options import ConfigurationOptions
 from lusid_notifications.models import *
 from pprint import pprint
 from lusid_notifications import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     NotificationsApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "notificationsUrl":"https://<your-domain>.lusid.com/notification",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "notificationsUrl":"https://<your-domain>.lusid.com/notification",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
+    # Use the lusid_notifications SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -246,29 +245,30 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(NotificationsApi)
-        scope = 'scope_example' # str | The scope that identifies a subscription
-        code = 'code_example' # str | The code that identifies a subscription
-        id = 'id_example' # str | The unique identifier of the notification
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(NotificationsApi)
+    scope = 'scope_example' # str | The scope that identifies a subscription
+    code = 'code_example' # str | The code that identifies a subscription
+    id = 'id_example' # str | The unique identifier of the notification
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # api_response = await api_instance.get_notification(scope, code, id, opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        # api_response =  api_instance.get_notification(scope, code, id, opts=opts)
 
-            # [EXPERIMENTAL] GetNotification: Get a notification on a subscription.
-            api_response = await api_instance.get_notification(scope, code, id)
-            pprint(api_response)
-        except ApiException as e:
-            print("Exception when calling NotificationsApi->get_notification: %s\n" % e)
+        # [EXPERIMENTAL] GetNotification: Get a notification on a subscription.
+        api_response = api_instance.get_notification(scope, code, id)
+        pprint(api_response)
 
-asyncio.run(main())
+    except ApiException as e:
+        print("Exception when calling NotificationsApi->get_notification: %s\n" % e)
+
+main()
 ```
 
 ### Parameters
@@ -306,33 +306,32 @@ Name | Type | Description  | Notes
 ### Example
 
 ```python
-import asyncio
 from lusid_notifications.exceptions import ApiException
 from lusid_notifications.extensions.configuration_options import ConfigurationOptions
 from lusid_notifications.models import *
 from pprint import pprint
 from lusid_notifications import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     NotificationsApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "notificationsUrl":"https://<your-domain>.lusid.com/notification",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "notificationsUrl":"https://<your-domain>.lusid.com/notification",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
+    # Use the lusid_notifications SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -341,28 +340,29 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(NotificationsApi)
-        scope = 'scope_example' # str | The scope that identifies a subscription
-        code = 'code_example' # str | The code that identifies a subscription
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(NotificationsApi)
+    scope = 'scope_example' # str | The scope that identifies a subscription
+    code = 'code_example' # str | The code that identifies a subscription
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # api_response = await api_instance.list_notifications(scope, code, opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        # api_response =  api_instance.list_notifications(scope, code, opts=opts)
 
-            # [EXPERIMENTAL] ListNotifications: List all notifications on a subscription.
-            api_response = await api_instance.list_notifications(scope, code)
-            pprint(api_response)
-        except ApiException as e:
-            print("Exception when calling NotificationsApi->list_notifications: %s\n" % e)
+        # [EXPERIMENTAL] ListNotifications: List all notifications on a subscription.
+        api_response = api_instance.list_notifications(scope, code)
+        pprint(api_response)
 
-asyncio.run(main())
+    except ApiException as e:
+        print("Exception when calling NotificationsApi->list_notifications: %s\n" % e)
+
+main()
 ```
 
 ### Parameters
@@ -399,33 +399,32 @@ Name | Type | Description  | Notes
 ### Example
 
 ```python
-import asyncio
 from lusid_notifications.exceptions import ApiException
 from lusid_notifications.extensions.configuration_options import ConfigurationOptions
 from lusid_notifications.models import *
 from pprint import pprint
 from lusid_notifications import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     NotificationsApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "notificationsUrl":"https://<your-domain>.lusid.com/notification",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "notificationsUrl":"https://<your-domain>.lusid.com/notification",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
+    # Use the lusid_notifications SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -434,35 +433,36 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(NotificationsApi)
-        scope = 'scope_example' # str | The scope that identifies a subscription
-        code = 'code_example' # str | The code that identifies a subscription
-        id = 'id_example' # str | The unique identifier of the notification
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(NotificationsApi)
+    scope = 'scope_example' # str | The scope that identifies a subscription
+    code = 'code_example' # str | The code that identifies a subscription
+    id = 'id_example' # str | The unique identifier of the notification
 
-        # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
-        # Change the lines below to switch approach
-        # update_notification_request = UpdateNotificationRequest.from_json("")
-        # update_notification_request = UpdateNotificationRequest.from_dict({})
-        update_notification_request = UpdateNotificationRequest()
+    # Objects can be created either via the class constructor, or using the 'from_dict' or 'from_json' methods
+    # Change the lines below to switch approach
+    # update_notification_request = UpdateNotificationRequest.from_json("")
+    # update_notification_request = UpdateNotificationRequest.from_dict({})
+    update_notification_request = UpdateNotificationRequest()
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # api_response = await api_instance.update_notification(scope, code, id, update_notification_request, opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        # api_response =  api_instance.update_notification(scope, code, id, update_notification_request, opts=opts)
 
-            # [EXPERIMENTAL] UpdateNotification: Update a Notification for a Subscription
-            api_response = await api_instance.update_notification(scope, code, id, update_notification_request)
-            pprint(api_response)
-        except ApiException as e:
-            print("Exception when calling NotificationsApi->update_notification: %s\n" % e)
+        # [EXPERIMENTAL] UpdateNotification: Update a Notification for a Subscription
+        api_response = api_instance.update_notification(scope, code, id, update_notification_request)
+        pprint(api_response)
 
-asyncio.run(main())
+    except ApiException as e:
+        print("Exception when calling NotificationsApi->update_notification: %s\n" % e)
+
+main()
 ```
 
 ### Parameters

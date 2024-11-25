@@ -16,33 +16,32 @@ Method | HTTP request | Description
 ### Example
 
 ```python
-import asyncio
 from lusid_notifications.exceptions import ApiException
 from lusid_notifications.extensions.configuration_options import ConfigurationOptions
 from lusid_notifications.models import *
 from pprint import pprint
 from lusid_notifications import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     EventTypesApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "notificationsUrl":"https://<your-domain>.lusid.com/notification",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "notificationsUrl":"https://<your-domain>.lusid.com/notification",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
+    # Use the lusid_notifications SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -51,27 +50,28 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(EventTypesApi)
-        event_type = 'event_type_example' # str | The event type to retrieve schema for.
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(EventTypesApi)
+    event_type = 'event_type_example' # str | The event type to retrieve schema for.
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # api_response = await api_instance.get_event_type(event_type, opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        # api_response =  api_instance.get_event_type(event_type, opts=opts)
 
-            # [EXPERIMENTAL] GetEventType: Gets the specified event type schema.
-            api_response = await api_instance.get_event_type(event_type)
-            pprint(api_response)
-        except ApiException as e:
-            print("Exception when calling EventTypesApi->get_event_type: %s\n" % e)
+        # [EXPERIMENTAL] GetEventType: Gets the specified event type schema.
+        api_response = api_instance.get_event_type(event_type)
+        pprint(api_response)
 
-asyncio.run(main())
+    except ApiException as e:
+        print("Exception when calling EventTypesApi->get_event_type: %s\n" % e)
+
+main()
 ```
 
 ### Parameters
@@ -107,33 +107,32 @@ Name | Type | Description  | Notes
 ### Example
 
 ```python
-import asyncio
 from lusid_notifications.exceptions import ApiException
 from lusid_notifications.extensions.configuration_options import ConfigurationOptions
 from lusid_notifications.models import *
 from pprint import pprint
 from lusid_notifications import (
-    ApiClientFactory,
+    SyncApiClientFactory,
     EventTypesApi
 )
 
-async def main():
+def main():
 
     with open("secrets.json", "w") as file:
         file.write('''
-{
-    "api":
     {
-        "tokenUrl":"<your-token-url>",
-        "notificationsUrl":"https://<your-domain>.lusid.com/notification",
-        "username":"<your-username>",
-        "password":"<your-password>",
-        "clientId":"<your-client-id>",
-        "clientSecret":"<your-client-secret>"
-    }
-}''')
+        "api":
+        {
+            "tokenUrl":"<your-token-url>",
+            "notificationsUrl":"https://<your-domain>.lusid.com/notification",
+            "username":"<your-username>",
+            "password":"<your-password>",
+            "clientId":"<your-client-id>",
+            "clientSecret":"<your-client-secret>"
+        }
+    }''')
 
-    # Use the lusid_notifications ApiClientFactory to build Api instances with a configured api client
+    # Use the lusid_notifications SyncApiClientFactory to build Api instances with a configured api client
     # By default this will read config from environment variables
     # Then from a secrets.json file found in the current working directory
 
@@ -142,26 +141,27 @@ async def main():
     # opts.total_timeout_ms = 30_000
 
     # uncomment the below to use an api client factory with overrides
-    # api_client_factory = ApiClientFactory(opts=opts)
+    # api_client_factory = SyncApiClientFactory(opts=opts)
 
-    api_client_factory = ApiClientFactory()
+    api_client_factory = SyncApiClientFactory()
 
-    # Enter a context with an instance of the ApiClientFactory to ensure the connection pool is closed after use
-    async with api_client_factory:
-        # Create an instance of the API class
-        api_instance = api_client_factory.build(EventTypesApi)
+    # Enter a context with an instance of the SyncApiClientFactory to ensure the connection pool is closed after use
+    
+    # Create an instance of the API class
+    api_instance = api_client_factory.build(EventTypesApi)
 
-        try:
-            # uncomment the below to set overrides at the request level
-            # api_response = await api_instance.list_event_types(opts=opts)
+    try:
+        # uncomment the below to set overrides at the request level
+        # api_response =  api_instance.list_event_types(opts=opts)
 
-            # [EXPERIMENTAL] ListEventTypes: Lists all of the available event types.
-            api_response = await api_instance.list_event_types()
-            pprint(api_response)
-        except ApiException as e:
-            print("Exception when calling EventTypesApi->list_event_types: %s\n" % e)
+        # [EXPERIMENTAL] ListEventTypes: Lists all of the available event types.
+        api_response = api_instance.list_event_types()
+        pprint(api_response)
 
-asyncio.run(main())
+    except ApiException as e:
+        print("Exception when calling EventTypesApi->list_event_types: %s\n" % e)
+
+main()
 ```
 
 ### Parameters
