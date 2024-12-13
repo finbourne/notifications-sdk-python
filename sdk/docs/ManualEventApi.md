@@ -4,13 +4,13 @@ All URIs are relative to *https://fbn-prd.lusid.com/notification*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**trigger_manual_event**](ManualEventApi.md#trigger_manual_event) | **POST** /api/manualevent | [EXPERIMENTAL] TriggerManualEvent: Trigger a manual event.
+[**trigger_manual_event**](ManualEventApi.md#trigger_manual_event) | **POST** /api/manualevent | TriggerManualEvent: Trigger a manual event.
 
 
 # **trigger_manual_event**
 > ManualEvent trigger_manual_event(manual_event_request)
 
-[EXPERIMENTAL] TriggerManualEvent: Trigger a manual event.
+TriggerManualEvent: Trigger a manual event.
 
 ### Example
 
@@ -68,7 +68,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.trigger_manual_event(manual_event_request, opts=opts)
 
-        # [EXPERIMENTAL] TriggerManualEvent: Trigger a manual event.
+        # TriggerManualEvent: Trigger a manual event.
         api_response = api_instance.trigger_manual_event(manual_event_request)
         pprint(api_response)
 

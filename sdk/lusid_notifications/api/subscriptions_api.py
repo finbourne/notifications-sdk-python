@@ -60,7 +60,7 @@ class SubscriptionsApi:
 
     @validate_arguments
     def create_subscription(self, create_subscription : Annotated[CreateSubscription, Field(..., description="The data to create a subscription")], async_req: Optional[bool]=None, **kwargs) -> Union[Subscription, Awaitable[Subscription]]:  # noqa: E501
-        """[EXPERIMENTAL] CreateSubscription: Create a new subscription.  # noqa: E501
+        """CreateSubscription: Create a new subscription.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -90,7 +90,7 @@ class SubscriptionsApi:
 
     @validate_arguments
     def create_subscription_with_http_info(self, create_subscription : Annotated[CreateSubscription, Field(..., description="The data to create a subscription")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EXPERIMENTAL] CreateSubscription: Create a new subscription.  # noqa: E501
+        """CreateSubscription: Create a new subscription.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -216,7 +216,7 @@ class SubscriptionsApi:
 
     @validate_arguments
     def delete_subscription(self, scope : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The scope that identifies a subscription")], code : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The code that identifies a subscription")], async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
-        """[EXPERIMENTAL] DeleteSubscription: Delete a subscription.  # noqa: E501
+        """DeleteSubscription: Delete a subscription.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -248,7 +248,7 @@ class SubscriptionsApi:
 
     @validate_arguments
     def delete_subscription_with_http_info(self, scope : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The scope that identifies a subscription")], code : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The code that identifies a subscription")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EXPERIMENTAL] DeleteSubscription: Delete a subscription.  # noqa: E501
+        """DeleteSubscription: Delete a subscription.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -370,7 +370,7 @@ class SubscriptionsApi:
 
     @validate_arguments
     def get_subscription(self, scope : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The scope that identifies a subscription")], code : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The code that identifies a subscription")], async_req: Optional[bool]=None, **kwargs) -> Union[Subscription, Awaitable[Subscription]]:  # noqa: E501
-        """[EXPERIMENTAL] GetSubscription: Get a subscription.  # noqa: E501
+        """GetSubscription: Get a subscription.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -402,7 +402,7 @@ class SubscriptionsApi:
 
     @validate_arguments
     def get_subscription_with_http_info(self, scope : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The scope that identifies a subscription")], code : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The code that identifies a subscription")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EXPERIMENTAL] GetSubscription: Get a subscription.  # noqa: E501
+        """GetSubscription: Get a subscription.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -528,7 +528,7 @@ class SubscriptionsApi:
 
     @validate_arguments
     def list_subscriptions(self, filter : Annotated[Optional[constr(strict=True, max_length=16384, min_length=0)], Field(description="Expression to filter the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>.")] = None, sort_by : Annotated[Optional[constr(strict=True, max_length=16384, min_length=1)], Field(description="Fields to order the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>")] = None, page : Annotated[Optional[constr(strict=True, max_length=500, min_length=1)], Field(description="Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied the filter  field should not be supplied.")] = None, limit : Annotated[Optional[conint(strict=True, le=5000, ge=1)], Field(description="The maximum number of subscriptions to retrieve.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[ResourceListOfSubscription, Awaitable[ResourceListOfSubscription]]:  # noqa: E501
-        """[EXPERIMENTAL] ListSubscriptions: List subscriptions.  # noqa: E501
+        """ListSubscriptions: List subscriptions.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -564,7 +564,7 @@ class SubscriptionsApi:
 
     @validate_arguments
     def list_subscriptions_with_http_info(self, filter : Annotated[Optional[constr(strict=True, max_length=16384, min_length=0)], Field(description="Expression to filter the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>.")] = None, sort_by : Annotated[Optional[constr(strict=True, max_length=16384, min_length=1)], Field(description="Fields to order the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>")] = None, page : Annotated[Optional[constr(strict=True, max_length=500, min_length=1)], Field(description="Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied the filter  field should not be supplied.")] = None, limit : Annotated[Optional[conint(strict=True, le=5000, ge=1)], Field(description="The maximum number of subscriptions to retrieve.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """[EXPERIMENTAL] ListSubscriptions: List subscriptions.  # noqa: E501
+        """ListSubscriptions: List subscriptions.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -701,7 +701,7 @@ class SubscriptionsApi:
 
     @validate_arguments
     def update_subscription(self, scope : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The scope that identifies a subscription")], code : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The code that identifies a subscription")], update_subscription : Annotated[UpdateSubscription, Field(..., description="The data to update a subscription")], async_req: Optional[bool]=None, **kwargs) -> Union[Subscription, Awaitable[Subscription]]:  # noqa: E501
-        """[EXPERIMENTAL] UpdateSubscription: Update an existing subscription.  # noqa: E501
+        """UpdateSubscription: Update an existing subscription.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -735,7 +735,7 @@ class SubscriptionsApi:
 
     @validate_arguments
     def update_subscription_with_http_info(self, scope : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The scope that identifies a subscription")], code : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The code that identifies a subscription")], update_subscription : Annotated[UpdateSubscription, Field(..., description="The data to update a subscription")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EXPERIMENTAL] UpdateSubscription: Update an existing subscription.  # noqa: E501
+        """UpdateSubscription: Update an existing subscription.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True

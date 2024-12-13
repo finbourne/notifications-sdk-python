@@ -57,7 +57,7 @@ class DeliveriesApi:
 
     @validate_arguments
     def list_deliveries(self, page : Annotated[Optional[constr(strict=True, max_length=500, min_length=1)], Field(description="The pagination token to use to continue listing delivery attempts. This value is returned from the previous call. When this field is supplied the filter field should not be supplied.")] = None, limit : Annotated[Optional[StrictInt], Field(description="The maximum number of delivery attempts to retrieve. Defaults to 200 if not specified.")] = None, filter : Annotated[Optional[constr(strict=True, max_length=16384, min_length=0)], Field(description="Expression to filter the result set. For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.  By default, we set this filter to only query for the last week's worth of Deliveries, however if a filter is explicitly set, this will be overriden.  An example filter to override the attempt time date might be 'AttemptTime gt 2023-08-25' for example")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[ResourceListOfDelivery, Awaitable[ResourceListOfDelivery]]:  # noqa: E501
-        """[EXPERIMENTAL] ListDeliveries: List Deliveries  # noqa: E501
+        """ListDeliveries: List Deliveries  # noqa: E501
 
         Currently only returns deliveries with failed attempts.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -92,7 +92,7 @@ class DeliveriesApi:
 
     @validate_arguments
     def list_deliveries_with_http_info(self, page : Annotated[Optional[constr(strict=True, max_length=500, min_length=1)], Field(description="The pagination token to use to continue listing delivery attempts. This value is returned from the previous call. When this field is supplied the filter field should not be supplied.")] = None, limit : Annotated[Optional[StrictInt], Field(description="The maximum number of delivery attempts to retrieve. Defaults to 200 if not specified.")] = None, filter : Annotated[Optional[constr(strict=True, max_length=16384, min_length=0)], Field(description="Expression to filter the result set. For more information about filtering results, see https://support.lusid.com/knowledgebase/article/KA-01914.  By default, we set this filter to only query for the last week's worth of Deliveries, however if a filter is explicitly set, this will be overriden.  An example filter to override the attempt time date might be 'AttemptTime gt 2023-08-25' for example")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """[EXPERIMENTAL] ListDeliveries: List Deliveries  # noqa: E501
+        """ListDeliveries: List Deliveries  # noqa: E501
 
         Currently only returns deliveries with failed attempts.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an

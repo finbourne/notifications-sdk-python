@@ -56,7 +56,7 @@ class EventTypesApi:
 
     @validate_arguments
     def get_event_type(self, event_type : Annotated[constr(strict=True, max_length=512, min_length=1), Field(..., description="The event type to retrieve schema for.")], async_req: Optional[bool]=None, **kwargs) -> Union[EventTypeSchema, Awaitable[EventTypeSchema]]:  # noqa: E501
-        """[EXPERIMENTAL] GetEventType: Gets the specified event type schema.  # noqa: E501
+        """GetEventType: Gets the specified event type schema.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -86,7 +86,7 @@ class EventTypesApi:
 
     @validate_arguments
     def get_event_type_with_http_info(self, event_type : Annotated[constr(strict=True, max_length=512, min_length=1), Field(..., description="The event type to retrieve schema for.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EXPERIMENTAL] GetEventType: Gets the specified event type schema.  # noqa: E501
+        """GetEventType: Gets the specified event type schema.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -206,7 +206,7 @@ class EventTypesApi:
 
     @validate_arguments
     def list_event_types(self, async_req: Optional[bool]=None, **kwargs) -> Union[ResourceListOfEventTypeSchema, Awaitable[ResourceListOfEventTypeSchema]]:  # noqa: E501
-        """[EXPERIMENTAL] ListEventTypes: Lists all of the available event types.  # noqa: E501
+        """ListEventTypes: Lists all of the available event types.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -234,7 +234,7 @@ class EventTypesApi:
 
     @validate_arguments
     def list_event_types_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """[EXPERIMENTAL] ListEventTypes: Lists all of the available event types.  # noqa: E501
+        """ListEventTypes: Lists all of the available event types.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True

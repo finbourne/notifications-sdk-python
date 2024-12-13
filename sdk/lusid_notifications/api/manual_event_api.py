@@ -56,7 +56,7 @@ class ManualEventApi:
 
     @validate_arguments
     def trigger_manual_event(self, manual_event_request : Annotated[ManualEventRequest, Field(..., description="The data required to trigger a manual event.")], async_req: Optional[bool]=None, **kwargs) -> Union[ManualEvent, Awaitable[ManualEvent]]:  # noqa: E501
-        """[EXPERIMENTAL] TriggerManualEvent: Trigger a manual event.  # noqa: E501
+        """TriggerManualEvent: Trigger a manual event.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -86,7 +86,7 @@ class ManualEventApi:
 
     @validate_arguments
     def trigger_manual_event_with_http_info(self, manual_event_request : Annotated[ManualEventRequest, Field(..., description="The data required to trigger a manual event.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EXPERIMENTAL] TriggerManualEvent: Trigger a manual event.  # noqa: E501
+        """TriggerManualEvent: Trigger a manual event.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True

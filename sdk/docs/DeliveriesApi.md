@@ -4,13 +4,13 @@ All URIs are relative to *https://fbn-prd.lusid.com/notification*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**list_deliveries**](DeliveriesApi.md#list_deliveries) | **GET** /api/deliveries | [EXPERIMENTAL] ListDeliveries: List Deliveries
+[**list_deliveries**](DeliveriesApi.md#list_deliveries) | **GET** /api/deliveries | ListDeliveries: List Deliveries
 
 
 # **list_deliveries**
 > ResourceListOfDelivery list_deliveries(page=page, limit=limit, filter=filter)
 
-[EXPERIMENTAL] ListDeliveries: List Deliveries
+ListDeliveries: List Deliveries
 
 Currently only returns deliveries with failed attempts.
 
@@ -67,7 +67,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.list_deliveries(page=page, limit=limit, filter=filter, opts=opts)
 
-        # [EXPERIMENTAL] ListDeliveries: List Deliveries
+        # ListDeliveries: List Deliveries
         api_response = api_instance.list_deliveries(page=page, limit=limit, filter=filter)
         pprint(api_response)
 

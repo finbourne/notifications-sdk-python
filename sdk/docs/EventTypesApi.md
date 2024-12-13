@@ -4,14 +4,14 @@ All URIs are relative to *https://fbn-prd.lusid.com/notification*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_event_type**](EventTypesApi.md#get_event_type) | **GET** /api/eventtypes/{eventType} | [EXPERIMENTAL] GetEventType: Gets the specified event type schema.
-[**list_event_types**](EventTypesApi.md#list_event_types) | **GET** /api/eventtypes | [EXPERIMENTAL] ListEventTypes: Lists all of the available event types.
+[**get_event_type**](EventTypesApi.md#get_event_type) | **GET** /api/eventtypes/{eventType} | GetEventType: Gets the specified event type schema.
+[**list_event_types**](EventTypesApi.md#list_event_types) | **GET** /api/eventtypes | ListEventTypes: Lists all of the available event types.
 
 
 # **get_event_type**
 > EventTypeSchema get_event_type(event_type)
 
-[EXPERIMENTAL] GetEventType: Gets the specified event type schema.
+GetEventType: Gets the specified event type schema.
 
 ### Example
 
@@ -64,7 +64,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.get_event_type(event_type, opts=opts)
 
-        # [EXPERIMENTAL] GetEventType: Gets the specified event type schema.
+        # GetEventType: Gets the specified event type schema.
         api_response = api_instance.get_event_type(event_type)
         pprint(api_response)
 
@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 # **list_event_types**
 > ResourceListOfEventTypeSchema list_event_types()
 
-[EXPERIMENTAL] ListEventTypes: Lists all of the available event types.
+ListEventTypes: Lists all of the available event types.
 
 ### Example
 
@@ -154,7 +154,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.list_event_types(opts=opts)
 
-        # [EXPERIMENTAL] ListEventTypes: Lists all of the available event types.
+        # ListEventTypes: Lists all of the available event types.
         api_response = api_instance.list_event_types()
         pprint(api_response)
 

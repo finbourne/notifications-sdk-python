@@ -4,17 +4,17 @@ All URIs are relative to *https://fbn-prd.lusid.com/notification*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_subscription**](SubscriptionsApi.md#create_subscription) | **POST** /api/subscriptions | [EXPERIMENTAL] CreateSubscription: Create a new subscription.
-[**delete_subscription**](SubscriptionsApi.md#delete_subscription) | **DELETE** /api/subscriptions/{scope}/{code} | [EXPERIMENTAL] DeleteSubscription: Delete a subscription.
-[**get_subscription**](SubscriptionsApi.md#get_subscription) | **GET** /api/subscriptions/{scope}/{code} | [EXPERIMENTAL] GetSubscription: Get a subscription.
-[**list_subscriptions**](SubscriptionsApi.md#list_subscriptions) | **GET** /api/subscriptions | [EXPERIMENTAL] ListSubscriptions: List subscriptions.
-[**update_subscription**](SubscriptionsApi.md#update_subscription) | **PUT** /api/subscriptions/{scope}/{code} | [EXPERIMENTAL] UpdateSubscription: Update an existing subscription.
+[**create_subscription**](SubscriptionsApi.md#create_subscription) | **POST** /api/subscriptions | CreateSubscription: Create a new subscription.
+[**delete_subscription**](SubscriptionsApi.md#delete_subscription) | **DELETE** /api/subscriptions/{scope}/{code} | DeleteSubscription: Delete a subscription.
+[**get_subscription**](SubscriptionsApi.md#get_subscription) | **GET** /api/subscriptions/{scope}/{code} | GetSubscription: Get a subscription.
+[**list_subscriptions**](SubscriptionsApi.md#list_subscriptions) | **GET** /api/subscriptions | ListSubscriptions: List subscriptions.
+[**update_subscription**](SubscriptionsApi.md#update_subscription) | **PUT** /api/subscriptions/{scope}/{code} | UpdateSubscription: Update an existing subscription.
 
 
 # **create_subscription**
 > Subscription create_subscription(create_subscription)
 
-[EXPERIMENTAL] CreateSubscription: Create a new subscription.
+CreateSubscription: Create a new subscription.
 
 ### Example
 
@@ -72,7 +72,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.create_subscription(create_subscription, opts=opts)
 
-        # [EXPERIMENTAL] CreateSubscription: Create a new subscription.
+        # CreateSubscription: Create a new subscription.
         api_response = api_instance.create_subscription(create_subscription)
         pprint(api_response)
 
@@ -109,7 +109,7 @@ Name | Type | Description  | Notes
 # **delete_subscription**
 > delete_subscription(scope, code)
 
-[EXPERIMENTAL] DeleteSubscription: Delete a subscription.
+DeleteSubscription: Delete a subscription.
 
 ### Example
 
@@ -163,7 +163,7 @@ def main():
         # uncomment the below to set overrides at the request level
         #  api_instance.delete_subscription(scope, code, opts=opts)
 
-        # [EXPERIMENTAL] DeleteSubscription: Delete a subscription.
+        # DeleteSubscription: Delete a subscription.
         api_instance.delete_subscription(scope, code)
     except ApiException as e:
         print("Exception when calling SubscriptionsApi->delete_subscription: %s\n" % e)
@@ -200,7 +200,7 @@ void (empty response body)
 # **get_subscription**
 > Subscription get_subscription(scope, code)
 
-[EXPERIMENTAL] GetSubscription: Get a subscription.
+GetSubscription: Get a subscription.
 
 ### Example
 
@@ -254,7 +254,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.get_subscription(scope, code, opts=opts)
 
-        # [EXPERIMENTAL] GetSubscription: Get a subscription.
+        # GetSubscription: Get a subscription.
         api_response = api_instance.get_subscription(scope, code)
         pprint(api_response)
 
@@ -293,7 +293,7 @@ Name | Type | Description  | Notes
 # **list_subscriptions**
 > ResourceListOfSubscription list_subscriptions(filter=filter, sort_by=sort_by, page=page, limit=limit)
 
-[EXPERIMENTAL] ListSubscriptions: List subscriptions.
+ListSubscriptions: List subscriptions.
 
 ### Example
 
@@ -349,7 +349,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.list_subscriptions(filter=filter, sort_by=sort_by, page=page, limit=limit, opts=opts)
 
-        # [EXPERIMENTAL] ListSubscriptions: List subscriptions.
+        # ListSubscriptions: List subscriptions.
         api_response = api_instance.list_subscriptions(filter=filter, sort_by=sort_by, page=page, limit=limit)
         pprint(api_response)
 
@@ -389,7 +389,7 @@ Name | Type | Description  | Notes
 # **update_subscription**
 > Subscription update_subscription(scope, code, update_subscription)
 
-[EXPERIMENTAL] UpdateSubscription: Update an existing subscription.
+UpdateSubscription: Update an existing subscription.
 
 ### Example
 
@@ -449,7 +449,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.update_subscription(scope, code, update_subscription, opts=opts)
 
-        # [EXPERIMENTAL] UpdateSubscription: Update an existing subscription.
+        # UpdateSubscription: Update an existing subscription.
         api_response = api_instance.update_subscription(scope, code, update_subscription)
         pprint(api_response)
 

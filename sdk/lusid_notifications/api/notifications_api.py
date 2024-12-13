@@ -58,7 +58,7 @@ class NotificationsApi:
 
     @validate_arguments
     def create_notification(self, scope : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The scope that identifies a subscription")], code : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The code that identifies a subscription")], create_notification_request : Annotated[CreateNotificationRequest, Field(..., description="The data to create a notification")], async_req: Optional[bool]=None, **kwargs) -> Union[Notification, Awaitable[Notification]]:  # noqa: E501
-        """[EXPERIMENTAL] CreateNotification: Add a Notification to a Subscription.  # noqa: E501
+        """CreateNotification: Add a Notification to a Subscription.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -92,7 +92,7 @@ class NotificationsApi:
 
     @validate_arguments
     def create_notification_with_http_info(self, scope : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The scope that identifies a subscription")], code : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The code that identifies a subscription")], create_notification_request : Annotated[CreateNotificationRequest, Field(..., description="The data to create a notification")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EXPERIMENTAL] CreateNotification: Add a Notification to a Subscription.  # noqa: E501
+        """CreateNotification: Add a Notification to a Subscription.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -230,7 +230,7 @@ class NotificationsApi:
 
     @validate_arguments
     def delete_notification(self, scope : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The scope that identifies a subscription")], code : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The code that identifies a subscription")], id : Annotated[StrictStr, Field(..., description="The unique identifier of the notification")], async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
-        """[EXPERIMENTAL] DeleteNotification: Delete a notification for a given subscription.  # noqa: E501
+        """DeleteNotification: Delete a notification for a given subscription.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -264,7 +264,7 @@ class NotificationsApi:
 
     @validate_arguments
     def delete_notification_with_http_info(self, scope : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The scope that identifies a subscription")], code : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The code that identifies a subscription")], id : Annotated[StrictStr, Field(..., description="The unique identifier of the notification")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EXPERIMENTAL] DeleteNotification: Delete a notification for a given subscription.  # noqa: E501
+        """DeleteNotification: Delete a notification for a given subscription.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -392,7 +392,7 @@ class NotificationsApi:
 
     @validate_arguments
     def get_notification(self, scope : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The scope that identifies a subscription")], code : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The code that identifies a subscription")], id : Annotated[StrictStr, Field(..., description="The unique identifier of the notification")], async_req: Optional[bool]=None, **kwargs) -> Union[Notification, Awaitable[Notification]]:  # noqa: E501
-        """[EXPERIMENTAL] GetNotification: Get a notification on a subscription.  # noqa: E501
+        """GetNotification: Get a notification on a subscription.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -426,7 +426,7 @@ class NotificationsApi:
 
     @validate_arguments
     def get_notification_with_http_info(self, scope : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The scope that identifies a subscription")], code : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The code that identifies a subscription")], id : Annotated[StrictStr, Field(..., description="The unique identifier of the notification")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EXPERIMENTAL] GetNotification: Get a notification on a subscription.  # noqa: E501
+        """GetNotification: Get a notification on a subscription.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -558,7 +558,7 @@ class NotificationsApi:
 
     @validate_arguments
     def list_notifications(self, scope : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The scope that identifies a subscription")], code : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The code that identifies a subscription")], async_req: Optional[bool]=None, **kwargs) -> Union[ResourceListOfNotification, Awaitable[ResourceListOfNotification]]:  # noqa: E501
-        """[EXPERIMENTAL] ListNotifications: List all notifications on a subscription.  # noqa: E501
+        """ListNotifications: List all notifications on a subscription.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -590,7 +590,7 @@ class NotificationsApi:
 
     @validate_arguments
     def list_notifications_with_http_info(self, scope : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The scope that identifies a subscription")], code : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The code that identifies a subscription")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EXPERIMENTAL] ListNotifications: List all notifications on a subscription.  # noqa: E501
+        """ListNotifications: List all notifications on a subscription.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -716,7 +716,7 @@ class NotificationsApi:
 
     @validate_arguments
     def update_notification(self, scope : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The scope that identifies a subscription")], code : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The code that identifies a subscription")], id : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The unique identifier of the notification")], update_notification_request : Annotated[UpdateNotificationRequest, Field(..., description="The data to update a notification")], async_req: Optional[bool]=None, **kwargs) -> Union[Notification, Awaitable[Notification]]:  # noqa: E501
-        """[EXPERIMENTAL] UpdateNotification: Update a Notification for a Subscription  # noqa: E501
+        """UpdateNotification: Update a Notification for a Subscription  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -752,7 +752,7 @@ class NotificationsApi:
 
     @validate_arguments
     def update_notification_with_http_info(self, scope : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The scope that identifies a subscription")], code : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The code that identifies a subscription")], id : Annotated[constr(strict=True, max_length=100, min_length=1), Field(..., description="The unique identifier of the notification")], update_notification_request : Annotated[UpdateNotificationRequest, Field(..., description="The data to update a notification")], **kwargs) -> ApiResponse:  # noqa: E501
-        """[EXPERIMENTAL] UpdateNotification: Update a Notification for a Subscription  # noqa: E501
+        """UpdateNotification: Update a Notification for a Subscription  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True

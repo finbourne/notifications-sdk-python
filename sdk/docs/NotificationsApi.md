@@ -4,17 +4,17 @@ All URIs are relative to *https://fbn-prd.lusid.com/notification*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_notification**](NotificationsApi.md#create_notification) | **POST** /api/subscriptions/{scope}/{code}/notifications | [EXPERIMENTAL] CreateNotification: Add a Notification to a Subscription.
-[**delete_notification**](NotificationsApi.md#delete_notification) | **DELETE** /api/subscriptions/{scope}/{code}/notifications/{id} | [EXPERIMENTAL] DeleteNotification: Delete a notification for a given subscription.
-[**get_notification**](NotificationsApi.md#get_notification) | **GET** /api/subscriptions/{scope}/{code}/notifications/{id} | [EXPERIMENTAL] GetNotification: Get a notification on a subscription.
-[**list_notifications**](NotificationsApi.md#list_notifications) | **GET** /api/subscriptions/{scope}/{code}/notifications | [EXPERIMENTAL] ListNotifications: List all notifications on a subscription.
-[**update_notification**](NotificationsApi.md#update_notification) | **PUT** /api/subscriptions/{scope}/{code}/notifications/{id} | [EXPERIMENTAL] UpdateNotification: Update a Notification for a Subscription
+[**create_notification**](NotificationsApi.md#create_notification) | **POST** /api/subscriptions/{scope}/{code}/notifications | CreateNotification: Add a Notification to a Subscription.
+[**delete_notification**](NotificationsApi.md#delete_notification) | **DELETE** /api/subscriptions/{scope}/{code}/notifications/{id} | DeleteNotification: Delete a notification for a given subscription.
+[**get_notification**](NotificationsApi.md#get_notification) | **GET** /api/subscriptions/{scope}/{code}/notifications/{id} | GetNotification: Get a notification on a subscription.
+[**list_notifications**](NotificationsApi.md#list_notifications) | **GET** /api/subscriptions/{scope}/{code}/notifications | ListNotifications: List all notifications on a subscription.
+[**update_notification**](NotificationsApi.md#update_notification) | **PUT** /api/subscriptions/{scope}/{code}/notifications/{id} | UpdateNotification: Update a Notification for a Subscription
 
 
 # **create_notification**
 > Notification create_notification(scope, code, create_notification_request)
 
-[EXPERIMENTAL] CreateNotification: Add a Notification to a Subscription.
+CreateNotification: Add a Notification to a Subscription.
 
 ### Example
 
@@ -74,7 +74,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.create_notification(scope, code, create_notification_request, opts=opts)
 
-        # [EXPERIMENTAL] CreateNotification: Add a Notification to a Subscription.
+        # CreateNotification: Add a Notification to a Subscription.
         api_response = api_instance.create_notification(scope, code, create_notification_request)
         pprint(api_response)
 
@@ -113,7 +113,7 @@ Name | Type | Description  | Notes
 # **delete_notification**
 > delete_notification(scope, code, id)
 
-[EXPERIMENTAL] DeleteNotification: Delete a notification for a given subscription.
+DeleteNotification: Delete a notification for a given subscription.
 
 ### Example
 
@@ -168,7 +168,7 @@ def main():
         # uncomment the below to set overrides at the request level
         #  api_instance.delete_notification(scope, code, id, opts=opts)
 
-        # [EXPERIMENTAL] DeleteNotification: Delete a notification for a given subscription.
+        # DeleteNotification: Delete a notification for a given subscription.
         api_instance.delete_notification(scope, code, id)
     except ApiException as e:
         print("Exception when calling NotificationsApi->delete_notification: %s\n" % e)
@@ -206,7 +206,7 @@ void (empty response body)
 # **get_notification**
 > Notification get_notification(scope, code, id)
 
-[EXPERIMENTAL] GetNotification: Get a notification on a subscription.
+GetNotification: Get a notification on a subscription.
 
 ### Example
 
@@ -261,7 +261,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.get_notification(scope, code, id, opts=opts)
 
-        # [EXPERIMENTAL] GetNotification: Get a notification on a subscription.
+        # GetNotification: Get a notification on a subscription.
         api_response = api_instance.get_notification(scope, code, id)
         pprint(api_response)
 
@@ -301,7 +301,7 @@ Name | Type | Description  | Notes
 # **list_notifications**
 > ResourceListOfNotification list_notifications(scope, code)
 
-[EXPERIMENTAL] ListNotifications: List all notifications on a subscription.
+ListNotifications: List all notifications on a subscription.
 
 ### Example
 
@@ -355,7 +355,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.list_notifications(scope, code, opts=opts)
 
-        # [EXPERIMENTAL] ListNotifications: List all notifications on a subscription.
+        # ListNotifications: List all notifications on a subscription.
         api_response = api_instance.list_notifications(scope, code)
         pprint(api_response)
 
@@ -394,7 +394,7 @@ Name | Type | Description  | Notes
 # **update_notification**
 > Notification update_notification(scope, code, id, update_notification_request)
 
-[EXPERIMENTAL] UpdateNotification: Update a Notification for a Subscription
+UpdateNotification: Update a Notification for a Subscription
 
 ### Example
 
@@ -455,7 +455,7 @@ def main():
         # uncomment the below to set overrides at the request level
         # api_response =  api_instance.update_notification(scope, code, id, update_notification_request, opts=opts)
 
-        # [EXPERIMENTAL] UpdateNotification: Update a Notification for a Subscription
+        # UpdateNotification: Update a Notification for a Subscription
         api_response = api_instance.update_notification(scope, code, id, update_notification_request)
         pprint(api_response)
 
