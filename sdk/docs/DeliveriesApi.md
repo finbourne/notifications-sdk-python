@@ -97,7 +97,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 **400** | The details of the input related failure |  -  |
 **404** | No deliveries exists with the provided filter(s) |  -  |
 **0** | Error response |  -  |
