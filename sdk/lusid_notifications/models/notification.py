@@ -19,40 +19,23 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, constr, validator
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, constr, validator 
 from lusid_notifications.models.notification_type_response import NotificationTypeResponse
 
 class Notification(BaseModel):
     """
     A notification object  # noqa: E501
     """
-    notification_id: constr(strict=True, min_length=1) = Field(..., alias="notificationId", description="The identifier of the notification")
-    display_name: constr(strict=True, max_length=64, min_length=0) = Field(..., alias="displayName", description="The name of the notification")
-    description: Optional[constr(strict=True, max_length=512, min_length=1)] = Field(None, description="The summary of the services provided by the notification")
+    notification_id:  StrictStr = Field(...,alias="notificationId", description="The identifier of the notification") 
+    display_name:  StrictStr = Field(...,alias="displayName", description="The name of the notification") 
+    description:  Optional[StrictStr] = Field(None,alias="description", description="The summary of the services provided by the notification") 
     notification_type: NotificationTypeResponse = Field(..., alias="notificationType")
     created_at: datetime = Field(..., alias="createdAt", description="The time at which the subscription was made")
-    user_id_created: constr(strict=True, min_length=1) = Field(..., alias="userIdCreated", description="The user who made the subscription")
+    user_id_created:  StrictStr = Field(...,alias="userIdCreated", description="The user who made the subscription") 
     modified_at: datetime = Field(..., alias="modifiedAt", description="The time at which the subscription was last modified")
-    user_id_modified: constr(strict=True, min_length=1) = Field(..., alias="userIdModified", description="The user who last modified the subscription")
-    href: Optional[StrictStr] = Field(None, description="A URI for retrieving this notification")
+    user_id_modified:  StrictStr = Field(...,alias="userIdModified", description="The user who last modified the subscription") 
+    href:  Optional[StrictStr] = Field(None,alias="href", description="A URI for retrieving this notification") 
     __properties = ["notificationId", "displayName", "description", "notificationType", "createdAt", "userIdCreated", "modifiedAt", "userIdModified", "href"]
-
-    @validator('display_name')
-    def display_name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
-        return value
-
-    @validator('description')
-    def description_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
-        return value
 
     class Config:
         """Pydantic configuration"""

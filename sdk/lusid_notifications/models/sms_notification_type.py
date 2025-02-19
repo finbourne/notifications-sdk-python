@@ -19,14 +19,14 @@ import json
 
 
 from typing import Any, Dict, List
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr, validator
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist, constr, validator 
 
 class SmsNotificationType(BaseModel):
     """
     The information required to create or update an SMS notification  # noqa: E501
     """
-    type: StrictStr = Field(..., description="The type of delivery mechanism for this notification")
-    body: constr(strict=True, max_length=1024, min_length=1) = Field(..., description="The body of the SMS")
+    type:  StrictStr = Field(...,alias="type", description="The type of delivery mechanism for this notification") 
+    body:  StrictStr = Field(...,alias="body", description="The body of the SMS") 
     recipients: conlist(StrictStr, max_items=10, min_items=1) = Field(..., description="The phone numbers to which the SMS will be sent to (E.164 format)")
     __properties = ["type", "body", "recipients"]
 
@@ -35,13 +35,6 @@ class SmsNotificationType(BaseModel):
         """Validates the enum"""
         if value not in ('Sms'):
             raise ValueError("must be one of enum values ('Sms')")
-        return value
-
-    @validator('body')
-    def body_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
         return value
 
     class Config:

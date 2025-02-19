@@ -19,17 +19,17 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, validator
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, validator 
 
 class AmazonSqsNotificationTypeResponse(BaseModel):
     """
     Holds readonly information about an AWS SQS notification  # noqa: E501
     """
-    type: Optional[StrictStr] = Field(None, description="The type of delivery mechanism for this notification")
-    api_key_ref: Optional[StrictStr] = Field(None, alias="apiKeyRef", description="Reference to API key from Configuration Store")
-    api_secret_ref: Optional[StrictStr] = Field(None, alias="apiSecretRef", description="Reference to API secret from Configuration Store")
-    body: Optional[StrictStr] = Field(None, description="The body of the Amazon Queue Message")
-    queue_url_ref: Optional[StrictStr] = Field(None, alias="queueUrlRef", description="Reference to queue url from Configuration Store")
+    type:  Optional[StrictStr] = Field(None,alias="type", description="The type of delivery mechanism for this notification") 
+    api_key_ref:  Optional[StrictStr] = Field(None,alias="apiKeyRef", description="Reference to API key from Configuration Store") 
+    api_secret_ref:  Optional[StrictStr] = Field(None,alias="apiSecretRef", description="Reference to API secret from Configuration Store") 
+    body:  Optional[StrictStr] = Field(None,alias="body", description="The body of the Amazon Queue Message") 
+    queue_url_ref:  Optional[StrictStr] = Field(None,alias="queueUrlRef", description="Reference to queue url from Configuration Store") 
     __properties = ["type", "apiKeyRef", "apiSecretRef", "body", "queueUrlRef"]
 
     @validator('type')

@@ -19,17 +19,17 @@ import json
 
 
 from typing import Any, Dict
-from pydantic.v1 import BaseModel, Field, StrictStr, constr, validator
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, constr, validator 
 
 class AmazonSqsNotificationType(BaseModel):
     """
     The information required to create or update an AWS SQS notification  # noqa: E501
     """
-    type: StrictStr = Field(..., description="The type of delivery mechanism for this notification")
-    api_key_ref: constr(strict=True, min_length=1) = Field(..., alias="apiKeyRef", description="Reference to API key from Configuration Store")
-    api_secret_ref: constr(strict=True, min_length=1) = Field(..., alias="apiSecretRef", description="Reference to API secret from Configuration Store")
-    body: constr(strict=True, max_length=1024, min_length=1) = Field(..., description="The body of the Amazon Queue Message")
-    queue_url_ref: constr(strict=True, min_length=1) = Field(..., alias="queueUrlRef", description="Reference to queue url from Configuration Store")
+    type:  StrictStr = Field(...,alias="type", description="The type of delivery mechanism for this notification") 
+    api_key_ref:  StrictStr = Field(...,alias="apiKeyRef", description="Reference to API key from Configuration Store") 
+    api_secret_ref:  StrictStr = Field(...,alias="apiSecretRef", description="Reference to API secret from Configuration Store") 
+    body:  StrictStr = Field(...,alias="body", description="The body of the Amazon Queue Message") 
+    queue_url_ref:  StrictStr = Field(...,alias="queueUrlRef", description="Reference to queue url from Configuration Store") 
     __properties = ["type", "apiKeyRef", "apiSecretRef", "body", "queueUrlRef"]
 
     @validator('type')
@@ -37,13 +37,6 @@ class AmazonSqsNotificationType(BaseModel):
         """Validates the enum"""
         if not value == 'AmazonSqs':
             raise ValueError("must be one of enum values ('AmazonSqs')")
-        return value
-
-    @validator('body')
-    def body_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
         return value
 
     class Config:

@@ -19,16 +19,16 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr 
 
 class ManualEventHeader(BaseModel):
     """
     The header of the manual event  # noqa: E501
     """
-    event_type: Optional[StrictStr] = Field(None, alias="eventType", description="The event type of the manual event")
+    event_type:  Optional[StrictStr] = Field(None,alias="eventType", description="The event type of the manual event") 
     timestamp: Optional[datetime] = Field(None, description="The timestamp of the manual event")
-    user_id: Optional[StrictStr] = Field(None, alias="userId", description="The user ID of the manual event")
-    request_id: Optional[StrictStr] = Field(None, alias="requestId", description="The request ID of the manual event")
+    user_id:  Optional[StrictStr] = Field(None,alias="userId", description="The user ID of the manual event") 
+    request_id:  Optional[StrictStr] = Field(None,alias="requestId", description="The request ID of the manual event") 
     __properties = ["eventType", "timestamp", "userId", "requestId"]
 
     class Config:

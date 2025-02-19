@@ -19,19 +19,19 @@ import json
 
 
 from typing import Any, Dict
-from pydantic.v1 import BaseModel, Field, StrictStr, constr, validator
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, constr, validator 
 
 class AzureServiceBusNotificationType(BaseModel):
     """
     The information required to create or update an Azure Service Bus notification  # noqa: E501
     """
-    type: StrictStr = Field(..., description="The type of delivery mechanism for this notification")
-    namespace: constr(strict=True, min_length=1) = Field(..., description="Reference to namespace from Configuration Store")
-    queue_name: constr(strict=True, min_length=1) = Field(..., alias="queueName", description="Reference to queue name from Configuration Store")
-    body: constr(strict=True, max_length=1024, min_length=1) = Field(..., description="The body of the Azure Service Bus Message")
-    tenant_id: constr(strict=True, min_length=1) = Field(..., alias="tenantId", description="Reference to tenant id from Configuration Store")
-    client_id: constr(strict=True, min_length=1) = Field(..., alias="clientId", description="Reference to client id from Configuration Store")
-    client_secret: constr(strict=True, min_length=1) = Field(..., alias="clientSecret", description="Reference to client secret from Configuration Store")
+    type:  StrictStr = Field(...,alias="type", description="The type of delivery mechanism for this notification") 
+    namespace:  StrictStr = Field(...,alias="namespace", description="Reference to namespace from Configuration Store") 
+    queue_name:  StrictStr = Field(...,alias="queueName", description="Reference to queue name from Configuration Store") 
+    body:  StrictStr = Field(...,alias="body", description="The body of the Azure Service Bus Message") 
+    tenant_id:  StrictStr = Field(...,alias="tenantId", description="Reference to tenant id from Configuration Store") 
+    client_id:  StrictStr = Field(...,alias="clientId", description="Reference to client id from Configuration Store") 
+    client_secret:  StrictStr = Field(...,alias="clientSecret", description="Reference to client secret from Configuration Store") 
     __properties = ["type", "namespace", "queueName", "body", "tenantId", "clientId", "clientSecret"]
 
     @validator('type')
@@ -39,13 +39,6 @@ class AzureServiceBusNotificationType(BaseModel):
         """Validates the enum"""
         if value not in ('AzureServiceBus'):
             raise ValueError("must be one of enum values ('AzureServiceBus')")
-        return value
-
-    @validator('body')
-    def body_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
         return value
 
     class Config:

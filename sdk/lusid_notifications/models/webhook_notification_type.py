@@ -19,18 +19,18 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, constr, validator
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, constr, validator 
 
 class WebhookNotificationType(BaseModel):
     """
     The information required to create or update a Webhook notification  # noqa: E501
     """
-    type: StrictStr = Field(..., description="The type of delivery mechanism for this notification")
-    http_method: constr(strict=True, min_length=1) = Field(..., alias="httpMethod", description="The HTTP method such as GET, POST, etc. to use on the request")
-    url: constr(strict=True, max_length=16384, min_length=1) = Field(..., description="The URL to send the request to")
-    authentication_type: constr(strict=True, min_length=1) = Field(..., alias="authenticationType", description="The type of authentication to use on the request, can be one of the following values:  - Lusid -  Internal LUSID call  - BasicAuth - User specified Username and password  - BearerToken - Authorization header with Bearer scheme and user specified key  - None - No Authorization required on the webhook call")
+    type:  StrictStr = Field(...,alias="type", description="The type of delivery mechanism for this notification") 
+    http_method:  StrictStr = Field(...,alias="httpMethod", description="The HTTP method such as GET, POST, etc. to use on the request") 
+    url:  StrictStr = Field(...,alias="url", description="The URL to send the request to") 
+    authentication_type:  StrictStr = Field(...,alias="authenticationType", description="The type of authentication to use on the request, can be one of the following values:  - Lusid -  Internal LUSID call  - BasicAuth - User specified Username and password  - BearerToken - Authorization header with Bearer scheme and user specified key  - None - No Authorization required on the webhook call") 
     authentication_configuration_item_paths: Optional[Dict[str, StrictStr]] = Field(None, alias="authenticationConfigurationItemPaths", description="The paths of the Configuration Store configuration items that contain the authentication configuration. Each  authentication type requires different keys:  - Lusid - None required  - BasicAuth - Requires 'Username' and 'Password'  - BearerToken - Requires 'BearerToken' and optionally 'BearerScheme'  - None - None required                e.g. the following would be valid assuming that the config is present in the configuration store at the  specified paths:                    \"authenticationType\": \"BasicAuth\",      \"authenticationConfigurationItemPaths\": {          \"Username\": \"config://personal/myUserId/WebhookConfigurations/ExampleService/AdminUser\",          \"Password\": \"config://personal/myUserId/WebhookConfigurations/ExampleService/AdminPassword\"      }")
-    content_type: constr(strict=True, min_length=1) = Field(..., alias="contentType", description="The type of the content e.g. Json")
+    content_type:  StrictStr = Field(...,alias="contentType", description="The type of the content e.g. Json") 
     content: Optional[Any] = Field(None, description="The content of the request")
     __properties = ["type", "httpMethod", "url", "authenticationType", "authenticationConfigurationItemPaths", "contentType", "content"]
 
@@ -39,13 +39,6 @@ class WebhookNotificationType(BaseModel):
         """Validates the enum"""
         if value not in ('Webhook'):
             raise ValueError("must be one of enum values ('Webhook')")
-        return value
-
-    @validator('url')
-    def url_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^([A-Za-z0-9-._~:\/?#[\]@!$&\'()*+,;%=]|(\{\{([a-zA-Z0-9\s.])*\}\}))*$", value):
-            raise ValueError(r"must validate the regular expression /^([A-Za-z0-9-._~:\/?#[\]@!$&'()*+,;%=]|(\{\{([a-zA-Z0-9\s.])*\}\}))*$/")
         return value
 
     class Config:

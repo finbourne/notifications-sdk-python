@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict
-from pydantic.v1 import BaseModel, Field, StrictInt
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictInt 
 from lusid_notifications.models.attempt_status import AttemptStatus
 
 class Attempt(BaseModel):

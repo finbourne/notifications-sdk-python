@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, List
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist, constr 
 from lusid_notifications.models.attempt import Attempt
 from lusid_notifications.models.resource_id import ResourceId
 
@@ -27,12 +27,12 @@ class Delivery(BaseModel):
     """
     Delivery
     """
-    id: StrictStr = Field(..., description="The identifier of the delivery.")
-    event_id: constr(strict=True, min_length=1) = Field(..., alias="eventId", description="The identifier of the associated event.")
+    id:  StrictStr = Field(...,alias="id", description="The identifier of the delivery.") 
+    event_id:  StrictStr = Field(...,alias="eventId", description="The identifier of the associated event.") 
     subscription_id: ResourceId = Field(..., alias="subscriptionId")
-    notification_id: constr(strict=True, min_length=1) = Field(..., alias="notificationId", description="The identifier of the associated notification.")
-    delivery_channel: constr(strict=True, min_length=1) = Field(..., alias="deliveryChannel", description="The delivery channel of the message.")
-    message_details: constr(strict=True, min_length=1) = Field(..., alias="messageDetails", description="The Details of the delivery message as JSON string.")
+    notification_id:  StrictStr = Field(...,alias="notificationId", description="The identifier of the associated notification.") 
+    delivery_channel:  StrictStr = Field(...,alias="deliveryChannel", description="The delivery channel of the message.") 
+    message_details:  StrictStr = Field(...,alias="messageDetails", description="The Details of the delivery message as JSON string.") 
     attempts: conlist(Attempt) = Field(..., description="A list of all the delivery attempts made for this message.")
     __properties = ["id", "eventId", "subscriptionId", "notificationId", "deliveryChannel", "messageDetails", "attempts"]
 

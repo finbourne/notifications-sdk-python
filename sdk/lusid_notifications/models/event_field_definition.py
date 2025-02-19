@@ -19,14 +19,14 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr 
 
 class EventFieldDefinition(BaseModel):
     """
     An EventFieldDefinition object  # noqa: E501
     """
-    name: Optional[StrictStr] = Field(None, description="Name of the field")
-    type: Optional[StrictStr] = Field(None, description="Type of the field")
+    name:  Optional[StrictStr] = Field(None,alias="name", description="Name of the field") 
+    type:  Optional[StrictStr] = Field(None,alias="type", description="Type of the field") 
     __properties = ["name", "type"]
 
     class Config:

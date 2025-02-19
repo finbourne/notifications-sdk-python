@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, constr
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, constr 
 from lusid_notifications.models.matching_pattern import MatchingPattern
 from lusid_notifications.models.resource_id import ResourceId
 
@@ -28,16 +28,16 @@ class Subscription(BaseModel):
     A subscription object  # noqa: E501
     """
     id: ResourceId = Field(...)
-    display_name: constr(strict=True, min_length=1) = Field(..., alias="displayName", description="The name of the subscription")
-    description: Optional[StrictStr] = Field(None, description="The summary of the services provided by the subscription")
-    status: constr(strict=True, min_length=1) = Field(..., description="The current status of the subscription")
+    display_name:  StrictStr = Field(...,alias="displayName", description="The name of the subscription") 
+    description:  Optional[StrictStr] = Field(None,alias="description", description="The summary of the services provided by the subscription") 
+    status:  StrictStr = Field(...,alias="status", description="The current status of the subscription") 
     matching_pattern: MatchingPattern = Field(..., alias="matchingPattern")
     created_at: datetime = Field(..., alias="createdAt", description="The time at which the subscription was made")
-    user_id_created: constr(strict=True, min_length=1) = Field(..., alias="userIdCreated", description="The user who made the subscription")
+    user_id_created:  StrictStr = Field(...,alias="userIdCreated", description="The user who made the subscription") 
     modified_at: datetime = Field(..., alias="modifiedAt", description="The time at which the subscription was last modified")
-    user_id_modified: constr(strict=True, min_length=1) = Field(..., alias="userIdModified", description="The user who last modified the subscription")
-    use_as_auth: constr(strict=True, min_length=1) = Field(..., alias="useAsAuth", description="The user to use as auth for the subscription")
-    href: Optional[StrictStr] = Field(None, description="A URI for retrieving this subscription")
+    user_id_modified:  StrictStr = Field(...,alias="userIdModified", description="The user who last modified the subscription") 
+    use_as_auth:  StrictStr = Field(...,alias="useAsAuth", description="The user to use as auth for the subscription") 
+    href:  Optional[StrictStr] = Field(None,alias="href", description="A URI for retrieving this subscription") 
     __properties = ["id", "displayName", "description", "status", "matchingPattern", "createdAt", "userIdCreated", "modifiedAt", "userIdModified", "useAsAuth", "href"]
 
     class Config:

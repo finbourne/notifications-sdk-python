@@ -19,13 +19,13 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr 
 
 class NotificationStatus(BaseModel):
     """
     The status object of a notification  # noqa: E501
     """
-    result: Optional[StrictStr] = Field(None, description="The status of the notification")
+    result:  Optional[StrictStr] = Field(None,alias="result", description="The status of the notification") 
     last_updated: Optional[datetime] = Field(None, alias="lastUpdated", description="The time at which the notification status was last updated")
     __properties = ["result", "lastUpdated"]
 

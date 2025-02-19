@@ -19,16 +19,16 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr, validator
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist, constr, validator 
 
 class EmailNotificationType(BaseModel):
     """
     The information required to create or update an Email notification  # noqa: E501
     """
-    type: StrictStr = Field(..., description="The type of delivery mechanism for this notification")
-    subject: constr(strict=True, max_length=1024, min_length=1) = Field(..., description="The subject of the email")
-    plain_text_body: constr(strict=True, max_length=2147483647, min_length=1) = Field(..., alias="plainTextBody", description="The plain text body of the email")
-    html_body: Optional[constr(strict=True)] = Field(None, alias="htmlBody", description="The HTML body of the email (if any)")
+    type:  StrictStr = Field(...,alias="type", description="The type of delivery mechanism for this notification") 
+    subject:  StrictStr = Field(...,alias="subject", description="The subject of the email") 
+    plain_text_body:  StrictStr = Field(...,alias="plainTextBody", description="The plain text body of the email") 
+    html_body:  Optional[StrictStr] = Field(None,alias="htmlBody", description="The HTML body of the email (if any)") 
     email_address_to: conlist(StrictStr, max_items=10, min_items=1) = Field(..., alias="emailAddressTo", description="'To' recipients of the email")
     email_address_cc: Optional[conlist(StrictStr, max_items=10, min_items=0)] = Field(None, alias="emailAddressCc", description="'Cc' recipients of the email")
     email_address_bcc: Optional[conlist(StrictStr, max_items=10, min_items=0)] = Field(None, alias="emailAddressBcc", description="'Bcc' recipients of the email")
@@ -39,30 +39,6 @@ class EmailNotificationType(BaseModel):
         """Validates the enum"""
         if value not in ('Email'):
             raise ValueError("must be one of enum values ('Email')")
-        return value
-
-    @validator('subject')
-    def subject_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
-        return value
-
-    @validator('plain_text_body')
-    def plain_text_body_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
-        return value
-
-    @validator('html_body')
-    def html_body_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
         return value
 
     class Config:

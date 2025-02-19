@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, constr, validator
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, constr, validator 
 from lusid_notifications.models.matching_pattern import MatchingPattern
 from lusid_notifications.models.resource_id import ResourceId
 
@@ -28,39 +28,12 @@ class CreateSubscription(BaseModel):
     The information required to create a subscription  # noqa: E501
     """
     id: ResourceId = Field(...)
-    display_name: constr(strict=True, max_length=64, min_length=1) = Field(..., alias="displayName", description="The name of the subscription")
-    description: Optional[constr(strict=True, max_length=512, min_length=1)] = Field(None, description="The summary of the services provided by the subscription")
-    status: constr(strict=True, min_length=1) = Field(..., description="The current status of the subscription. Possible values are: Active, Inactive")
+    display_name:  StrictStr = Field(...,alias="displayName", description="The name of the subscription") 
+    description:  Optional[StrictStr] = Field(None,alias="description", description="The summary of the services provided by the subscription") 
+    status:  StrictStr = Field(...,alias="status", description="The current status of the subscription. Possible values are: Active, Inactive") 
     matching_pattern: MatchingPattern = Field(..., alias="matchingPattern")
-    use_as_auth: Optional[constr(strict=True, max_length=64, min_length=1)] = Field(None, alias="useAsAuth", description="Id of user associated with subscription. All events associated with   the subscription will use this user to check entitlements against   the resource to send a notification. Can be null, in which case   we'll default to that of the user making this request")
+    use_as_auth:  Optional[StrictStr] = Field(None,alias="useAsAuth", description="Id of user associated with subscription. All events associated with   the subscription will use this user to check entitlements against   the resource to send a notification. Can be null, in which case   we'll default to that of the user making this request") 
     __properties = ["id", "displayName", "description", "status", "matchingPattern", "useAsAuth"]
-
-    @validator('display_name')
-    def display_name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
-        return value
-
-    @validator('description')
-    def description_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
-        return value
-
-    @validator('use_as_auth')
-    def use_as_auth_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"^[a-zA-Z0-9\-_]+$", value):
-            raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9\-_]+$/")
-        return value
 
     class Config:
         """Pydantic configuration"""

@@ -19,20 +19,20 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist 
 from lusid_notifications.models.event_field_definition import EventFieldDefinition
 
 class EventTypeSchema(BaseModel):
     """
     An EventType object  # noqa: E501
     """
-    id: Optional[StrictStr] = Field(None, description="The identifier of the event type")
-    display_name: Optional[StrictStr] = Field(None, alias="displayName", description="Identifier name of the event")
-    description: Optional[StrictStr] = Field(None, description="The summary of the event")
-    application: Optional[StrictStr] = Field(None, description="The application associated with the event")
+    id:  Optional[StrictStr] = Field(None,alias="id", description="The identifier of the event type") 
+    display_name:  Optional[StrictStr] = Field(None,alias="displayName", description="Identifier name of the event") 
+    description:  Optional[StrictStr] = Field(None,alias="description", description="The summary of the event") 
+    application:  Optional[StrictStr] = Field(None,alias="application", description="The application associated with the event") 
     header_schema: Optional[conlist(EventFieldDefinition)] = Field(None, alias="headerSchema", description="The header schema for the event type")
     body_schema: Optional[conlist(EventFieldDefinition)] = Field(None, alias="bodySchema", description="The body schema for the event type")
-    href: Optional[StrictStr] = Field(None, description="A URI for retrieving this schema")
+    href:  Optional[StrictStr] = Field(None,alias="href", description="A URI for retrieving this schema") 
     __properties = ["id", "displayName", "description", "application", "headerSchema", "bodySchema", "href"]
 
     class Config:

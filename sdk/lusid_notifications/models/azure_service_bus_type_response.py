@@ -19,19 +19,19 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, validator
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, validator 
 
 class AzureServiceBusTypeResponse(BaseModel):
     """
     Holds readonly information about an Azure Service Bus notification  # noqa: E501
     """
-    type: Optional[StrictStr] = Field(None, description="The type of delivery mechanism for this notification")
-    namespace_ref: Optional[StrictStr] = Field(None, alias="namespaceRef", description="Reference to namespace from Configuration Store")
-    queue_name_ref: Optional[StrictStr] = Field(None, alias="queueNameRef", description="Reference to queue name from Configuration Store")
-    body: Optional[StrictStr] = Field(None, description="The body of the Azure service bus Message")
-    tenant_id_ref: Optional[StrictStr] = Field(None, alias="tenantIdRef", description="Reference to tenant id  from Configuration Store")
-    client_id_ref: Optional[StrictStr] = Field(None, alias="clientIdRef", description="Reference to client id from Configuration Store")
-    client_secret_ref: Optional[StrictStr] = Field(None, alias="clientSecretRef", description="Reference to client secret from Configuration Store")
+    type:  Optional[StrictStr] = Field(None,alias="type", description="The type of delivery mechanism for this notification") 
+    namespace_ref:  Optional[StrictStr] = Field(None,alias="namespaceRef", description="Reference to namespace from Configuration Store") 
+    queue_name_ref:  Optional[StrictStr] = Field(None,alias="queueNameRef", description="Reference to queue name from Configuration Store") 
+    body:  Optional[StrictStr] = Field(None,alias="body", description="The body of the Azure service bus Message") 
+    tenant_id_ref:  Optional[StrictStr] = Field(None,alias="tenantIdRef", description="Reference to tenant id  from Configuration Store") 
+    client_id_ref:  Optional[StrictStr] = Field(None,alias="clientIdRef", description="Reference to client id from Configuration Store") 
+    client_secret_ref:  Optional[StrictStr] = Field(None,alias="clientSecretRef", description="Reference to client secret from Configuration Store") 
     __properties = ["type", "namespaceRef", "queueNameRef", "body", "tenantIdRef", "clientIdRef", "clientSecretRef"]
 
     @validator('type')

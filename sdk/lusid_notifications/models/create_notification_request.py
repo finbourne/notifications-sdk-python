@@ -19,42 +19,18 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, constr, validator
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, constr, validator 
 from lusid_notifications.models.notification_type import NotificationType
 
 class CreateNotificationRequest(BaseModel):
     """
     The information required to create a notification  # noqa: E501
     """
-    notification_id: constr(strict=True, max_length=100, min_length=1) = Field(..., alias="notificationId", description="The identifier of the notification.")
-    display_name: constr(strict=True, max_length=64, min_length=0) = Field(..., alias="displayName", description="The name of the notification")
-    description: Optional[constr(strict=True, max_length=512, min_length=1)] = Field(None, description="The summary of the services provided by the notification")
+    notification_id:  StrictStr = Field(...,alias="notificationId", description="The identifier of the notification.") 
+    display_name:  StrictStr = Field(...,alias="displayName", description="The name of the notification") 
+    description:  Optional[StrictStr] = Field(None,alias="description", description="The summary of the services provided by the notification") 
     notification_type: NotificationType = Field(..., alias="notificationType")
     __properties = ["notificationId", "displayName", "description", "notificationType"]
-
-    @validator('notification_id')
-    def notification_id_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[a-zA-Z0-9\-_]+$", value):
-            raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9\-_]+$/")
-        return value
-
-    @validator('display_name')
-    def display_name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
-        return value
-
-    @validator('description')
-    def description_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"^[\s\S]*$", value):
-            raise ValueError(r"must validate the regular expression /^[\s\S]*$/")
-        return value
 
     class Config:
         """Pydantic configuration"""

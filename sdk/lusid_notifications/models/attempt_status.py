@@ -19,14 +19,14 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, constr
+from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, constr 
 
 class AttemptStatus(BaseModel):
     """
     Status of the delivery attempt.  # noqa: E501
     """
-    result: constr(strict=True, min_length=1) = Field(..., description="Result of the delivery.")
-    detailed_message: Optional[StrictStr] = Field(None, alias="detailedMessage", description="The detailed message from attempting to deliver the message.")
+    result:  StrictStr = Field(...,alias="result", description="Result of the delivery.") 
+    detailed_message:  Optional[StrictStr] = Field(None,alias="detailedMessage", description="The detailed message from attempting to deliver the message.") 
     __properties = ["result", "detailedMessage"]
 
     class Config:
