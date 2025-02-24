@@ -27,7 +27,7 @@ class SmsNotificationType(BaseModel):
     """
     type:  StrictStr = Field(...,alias="type", description="The type of delivery mechanism for this notification") 
     body:  StrictStr = Field(...,alias="body", description="The body of the SMS") 
-    recipients: conlist(StrictStr, max_items=10, min_items=1) = Field(..., description="The phone numbers to which the SMS will be sent to (E.164 format)")
+    recipients: conlist(StrictStr) = Field(..., description="The phone numbers to which the SMS will be sent to (E.164 format)")
     __properties = ["type", "body", "recipients"]
 
     @validator('type')

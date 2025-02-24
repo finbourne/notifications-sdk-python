@@ -29,9 +29,9 @@ class EmailNotificationType(BaseModel):
     subject:  StrictStr = Field(...,alias="subject", description="The subject of the email") 
     plain_text_body:  StrictStr = Field(...,alias="plainTextBody", description="The plain text body of the email") 
     html_body:  Optional[StrictStr] = Field(None,alias="htmlBody", description="The HTML body of the email (if any)") 
-    email_address_to: conlist(StrictStr, max_items=10, min_items=1) = Field(..., alias="emailAddressTo", description="'To' recipients of the email")
-    email_address_cc: Optional[conlist(StrictStr, max_items=10, min_items=0)] = Field(None, alias="emailAddressCc", description="'Cc' recipients of the email")
-    email_address_bcc: Optional[conlist(StrictStr, max_items=10, min_items=0)] = Field(None, alias="emailAddressBcc", description="'Bcc' recipients of the email")
+    email_address_to: conlist(StrictStr) = Field(..., alias="emailAddressTo", description="'To' recipients of the email")
+    email_address_cc: Optional[conlist(StrictStr)] = Field(None, alias="emailAddressCc", description="'Cc' recipients of the email")
+    email_address_bcc: Optional[conlist(StrictStr)] = Field(None, alias="emailAddressBcc", description="'Bcc' recipients of the email")
     __properties = ["type", "subject", "plainTextBody", "htmlBody", "emailAddressTo", "emailAddressCc", "emailAddressBcc"]
 
     @validator('type')
