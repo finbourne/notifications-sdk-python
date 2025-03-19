@@ -71,39 +71,46 @@ class NotificationTypeResponse(BaseModel):
         instance = NotificationTypeResponse.construct()
         error_messages = []
         match = 0
+        matchclass = ""
         # validate data type: AmazonSqsNotificationTypeResponse
         if not isinstance(v, AmazonSqsNotificationTypeResponse):
             error_messages.append(f"Error! Input type `{type(v)}` is not `AmazonSqsNotificationTypeResponse`")
         else:
             match += 1
+            matchclass = matchclass + " AmazonSqsNotificationTypeResponse"
         # validate data type: AmazonSqsPrincipalAuthNotificationTypeResponse
         if not isinstance(v, AmazonSqsPrincipalAuthNotificationTypeResponse):
             error_messages.append(f"Error! Input type `{type(v)}` is not `AmazonSqsPrincipalAuthNotificationTypeResponse`")
         else:
             match += 1
+            matchclass = matchclass + " AmazonSqsPrincipalAuthNotificationTypeResponse"
         # validate data type: AzureServiceBusTypeResponse
         if not isinstance(v, AzureServiceBusTypeResponse):
             error_messages.append(f"Error! Input type `{type(v)}` is not `AzureServiceBusTypeResponse`")
         else:
             match += 1
+            matchclass = matchclass + " AzureServiceBusTypeResponse"
         # validate data type: EmailNotificationTypeResponse
         if not isinstance(v, EmailNotificationTypeResponse):
             error_messages.append(f"Error! Input type `{type(v)}` is not `EmailNotificationTypeResponse`")
         else:
             match += 1
+            matchclass = matchclass + " EmailNotificationTypeResponse"
         # validate data type: SmsNotificationTypeResponse
         if not isinstance(v, SmsNotificationTypeResponse):
             error_messages.append(f"Error! Input type `{type(v)}` is not `SmsNotificationTypeResponse`")
         else:
             match += 1
+            matchclass = matchclass + " SmsNotificationTypeResponse"
         # validate data type: WebhookNotificationTypeResponse
         if not isinstance(v, WebhookNotificationTypeResponse):
             error_messages.append(f"Error! Input type `{type(v)}` is not `WebhookNotificationTypeResponse`")
         else:
             match += 1
+            matchclass = matchclass + " WebhookNotificationTypeResponse"
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in NotificationTypeResponse with oneOf schemas: AmazonSqsNotificationTypeResponse, AmazonSqsPrincipalAuthNotificationTypeResponse, AzureServiceBusTypeResponse, EmailNotificationTypeResponse, SmsNotificationTypeResponse, WebhookNotificationTypeResponse. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in NotificationTypeResponse with oneOf schemas: AmazonSqsNotificationTypeResponse, AmazonSqsPrincipalAuthNotificationTypeResponse, AzureServiceBusTypeResponse, EmailNotificationTypeResponse, SmsNotificationTypeResponse, WebhookNotificationTypeResponse. Details: Matched classes " + matchclass)
         elif match == 0:
             # no match
             raise ValueError("No match found when setting `actual_instance` in NotificationTypeResponse with oneOf schemas: AmazonSqsNotificationTypeResponse, AmazonSqsPrincipalAuthNotificationTypeResponse, AzureServiceBusTypeResponse, EmailNotificationTypeResponse, SmsNotificationTypeResponse, WebhookNotificationTypeResponse. Details: " + ", ".join(error_messages))
@@ -120,47 +127,55 @@ class NotificationTypeResponse(BaseModel):
         instance = NotificationTypeResponse.construct()
         error_messages = []
         match = 0
+        matchclass = ""
+        
 
         # deserialize data into AmazonSqsNotificationTypeResponse
         try:
             instance.actual_instance = AmazonSqsNotificationTypeResponse.from_json(json_str)
             match += 1
+            matchclass =matchclass + " AmazonSqsNotificationTypeResponse"
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
         # deserialize data into AmazonSqsPrincipalAuthNotificationTypeResponse
         try:
             instance.actual_instance = AmazonSqsPrincipalAuthNotificationTypeResponse.from_json(json_str)
             match += 1
+            matchclass =matchclass + " AmazonSqsPrincipalAuthNotificationTypeResponse"
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
         # deserialize data into AzureServiceBusTypeResponse
         try:
             instance.actual_instance = AzureServiceBusTypeResponse.from_json(json_str)
             match += 1
+            matchclass =matchclass + " AzureServiceBusTypeResponse"
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
         # deserialize data into EmailNotificationTypeResponse
         try:
             instance.actual_instance = EmailNotificationTypeResponse.from_json(json_str)
             match += 1
+            matchclass =matchclass + " EmailNotificationTypeResponse"
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
         # deserialize data into SmsNotificationTypeResponse
         try:
             instance.actual_instance = SmsNotificationTypeResponse.from_json(json_str)
             match += 1
+            matchclass =matchclass + " SmsNotificationTypeResponse"
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
         # deserialize data into WebhookNotificationTypeResponse
         try:
             instance.actual_instance = WebhookNotificationTypeResponse.from_json(json_str)
             match += 1
+            matchclass =matchclass + " WebhookNotificationTypeResponse"
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into NotificationTypeResponse with oneOf schemas: AmazonSqsNotificationTypeResponse, AmazonSqsPrincipalAuthNotificationTypeResponse, AzureServiceBusTypeResponse, EmailNotificationTypeResponse, SmsNotificationTypeResponse, WebhookNotificationTypeResponse. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into NotificationTypeResponse with oneOf schemas: AmazonSqsNotificationTypeResponse, AmazonSqsPrincipalAuthNotificationTypeResponse, AzureServiceBusTypeResponse, EmailNotificationTypeResponse, SmsNotificationTypeResponse, WebhookNotificationTypeResponse. Matches: "+matchclass+", Details: " + ", ".join(error_messages) + ", JSON: " + json_str)
         elif match == 0:
             # no match
             raise ValueError("No match found when deserializing the JSON string into NotificationTypeResponse with oneOf schemas: AmazonSqsNotificationTypeResponse, AmazonSqsPrincipalAuthNotificationTypeResponse, AzureServiceBusTypeResponse, EmailNotificationTypeResponse, SmsNotificationTypeResponse, WebhookNotificationTypeResponse. Details: " + ", ".join(error_messages))
