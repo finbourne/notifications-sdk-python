@@ -1,7 +1,6 @@
 # CreateSubscription
 
 The information required to create a subscription
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -11,24 +10,22 @@ Name | Type | Description | Notes
 **status** | **str** | The current status of the subscription. Possible values are: Active, Inactive | 
 **matching_pattern** | [**MatchingPattern**](MatchingPattern.md) |  | 
 **use_as_auth** | **str** | Id of user associated with subscription. All events associated with   the subscription will use this user to check entitlements against   the resource to send a notification. Can be null, in which case   we&#39;ll default to that of the user making this request | [optional] 
-
 ## Example
 
 ```python
 from lusid_notifications.models.create_subscription import CreateSubscription
+from typing import Any, Dict, Optional
+from pydantic.v1 import BaseModel, Field, constr, validator
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of CreateSubscription from a JSON string
-create_subscription_instance = CreateSubscription.from_json(json)
-# print the JSON string representation of the object
-print CreateSubscription.to_json()
+id: ResourceId = # Replace with your value
+display_name: StrictStr = "example_display_name"
+description: Optional[StrictStr] = "example_description"
+status: StrictStr = "example_status"
+matching_pattern: MatchingPattern = # Replace with your value
+use_as_auth: Optional[StrictStr] = "example_use_as_auth"
+create_subscription_instance = CreateSubscription(id=id, display_name=display_name, description=description, status=status, matching_pattern=matching_pattern, use_as_auth=use_as_auth)
 
-# convert the object into a dict
-create_subscription_dict = create_subscription_instance.to_dict()
-# create an instance of CreateSubscription from a dict
-create_subscription_form_dict = create_subscription.from_dict(create_subscription_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

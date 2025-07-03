@@ -1,31 +1,26 @@
 # Attempt
 
 Details of an attempt of delivery.
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **attempt_number** | **int** | The attempt number of the delivery. | 
 **attempt_time** | **datetime** | The time that the delivery was attempted. | 
 **status** | [**AttemptStatus**](AttemptStatus.md) |  | 
-
 ## Example
 
 ```python
 from lusid_notifications.models.attempt import Attempt
+from typing import Any, Dict
+from pydantic.v1 import BaseModel, Field, StrictInt
+from datetime import datetime
+attempt_number: StrictInt = # Replace with your value
+attempt_number: StrictInt = 42
+attempt_time: datetime = # Replace with your value
+status: AttemptStatus = # Replace with your value
+attempt_instance = Attempt(attempt_number=attempt_number, attempt_time=attempt_time, status=status)
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of Attempt from a JSON string
-attempt_instance = Attempt.from_json(json)
-# print the JSON string representation of the object
-print Attempt.to_json()
-
-# convert the object into a dict
-attempt_dict = attempt_instance.to_dict()
-# create an instance of Attempt from a dict
-attempt_form_dict = attempt.from_dict(attempt_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

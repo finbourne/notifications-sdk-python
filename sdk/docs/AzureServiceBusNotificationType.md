@@ -1,7 +1,6 @@
 # AzureServiceBusNotificationType
 
 The information required to create or update an Azure Service Bus notification
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -12,24 +11,23 @@ Name | Type | Description | Notes
 **tenant_id** | **str** | Reference to tenant id from Configuration Store | 
 **client_id** | **str** | Reference to client id from Configuration Store | 
 **client_secret** | **str** | Reference to client secret from Configuration Store | 
-
 ## Example
 
 ```python
 from lusid_notifications.models.azure_service_bus_notification_type import AzureServiceBusNotificationType
+from typing import Any, Dict
+from pydantic.v1 import BaseModel, Field, StrictStr, constr, validator
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of AzureServiceBusNotificationType from a JSON string
-azure_service_bus_notification_type_instance = AzureServiceBusNotificationType.from_json(json)
-# print the JSON string representation of the object
-print AzureServiceBusNotificationType.to_json()
+type: StrictStr = "example_type"
+namespace: StrictStr = "example_namespace"
+queue_name: StrictStr = "example_queue_name"
+body: StrictStr = "example_body"
+tenant_id: StrictStr = "example_tenant_id"
+client_id: StrictStr = "example_client_id"
+client_secret: StrictStr = "example_client_secret"
+azure_service_bus_notification_type_instance = AzureServiceBusNotificationType(type=type, namespace=namespace, queue_name=queue_name, body=body, tenant_id=tenant_id, client_id=client_id, client_secret=client_secret)
 
-# convert the object into a dict
-azure_service_bus_notification_type_dict = azure_service_bus_notification_type_instance.to_dict()
-# create an instance of AzureServiceBusNotificationType from a dict
-azure_service_bus_notification_type_form_dict = azure_service_bus_notification_type.from_dict(azure_service_bus_notification_type_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

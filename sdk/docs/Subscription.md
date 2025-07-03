@@ -1,7 +1,6 @@
 # Subscription
 
 A subscription object
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -16,24 +15,27 @@ Name | Type | Description | Notes
 **user_id_modified** | **str** | The user who last modified the subscription | 
 **use_as_auth** | **str** | The user to use as auth for the subscription | 
 **href** | **str** | A URI for retrieving this subscription | [optional] 
-
 ## Example
 
 ```python
 from lusid_notifications.models.subscription import Subscription
+from typing import Any, Dict, Optional
+from pydantic.v1 import BaseModel, Field, StrictStr, constr
+from datetime import datetime
+id: ResourceId = # Replace with your value
+display_name: StrictStr = "example_display_name"
+description: Optional[StrictStr] = "example_description"
+status: StrictStr = "example_status"
+matching_pattern: MatchingPattern = # Replace with your value
+created_at: datetime = # Replace with your value
+user_id_created: StrictStr = "example_user_id_created"
+modified_at: datetime = # Replace with your value
+user_id_modified: StrictStr = "example_user_id_modified"
+use_as_auth: StrictStr = "example_use_as_auth"
+href: Optional[StrictStr] = "example_href"
+subscription_instance = Subscription(id=id, display_name=display_name, description=description, status=status, matching_pattern=matching_pattern, created_at=created_at, user_id_created=user_id_created, modified_at=modified_at, user_id_modified=user_id_modified, use_as_auth=use_as_auth, href=href)
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of Subscription from a JSON string
-subscription_instance = Subscription.from_json(json)
-# print the JSON string representation of the object
-print Subscription.to_json()
-
-# convert the object into a dict
-subscription_dict = subscription_instance.to_dict()
-# create an instance of Subscription from a dict
-subscription_form_dict = subscription.from_dict(subscription_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

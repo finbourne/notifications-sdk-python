@@ -1,7 +1,6 @@
 # EmailNotificationTypeResponse
 
 Holds readonly information about an Email notification
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -12,24 +11,23 @@ Name | Type | Description | Notes
 **email_address_to** | **List[str]** | &#39;To&#39; recipients of the email | [optional] 
 **email_address_cc** | **List[str]** | &#39;Cc&#39; recipients of the email | [optional] 
 **email_address_bcc** | **List[str]** | &#39;Bcc&#39; recipients of the email | [optional] 
-
 ## Example
 
 ```python
 from lusid_notifications.models.email_notification_type_response import EmailNotificationTypeResponse
+from typing import Any, Dict, List, Optional
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist, validator
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of EmailNotificationTypeResponse from a JSON string
-email_notification_type_response_instance = EmailNotificationTypeResponse.from_json(json)
-# print the JSON string representation of the object
-print EmailNotificationTypeResponse.to_json()
+type: Optional[StrictStr] = "example_type"
+subject: Optional[StrictStr] = "example_subject"
+plain_text_body: Optional[StrictStr] = "example_plain_text_body"
+html_body: Optional[StrictStr] = "example_html_body"
+email_address_to: Optional[conlist(StrictStr)] = # Replace with your value
+email_address_cc: Optional[conlist(StrictStr)] = # Replace with your value
+email_address_bcc: Optional[conlist(StrictStr)] = # Replace with your value
+email_notification_type_response_instance = EmailNotificationTypeResponse(type=type, subject=subject, plain_text_body=plain_text_body, html_body=html_body, email_address_to=email_address_to, email_address_cc=email_address_cc, email_address_bcc=email_address_bcc)
 
-# convert the object into a dict
-email_notification_type_response_dict = email_notification_type_response_instance.to_dict()
-# create an instance of EmailNotificationTypeResponse from a dict
-email_notification_type_response_form_dict = email_notification_type_response.from_dict(email_notification_type_response_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

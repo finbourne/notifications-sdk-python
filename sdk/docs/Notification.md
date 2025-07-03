@@ -1,7 +1,6 @@
 # Notification
 
 A notification object
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -14,24 +13,25 @@ Name | Type | Description | Notes
 **modified_at** | **datetime** | The time at which the subscription was last modified | 
 **user_id_modified** | **str** | The user who last modified the subscription | 
 **href** | **str** | A URI for retrieving this notification | [optional] 
-
 ## Example
 
 ```python
 from lusid_notifications.models.notification import Notification
+from typing import Any, Dict, Optional
+from pydantic.v1 import BaseModel, Field, StrictStr, constr, validator
+from datetime import datetime
+notification_id: StrictStr = "example_notification_id"
+display_name: StrictStr = "example_display_name"
+description: Optional[StrictStr] = "example_description"
+notification_type: NotificationTypeResponse = # Replace with your value
+created_at: datetime = # Replace with your value
+user_id_created: StrictStr = "example_user_id_created"
+modified_at: datetime = # Replace with your value
+user_id_modified: StrictStr = "example_user_id_modified"
+href: Optional[StrictStr] = "example_href"
+notification_instance = Notification(notification_id=notification_id, display_name=display_name, description=description, notification_type=notification_type, created_at=created_at, user_id_created=user_id_created, modified_at=modified_at, user_id_modified=user_id_modified, href=href)
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of Notification from a JSON string
-notification_instance = Notification.from_json(json)
-# print the JSON string representation of the object
-print Notification.to_json()
-
-# convert the object into a dict
-notification_dict = notification_instance.to_dict()
-# create an instance of Notification from a dict
-notification_form_dict = notification.from_dict(notification_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

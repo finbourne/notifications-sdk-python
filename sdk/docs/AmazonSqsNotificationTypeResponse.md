@@ -1,7 +1,6 @@
 # AmazonSqsNotificationTypeResponse
 
 Holds readonly information about an AWS SQS notification
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -10,24 +9,21 @@ Name | Type | Description | Notes
 **api_secret_ref** | **str** | Reference to API secret from Configuration Store | [optional] 
 **body** | **str** | The body of the Amazon Queue Message | [optional] 
 **queue_url_ref** | **str** | Reference to queue url from Configuration Store | [optional] 
-
 ## Example
 
 ```python
 from lusid_notifications.models.amazon_sqs_notification_type_response import AmazonSqsNotificationTypeResponse
+from typing import Any, Dict, Optional
+from pydantic.v1 import BaseModel, Field, StrictStr, validator
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of AmazonSqsNotificationTypeResponse from a JSON string
-amazon_sqs_notification_type_response_instance = AmazonSqsNotificationTypeResponse.from_json(json)
-# print the JSON string representation of the object
-print AmazonSqsNotificationTypeResponse.to_json()
+type: Optional[StrictStr] = "example_type"
+api_key_ref: Optional[StrictStr] = "example_api_key_ref"
+api_secret_ref: Optional[StrictStr] = "example_api_secret_ref"
+body: Optional[StrictStr] = "example_body"
+queue_url_ref: Optional[StrictStr] = "example_queue_url_ref"
+amazon_sqs_notification_type_response_instance = AmazonSqsNotificationTypeResponse(type=type, api_key_ref=api_key_ref, api_secret_ref=api_secret_ref, body=body, queue_url_ref=queue_url_ref)
 
-# convert the object into a dict
-amazon_sqs_notification_type_response_dict = amazon_sqs_notification_type_response_instance.to_dict()
-# create an instance of AmazonSqsNotificationTypeResponse from a dict
-amazon_sqs_notification_type_response_form_dict = amazon_sqs_notification_type_response.from_dict(amazon_sqs_notification_type_response_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

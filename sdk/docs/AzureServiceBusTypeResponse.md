@@ -1,7 +1,6 @@
 # AzureServiceBusTypeResponse
 
 Holds readonly information about an Azure Service Bus notification
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -12,24 +11,23 @@ Name | Type | Description | Notes
 **tenant_id_ref** | **str** | Reference to tenant id  from Configuration Store | [optional] 
 **client_id_ref** | **str** | Reference to client id from Configuration Store | [optional] 
 **client_secret_ref** | **str** | Reference to client secret from Configuration Store | [optional] 
-
 ## Example
 
 ```python
 from lusid_notifications.models.azure_service_bus_type_response import AzureServiceBusTypeResponse
+from typing import Any, Dict, Optional
+from pydantic.v1 import BaseModel, Field, StrictStr, validator
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of AzureServiceBusTypeResponse from a JSON string
-azure_service_bus_type_response_instance = AzureServiceBusTypeResponse.from_json(json)
-# print the JSON string representation of the object
-print AzureServiceBusTypeResponse.to_json()
+type: Optional[StrictStr] = "example_type"
+namespace_ref: Optional[StrictStr] = "example_namespace_ref"
+queue_name_ref: Optional[StrictStr] = "example_queue_name_ref"
+body: Optional[StrictStr] = "example_body"
+tenant_id_ref: Optional[StrictStr] = "example_tenant_id_ref"
+client_id_ref: Optional[StrictStr] = "example_client_id_ref"
+client_secret_ref: Optional[StrictStr] = "example_client_secret_ref"
+azure_service_bus_type_response_instance = AzureServiceBusTypeResponse(type=type, namespace_ref=namespace_ref, queue_name_ref=queue_name_ref, body=body, tenant_id_ref=tenant_id_ref, client_id_ref=client_id_ref, client_secret_ref=client_secret_ref)
 
-# convert the object into a dict
-azure_service_bus_type_response_dict = azure_service_bus_type_response_instance.to_dict()
-# create an instance of AzureServiceBusTypeResponse from a dict
-azure_service_bus_type_response_form_dict = azure_service_bus_type_response.from_dict(azure_service_bus_type_response_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 

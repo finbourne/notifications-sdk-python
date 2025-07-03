@@ -1,7 +1,6 @@
 # EmailNotificationType
 
 The information required to create or update an Email notification
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
@@ -12,24 +11,23 @@ Name | Type | Description | Notes
 **email_address_to** | **List[str]** | &#39;To&#39; recipients of the email | 
 **email_address_cc** | **List[str]** | &#39;Cc&#39; recipients of the email | [optional] 
 **email_address_bcc** | **List[str]** | &#39;Bcc&#39; recipients of the email | [optional] 
-
 ## Example
 
 ```python
 from lusid_notifications.models.email_notification_type import EmailNotificationType
+from typing import Any, Dict, List, Optional
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr, validator
 
-# TODO update the JSON string below
-json = "{}"
-# create an instance of EmailNotificationType from a JSON string
-email_notification_type_instance = EmailNotificationType.from_json(json)
-# print the JSON string representation of the object
-print EmailNotificationType.to_json()
+type: StrictStr = "example_type"
+subject: StrictStr = "example_subject"
+plain_text_body: StrictStr = "example_plain_text_body"
+html_body: Optional[StrictStr] = "example_html_body"
+email_address_to: conlist(StrictStr, max_items=10, min_items=1) = Field(..., alias="emailAddressTo", description="'To' recipients of the email")
+email_address_cc: Optional[conlist(StrictStr, max_items=10, min_items=0)] = Field(None, alias="emailAddressCc", description="'Cc' recipients of the email")
+email_address_bcc: Optional[conlist(StrictStr, max_items=10, min_items=0)] = Field(None, alias="emailAddressBcc", description="'Bcc' recipients of the email")
+email_notification_type_instance = EmailNotificationType(type=type, subject=subject, plain_text_body=plain_text_body, html_body=html_body, email_address_to=email_address_to, email_address_cc=email_address_cc, email_address_bcc=email_address_bcc)
 
-# convert the object into a dict
-email_notification_type_dict = email_notification_type_instance.to_dict()
-# create an instance of EmailNotificationType from a dict
-email_notification_type_form_dict = email_notification_type.from_dict(email_notification_type_dict)
 ```
-[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
+[Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
 
