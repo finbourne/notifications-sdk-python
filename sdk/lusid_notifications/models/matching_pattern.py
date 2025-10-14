@@ -25,7 +25,7 @@ class MatchingPattern(BaseModel):
     """
     A matching pattern object  # noqa: E501
     """
-    event_type:  StrictStr = Field(...,alias="eventType", description="The type of event to subscribe to. The list of available event types can be discovered  by calling the ‘List available EventTypes’ API endpoint.") 
+    event_type:  StrictStr = Field(...,alias="eventType", description="The type of event to subscribe to. The list of available event types can be discovered by calling the ‘List available EventTypes’ API endpoint.") 
     filter:  Optional[StrictStr] = Field(None,alias="filter", description="A filter on the event. See https://support.lusid.com/filtering-results-from-lusid for more information. If not provided, all events will be matched") 
     __properties = ["eventType", "filter"]
 

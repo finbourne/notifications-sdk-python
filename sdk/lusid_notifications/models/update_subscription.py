@@ -30,7 +30,7 @@ class UpdateSubscription(BaseModel):
     description:  Optional[StrictStr] = Field(None,alias="description", description="The summary of the services provided by the subscription") 
     status:  StrictStr = Field(...,alias="status", description="The current status of the subscription. Possible values are: Active, Inactive") 
     matching_pattern: MatchingPattern = Field(..., alias="matchingPattern")
-    use_as_auth:  Optional[StrictStr] = Field(None,alias="useAsAuth", description="Id of user associated with subscription. All events associated with   the subscription will use this user to check entitlements against   the resource to send a notification. Can be null, in which case   we'll default to that of the user making this request") 
+    use_as_auth:  Optional[StrictStr] = Field(None,alias="useAsAuth", description="Id of user associated with subscription. All events associated with  the subscription will use this user to check entitlements against  the resource to send a notification. Can be null, in which case  we'll default to that of the user making this request") 
     __properties = ["displayName", "description", "status", "matchingPattern", "useAsAuth"]
 
     class Config:
