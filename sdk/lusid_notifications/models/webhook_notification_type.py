@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, constr, validator 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 class WebhookNotificationType(BaseModel):
     """
@@ -29,9 +31,9 @@ class WebhookNotificationType(BaseModel):
     http_method:  StrictStr = Field(...,alias="httpMethod", description="The HTTP method such as GET, POST, etc. to use on the request") 
     url:  StrictStr = Field(...,alias="url", description="The URL to send the request to") 
     authentication_type:  StrictStr = Field(...,alias="authenticationType", description="The type of authentication to use on the request, can be one of the following values: - Lusid -  Internal LUSID call - BasicAuth - User specified Username and password - BearerToken - Authorization header with Bearer scheme and user specified key - None - No Authorization required on the webhook call") 
-    authentication_configuration_item_paths: Optional[Dict[str, StrictStr]] = Field(None, alias="authenticationConfigurationItemPaths", description="The paths of the Configuration Store configuration items that contain the authentication configuration. Each authentication type requires different keys: - Lusid - None required - BasicAuth - Requires 'Username' and 'Password' - BearerToken - Requires 'BearerToken' and optionally 'BearerScheme' - None - None required              e.g. the following would be valid assuming that the config is present in the configuration store at the specified paths:                  \"authenticationType\": \"BasicAuth\",     \"authenticationConfigurationItemPaths\": {         \"Username\": \"config://personal/myUserId/WebhookConfigurations/ExampleService/AdminUser\",         \"Password\": \"config://personal/myUserId/WebhookConfigurations/ExampleService/AdminPassword\"     }")
+    authentication_configuration_item_paths: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="The paths of the Configuration Store configuration items that contain the authentication configuration. Each authentication type requires different keys: - Lusid - None required - BasicAuth - Requires 'Username' and 'Password' - BearerToken - Requires 'BearerToken' and optionally 'BearerScheme' - None - None required              e.g. the following would be valid assuming that the config is present in the configuration store at the specified paths:                  \"authenticationType\": \"BasicAuth\",     \"authenticationConfigurationItemPaths\": {         \"Username\": \"config://personal/myUserId/WebhookConfigurations/ExampleService/AdminUser\",         \"Password\": \"config://personal/myUserId/WebhookConfigurations/ExampleService/AdminPassword\"     }", alias="authenticationConfigurationItemPaths")
     content_type:  StrictStr = Field(...,alias="contentType", description="The type of the content e.g. Json") 
-    content: Optional[Any] = Field(None, description="The content of the request")
+    content: Optional[Any] = Field(default=None, description="The content of the request")
     __properties = ["type", "httpMethod", "url", "authenticationType", "authenticationConfigurationItemPaths", "contentType", "content"]
 
     @validator('type')
@@ -84,14 +86,19 @@ class WebhookNotificationType(BaseModel):
                                     'SchedulerJobResponse', 
                                     'SleepResponse',
                                     'Library',
-                                    'LibraryResponse']:
+                                    'LibraryResponse',
+                                    'DayRegularity',
+                                    'RelativeMonthRegularity',
+                                    'SpecificMonthRegularity',
+                                    'WeekRegularity',
+                                    'YearRegularity']:
            return value
         
         # Only validate the 'type' property of the class
         if "type" != "type":
             return value
 
-        if value not in ('Webhook'):
+        if value not in ['Webhook']:
             raise ValueError("must be one of enum values ('Webhook')")
         return value
 
@@ -158,3 +165,5 @@ class WebhookNotificationType(BaseModel):
             "content": obj.get("content")
         })
         return _obj
+
+WebhookNotificationType.update_forward_refs()

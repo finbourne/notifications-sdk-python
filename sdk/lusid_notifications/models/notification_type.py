@@ -18,16 +18,17 @@ import json
 import pprint
 import re  # noqa: F401
 
-from typing import Any, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, ValidationError, validator
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from lusid_notifications.models.amazon_sqs_notification_type import AmazonSqsNotificationType
 from lusid_notifications.models.amazon_sqs_principal_auth_notification_type import AmazonSqsPrincipalAuthNotificationType
 from lusid_notifications.models.azure_service_bus_notification_type import AzureServiceBusNotificationType
 from lusid_notifications.models.email_notification_type import EmailNotificationType
 from lusid_notifications.models.sms_notification_type import SmsNotificationType
 from lusid_notifications.models.webhook_notification_type import WebhookNotificationType
-from typing import Union, Any, List, TYPE_CHECKING
-from pydantic.v1 import StrictStr, Field
+
 
 NOTIFICATIONTYPE_ONE_OF_SCHEMAS = ["AmazonSqsNotificationType", "AmazonSqsPrincipalAuthNotificationType", "AzureServiceBusNotificationType", "EmailNotificationType", "SmsNotificationType", "WebhookNotificationType"]
 

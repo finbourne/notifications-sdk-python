@@ -14,8 +14,10 @@ Name | Type | Description | Notes
 
 ```python
 from lusid_notifications.models.delivery import Delivery
-from typing import Any, Dict, List
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 id: StrictStr = "example_id"
 event_id: StrictStr = "example_event_id"
@@ -23,7 +25,7 @@ subscription_id: ResourceId = # Replace with your value
 notification_id: StrictStr = "example_notification_id"
 delivery_channel: StrictStr = "example_delivery_channel"
 message_details: StrictStr = "example_message_details"
-attempts: conlist(Attempt) = # Replace with your value
+attempts: List[Attempt] = # Replace with your value
 delivery_instance = Delivery(id=id, event_id=event_id, subscription_id=subscription_id, notification_id=notification_id, delivery_channel=delivery_channel, message_details=message_details, attempts=attempts)
 
 ```

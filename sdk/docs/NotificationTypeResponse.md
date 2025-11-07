@@ -5,8 +5,10 @@ Holds readonly information about a Finbourne.Notifications.WebApi.Dtos.Notificat
 
 ```python
 from lusid_notifications.models.notification_type_response import NotificationTypeResponse
-from typing import Any, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, ValidationError, validator
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 # Example with NotificationTypeResponse 
 

@@ -11,12 +11,14 @@ Name | Type | Description | Notes
 
 ```python
 from lusid_notifications.models.sms_notification_type import SmsNotificationType
-from typing import Any, Dict, List
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr, validator
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 type: StrictStr = "example_type"
 body: StrictStr = "example_body"
-recipients: conlist(StrictStr, max_items=10, min_items=1) = Field(..., description="The phone numbers to which the SMS will be sent to (E.164 format)")
+recipients: List[StrictStr] = # Replace with your value
 sms_notification_type_instance = SmsNotificationType(type=type, body=body, recipients=recipients)
 
 ```

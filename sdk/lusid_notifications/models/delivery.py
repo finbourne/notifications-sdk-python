@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, List
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist, constr 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from lusid_notifications.models.attempt import Attempt
 from lusid_notifications.models.resource_id import ResourceId
 
@@ -29,11 +31,11 @@ class Delivery(BaseModel):
     """
     id:  StrictStr = Field(...,alias="id", description="The identifier of the delivery.") 
     event_id:  StrictStr = Field(...,alias="eventId", description="The identifier of the associated event.") 
-    subscription_id: ResourceId = Field(..., alias="subscriptionId")
+    subscription_id: ResourceId = Field(alias="subscriptionId")
     notification_id:  StrictStr = Field(...,alias="notificationId", description="The identifier of the associated notification.") 
     delivery_channel:  StrictStr = Field(...,alias="deliveryChannel", description="The delivery channel of the message.") 
     message_details:  StrictStr = Field(...,alias="messageDetails", description="The Details of the delivery message as JSON string.") 
-    attempts: conlist(Attempt) = Field(..., description="A list of all the delivery attempts made for this message.")
+    attempts: List[Attempt] = Field(description="A list of all the delivery attempts made for this message.")
     __properties = ["id", "eventId", "subscriptionId", "notificationId", "deliveryChannel", "messageDetails", "attempts"]
 
     class Config:
@@ -99,3 +101,5 @@ class Delivery(BaseModel):
             "attempts": [Attempt.from_dict(_item) for _item in obj.get("attempts")] if obj.get("attempts") is not None else None
         })
         return _obj
+
+Delivery.update_forward_refs()

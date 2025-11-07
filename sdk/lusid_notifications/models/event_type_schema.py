@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from lusid_notifications.models.event_field_definition import EventFieldDefinition
 
 class EventTypeSchema(BaseModel):
@@ -30,8 +32,8 @@ class EventTypeSchema(BaseModel):
     display_name:  Optional[StrictStr] = Field(None,alias="displayName", description="Identifier name of the event") 
     description:  Optional[StrictStr] = Field(None,alias="description", description="The summary of the event") 
     application:  Optional[StrictStr] = Field(None,alias="application", description="The application associated with the event") 
-    header_schema: Optional[conlist(EventFieldDefinition)] = Field(None, alias="headerSchema", description="The header schema for the event type")
-    body_schema: Optional[conlist(EventFieldDefinition)] = Field(None, alias="bodySchema", description="The body schema for the event type")
+    header_schema: Optional[List[EventFieldDefinition]] = Field(default=None, description="The header schema for the event type", alias="headerSchema")
+    body_schema: Optional[List[EventFieldDefinition]] = Field(default=None, description="The body schema for the event type", alias="bodySchema")
     href:  Optional[StrictStr] = Field(None,alias="href", description="A URI for retrieving this schema") 
     __properties = ["id", "displayName", "description", "application", "headerSchema", "bodySchema", "href"]
 
@@ -139,3 +141,5 @@ class EventTypeSchema(BaseModel):
             "href": obj.get("href")
         })
         return _obj
+
+EventTypeSchema.update_forward_refs()

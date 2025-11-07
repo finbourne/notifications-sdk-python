@@ -15,8 +15,10 @@ Name | Type | Description | Notes
 
 ```python
 from lusid_notifications.models.azure_service_bus_notification_type import AzureServiceBusNotificationType
-from typing import Any, Dict
-from pydantic.v1 import BaseModel, Field, StrictStr, constr, validator
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 type: StrictStr = "example_type"
 namespace: StrictStr = "example_namespace"

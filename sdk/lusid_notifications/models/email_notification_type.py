@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist, constr, validator 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 class EmailNotificationType(BaseModel):
     """
@@ -29,9 +31,9 @@ class EmailNotificationType(BaseModel):
     subject:  StrictStr = Field(...,alias="subject", description="The subject of the email") 
     plain_text_body:  StrictStr = Field(...,alias="plainTextBody", description="The plain text body of the email") 
     html_body:  Optional[StrictStr] = Field(None,alias="htmlBody", description="The HTML body of the email (if any)") 
-    email_address_to: conlist(StrictStr) = Field(..., alias="emailAddressTo", description="'To' recipients of the email")
-    email_address_cc: Optional[conlist(StrictStr)] = Field(None, alias="emailAddressCc", description="'Cc' recipients of the email")
-    email_address_bcc: Optional[conlist(StrictStr)] = Field(None, alias="emailAddressBcc", description="'Bcc' recipients of the email")
+    email_address_to: List[StrictStr] = Field(description="'To' recipients of the email", alias="emailAddressTo")
+    email_address_cc: Optional[List[StrictStr]] = Field(default=None, description="'Cc' recipients of the email", alias="emailAddressCc")
+    email_address_bcc: Optional[List[StrictStr]] = Field(default=None, description="'Bcc' recipients of the email", alias="emailAddressBcc")
     __properties = ["type", "subject", "plainTextBody", "htmlBody", "emailAddressTo", "emailAddressCc", "emailAddressBcc"]
 
     @validator('type')
@@ -84,14 +86,19 @@ class EmailNotificationType(BaseModel):
                                     'SchedulerJobResponse', 
                                     'SleepResponse',
                                     'Library',
-                                    'LibraryResponse']:
+                                    'LibraryResponse',
+                                    'DayRegularity',
+                                    'RelativeMonthRegularity',
+                                    'SpecificMonthRegularity',
+                                    'WeekRegularity',
+                                    'YearRegularity']:
            return value
         
         # Only validate the 'type' property of the class
         if "type" != "type":
             return value
 
-        if value not in ('Email'):
+        if value not in ['Email']:
             raise ValueError("must be one of enum values ('Email')")
         return value
 
@@ -163,3 +170,5 @@ class EmailNotificationType(BaseModel):
             "email_address_bcc": obj.get("emailAddressBcc")
         })
         return _obj
+
+EmailNotificationType.update_forward_refs()

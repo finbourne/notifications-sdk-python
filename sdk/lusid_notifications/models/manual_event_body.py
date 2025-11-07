@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, constr, validator 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 class ManualEventBody(BaseModel):
     """
@@ -27,7 +29,7 @@ class ManualEventBody(BaseModel):
     """
     subject:  StrictStr = Field(...,alias="subject", description="The subject of the manual event") 
     message:  StrictStr = Field(...,alias="message", description="The message of the manual event") 
-    json_message: Optional[Any] = Field(None, alias="jsonMessage", description="The JSON message of the manual event")
+    json_message: Optional[Any] = Field(default=None, description="The JSON message of the manual event", alias="jsonMessage")
     __properties = ["subject", "message", "jsonMessage"]
 
     class Config:
@@ -84,3 +86,5 @@ class ManualEventBody(BaseModel):
             "json_message": obj.get("jsonMessage")
         })
         return _obj
+
+ManualEventBody.update_forward_refs()

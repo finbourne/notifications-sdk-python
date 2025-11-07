@@ -15,16 +15,18 @@ Name | Type | Description | Notes
 
 ```python
 from lusid_notifications.models.email_notification_type import EmailNotificationType
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr, validator
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 type: StrictStr = "example_type"
 subject: StrictStr = "example_subject"
 plain_text_body: StrictStr = "example_plain_text_body"
 html_body: Optional[StrictStr] = "example_html_body"
-email_address_to: conlist(StrictStr, max_items=10, min_items=1) = Field(..., alias="emailAddressTo", description="'To' recipients of the email")
-email_address_cc: Optional[conlist(StrictStr, max_items=10, min_items=0)] = Field(None, alias="emailAddressCc", description="'Cc' recipients of the email")
-email_address_bcc: Optional[conlist(StrictStr, max_items=10, min_items=0)] = Field(None, alias="emailAddressBcc", description="'Bcc' recipients of the email")
+email_address_to: List[StrictStr] = # Replace with your value
+email_address_cc: Optional[List[StrictStr]] = # Replace with your value
+email_address_bcc: Optional[List[StrictStr]] = # Replace with your value
 email_notification_type_instance = EmailNotificationType(type=type, subject=subject, plain_text_body=plain_text_body, html_body=html_body, email_address_to=email_address_to, email_address_cc=email_address_cc, email_address_bcc=email_address_bcc)
 
 ```

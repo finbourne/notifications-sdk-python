@@ -13,8 +13,10 @@ Name | Type | Description | Notes
 
 ```python
 from lusid_notifications.models.amazon_sqs_notification_type import AmazonSqsNotificationType
-from typing import Any, Dict
-from pydantic.v1 import BaseModel, Field, StrictStr, constr, validator
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 type: StrictStr = "example_type"
 api_key_ref: StrictStr = "example_api_key_ref"

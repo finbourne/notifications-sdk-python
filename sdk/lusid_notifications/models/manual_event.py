@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict
-from pydantic.v1 import StrictStr, Field, BaseModel, Field 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from lusid_notifications.models.manual_event_body import ManualEventBody
 from lusid_notifications.models.manual_event_header import ManualEventHeader
 
@@ -27,8 +29,8 @@ class ManualEvent(BaseModel):
     """
     Details of a manually triggered event  # noqa: E501
     """
-    header: ManualEventHeader = Field(...)
-    body: ManualEventBody = Field(...)
+    header: ManualEventHeader
+    body: ManualEventBody
     __properties = ["header", "body"]
 
     class Config:
@@ -85,3 +87,5 @@ class ManualEvent(BaseModel):
             "body": ManualEventBody.from_dict(obj.get("body")) if obj.get("body") is not None else None
         })
         return _obj
+
+ManualEvent.update_forward_refs()

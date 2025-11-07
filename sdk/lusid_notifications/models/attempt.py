@@ -17,18 +17,20 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
-from typing import Any, Dict
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictInt 
 from lusid_notifications.models.attempt_status import AttemptStatus
 
 class Attempt(BaseModel):
     """
     Details of an attempt of delivery.  # noqa: E501
     """
-    attempt_number: StrictInt = Field(..., alias="attemptNumber", description="The attempt number of the delivery.")
-    attempt_time: datetime = Field(..., alias="attemptTime", description="The time that the delivery was attempted.")
-    status: AttemptStatus = Field(...)
+    attempt_number: StrictInt = Field(description="The attempt number of the delivery.", alias="attemptNumber")
+    attempt_time: datetime = Field(description="The time that the delivery was attempted.", alias="attemptTime")
+    status: AttemptStatus
     __properties = ["attemptNumber", "attemptTime", "status"]
 
     class Config:
@@ -83,3 +85,5 @@ class Attempt(BaseModel):
             "status": AttemptStatus.from_dict(obj.get("status")) if obj.get("status") is not None else None
         })
         return _obj
+
+Attempt.update_forward_refs()

@@ -19,11 +19,9 @@ import warnings
 from pydantic.v1 import validate_arguments, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
-from typing_extensions import Annotated
-from pydantic.v1 import Field, StrictInt, constr, validator
-
+from pydantic.v1 import Field, StrictInt
 from typing import Optional
-
+from typing_extensions import Annotated
 from lusid_notifications.models.resource_list_of_delivery import ResourceListOfDelivery
 
 from lusid_notifications.api_client import ApiClient

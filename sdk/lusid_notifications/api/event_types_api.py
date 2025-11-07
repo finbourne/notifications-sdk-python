@@ -19,9 +19,8 @@ import warnings
 from pydantic.v1 import validate_arguments, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
+from pydantic.v1 import Field
 from typing_extensions import Annotated
-from pydantic.v1 import Field, constr, validator
-
 from lusid_notifications.models.event_type_schema import EventTypeSchema
 from lusid_notifications.models.resource_list_of_event_type_schema import ResourceListOfEventTypeSchema
 

@@ -10,8 +10,10 @@ Name | Type | Description | Notes
 
 ```python
 from lusid_notifications.models.matching_pattern import MatchingPattern
-from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, constr, validator
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 event_type: StrictStr = "example_event_type"
 filter: Optional[StrictStr] = "example_filter"

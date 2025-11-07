@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, constr, validator 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from lusid_notifications.models.matching_pattern import MatchingPattern
 
 class UpdateSubscription(BaseModel):
@@ -29,7 +31,7 @@ class UpdateSubscription(BaseModel):
     display_name:  StrictStr = Field(...,alias="displayName", description="The name of the subscription") 
     description:  Optional[StrictStr] = Field(None,alias="description", description="The summary of the services provided by the subscription") 
     status:  StrictStr = Field(...,alias="status", description="The current status of the subscription. Possible values are: Active, Inactive") 
-    matching_pattern: MatchingPattern = Field(..., alias="matchingPattern")
+    matching_pattern: MatchingPattern = Field(alias="matchingPattern")
     use_as_auth:  Optional[StrictStr] = Field(None,alias="useAsAuth", description="Id of user associated with subscription. All events associated with  the subscription will use this user to check entitlements against  the resource to send a notification. Can be null, in which case  we'll default to that of the user making this request") 
     __properties = ["displayName", "description", "status", "matchingPattern", "useAsAuth"]
 
@@ -97,3 +99,5 @@ class UpdateSubscription(BaseModel):
             "use_as_auth": obj.get("useAsAuth")
         })
         return _obj
+
+UpdateSubscription.update_forward_refs()

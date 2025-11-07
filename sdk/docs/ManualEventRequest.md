@@ -9,10 +9,12 @@ Name | Type | Description | Notes
 
 ```python
 from lusid_notifications.models.manual_event_request import ManualEventRequest
-from typing import Any, Dict
-from pydantic.v1 import BaseModel, Field
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
-body: ManualEventBody = # Replace with your value
+body: ManualEventBody
 manual_event_request_instance = ManualEventRequest(body=body)
 
 ```

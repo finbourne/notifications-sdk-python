@@ -19,11 +19,9 @@ import warnings
 from pydantic.v1 import validate_arguments, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
-from typing_extensions import Annotated
-from pydantic.v1 import Field, conint, constr, validator
-
+from pydantic.v1 import Field, StrictInt
 from typing import Optional
-
+from typing_extensions import Annotated
 from lusid_notifications.models.create_subscription import CreateSubscription
 from lusid_notifications.models.resource_list_of_subscription import ResourceListOfSubscription
 from lusid_notifications.models.subscription import Subscription
@@ -56,15 +54,15 @@ class SubscriptionsApi:
 
 
     @overload
-    async def create_subscription(self, create_subscription : Annotated[CreateSubscription, Field(..., description="The data to create a subscription")], **kwargs) -> Subscription:  # noqa: E501
+    async def create_subscription(self, create_subscription : Annotated[CreateSubscription, Field(description="The data to create a subscription")], **kwargs) -> Subscription:  # noqa: E501
         ...
 
     @overload
-    def create_subscription(self, create_subscription : Annotated[CreateSubscription, Field(..., description="The data to create a subscription")], async_req: Optional[bool]=True, **kwargs) -> Subscription:  # noqa: E501
+    def create_subscription(self, create_subscription : Annotated[CreateSubscription, Field(description="The data to create a subscription")], async_req: Optional[bool]=True, **kwargs) -> Subscription:  # noqa: E501
         ...
 
     @validate_arguments
-    def create_subscription(self, create_subscription : Annotated[CreateSubscription, Field(..., description="The data to create a subscription")], async_req: Optional[bool]=None, **kwargs) -> Union[Subscription, Awaitable[Subscription]]:  # noqa: E501
+    def create_subscription(self, create_subscription : Annotated[CreateSubscription, Field(description="The data to create a subscription")], async_req: Optional[bool]=None, **kwargs) -> Union[Subscription, Awaitable[Subscription]]:  # noqa: E501
         """CreateSubscription: Create a new subscription.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -94,7 +92,7 @@ class SubscriptionsApi:
         return self.create_subscription_with_http_info(create_subscription, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_subscription_with_http_info(self, create_subscription : Annotated[CreateSubscription, Field(..., description="The data to create a subscription")], **kwargs) -> ApiResponse:  # noqa: E501
+    def create_subscription_with_http_info(self, create_subscription : Annotated[CreateSubscription, Field(description="The data to create a subscription")], **kwargs) -> ApiResponse:  # noqa: E501
         """CreateSubscription: Create a new subscription.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -527,15 +525,15 @@ class SubscriptionsApi:
 
 
     @overload
-    async def list_subscriptions(self, filter : Annotated[Optional[StrictStr], Field( description="Expression to filter the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>.")] = None, sort_by : Annotated[Optional[StrictStr], Field( description="Fields to order the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>")] = None, page : Annotated[Optional[StrictStr], Field( description="Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied the filter  field should not be supplied.")] = None, limit : Annotated[Optional[conint(strict=True)], Field(description="The maximum number of subscriptions to retrieve.")] = None, **kwargs) -> ResourceListOfSubscription:  # noqa: E501
+    async def list_subscriptions(self, filter : Annotated[Optional[StrictStr], Field( description="Expression to filter the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>.")] = None, sort_by : Annotated[Optional[StrictStr], Field( description="Fields to order the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>")] = None, page : Annotated[Optional[StrictStr], Field( description="Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied the filter  field should not be supplied.")] = None, limit : Annotated[Optional[StrictInt], Field(description="The maximum number of subscriptions to retrieve.")] = None, **kwargs) -> ResourceListOfSubscription:  # noqa: E501
         ...
 
     @overload
-    def list_subscriptions(self, filter : Annotated[Optional[StrictStr], Field( description="Expression to filter the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>.")] = None, sort_by : Annotated[Optional[StrictStr], Field( description="Fields to order the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>")] = None, page : Annotated[Optional[StrictStr], Field( description="Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied the filter  field should not be supplied.")] = None, limit : Annotated[Optional[conint(strict=True)], Field(description="The maximum number of subscriptions to retrieve.")] = None, async_req: Optional[bool]=True, **kwargs) -> ResourceListOfSubscription:  # noqa: E501
+    def list_subscriptions(self, filter : Annotated[Optional[StrictStr], Field( description="Expression to filter the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>.")] = None, sort_by : Annotated[Optional[StrictStr], Field( description="Fields to order the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>")] = None, page : Annotated[Optional[StrictStr], Field( description="Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied the filter  field should not be supplied.")] = None, limit : Annotated[Optional[StrictInt], Field(description="The maximum number of subscriptions to retrieve.")] = None, async_req: Optional[bool]=True, **kwargs) -> ResourceListOfSubscription:  # noqa: E501
         ...
 
     @validate_arguments
-    def list_subscriptions(self, filter : Annotated[Optional[StrictStr], Field( description="Expression to filter the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>.")] = None, sort_by : Annotated[Optional[StrictStr], Field( description="Fields to order the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>")] = None, page : Annotated[Optional[StrictStr], Field( description="Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied the filter  field should not be supplied.")] = None, limit : Annotated[Optional[conint(strict=True)], Field(description="The maximum number of subscriptions to retrieve.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[ResourceListOfSubscription, Awaitable[ResourceListOfSubscription]]:  # noqa: E501
+    def list_subscriptions(self, filter : Annotated[Optional[StrictStr], Field( description="Expression to filter the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>.")] = None, sort_by : Annotated[Optional[StrictStr], Field( description="Fields to order the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>")] = None, page : Annotated[Optional[StrictStr], Field( description="Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied the filter  field should not be supplied.")] = None, limit : Annotated[Optional[StrictInt], Field(description="The maximum number of subscriptions to retrieve.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[ResourceListOfSubscription, Awaitable[ResourceListOfSubscription]]:  # noqa: E501
         """ListSubscriptions: List subscriptions.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -571,7 +569,7 @@ class SubscriptionsApi:
         return self.list_subscriptions_with_http_info(filter, sort_by, page, limit, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def list_subscriptions_with_http_info(self, filter : Annotated[Optional[StrictStr], Field( description="Expression to filter the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>.")] = None, sort_by : Annotated[Optional[StrictStr], Field( description="Fields to order the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>")] = None, page : Annotated[Optional[StrictStr], Field( description="Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied the filter  field should not be supplied.")] = None, limit : Annotated[Optional[conint(strict=True)], Field(description="The maximum number of subscriptions to retrieve.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def list_subscriptions_with_http_info(self, filter : Annotated[Optional[StrictStr], Field( description="Expression to filter the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>.")] = None, sort_by : Annotated[Optional[StrictStr], Field( description="Fields to order the result set. Read more about <a href=\"https://support.lusid.com/filtering-results-from-lusid\"> filtering results from LUSID</a>")] = None, page : Annotated[Optional[StrictStr], Field( description="Encoded page string returned from a previous search result that will retrieve the next page of data. When this field is supplied the filter  field should not be supplied.")] = None, limit : Annotated[Optional[StrictInt], Field(description="The maximum number of subscriptions to retrieve.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """ListSubscriptions: List subscriptions.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -701,15 +699,15 @@ class SubscriptionsApi:
 
 
     @overload
-    async def update_subscription(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], update_subscription : Annotated[UpdateSubscription, Field(..., description="The data to update a subscription")], **kwargs) -> Subscription:  # noqa: E501
+    async def update_subscription(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], update_subscription : Annotated[UpdateSubscription, Field(description="The data to update a subscription")], **kwargs) -> Subscription:  # noqa: E501
         ...
 
     @overload
-    def update_subscription(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], update_subscription : Annotated[UpdateSubscription, Field(..., description="The data to update a subscription")], async_req: Optional[bool]=True, **kwargs) -> Subscription:  # noqa: E501
+    def update_subscription(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], update_subscription : Annotated[UpdateSubscription, Field(description="The data to update a subscription")], async_req: Optional[bool]=True, **kwargs) -> Subscription:  # noqa: E501
         ...
 
     @validate_arguments
-    def update_subscription(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], update_subscription : Annotated[UpdateSubscription, Field(..., description="The data to update a subscription")], async_req: Optional[bool]=None, **kwargs) -> Union[Subscription, Awaitable[Subscription]]:  # noqa: E501
+    def update_subscription(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], update_subscription : Annotated[UpdateSubscription, Field(description="The data to update a subscription")], async_req: Optional[bool]=None, **kwargs) -> Union[Subscription, Awaitable[Subscription]]:  # noqa: E501
         """UpdateSubscription: Update an existing subscription.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -743,7 +741,7 @@ class SubscriptionsApi:
         return self.update_subscription_with_http_info(scope, code, update_subscription, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_subscription_with_http_info(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], update_subscription : Annotated[UpdateSubscription, Field(..., description="The data to update a subscription")], **kwargs) -> ApiResponse:  # noqa: E501
+    def update_subscription_with_http_info(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], update_subscription : Annotated[UpdateSubscription, Field(description="The data to update a subscription")], **kwargs) -> ApiResponse:  # noqa: E501
         """UpdateSubscription: Update an existing subscription.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an

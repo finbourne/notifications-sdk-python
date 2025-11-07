@@ -11,13 +11,15 @@ Name | Type | Description | Notes
 
 ```python
 from lusid_notifications.models.attempt import Attempt
-from typing import Any, Dict
-from pydantic.v1 import BaseModel, Field, StrictInt
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
+
 attempt_number: StrictInt = # Replace with your value
 attempt_number: StrictInt = 42
 attempt_time: datetime = # Replace with your value
-status: AttemptStatus = # Replace with your value
+status: AttemptStatus
 attempt_instance = Attempt(attempt_number=attempt_number, attempt_time=attempt_time, status=status)
 
 ```

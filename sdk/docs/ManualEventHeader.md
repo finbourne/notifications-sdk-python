@@ -12,9 +12,11 @@ Name | Type | Description | Notes
 
 ```python
 from lusid_notifications.models.manual_event_header import ManualEventHeader
-from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
+
 event_type: Optional[StrictStr] = "example_event_type"
 timestamp: Optional[datetime] = # Replace with your value
 user_id: Optional[StrictStr] = "example_user_id"

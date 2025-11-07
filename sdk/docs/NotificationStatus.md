@@ -10,9 +10,11 @@ Name | Type | Description | Notes
 
 ```python
 from lusid_notifications.models.notification_status import NotificationStatus
-from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
+
 result: Optional[StrictStr] = "example_result"
 last_updated: Optional[datetime] = # Replace with your value
 notification_status_instance = NotificationStatus(result=result, last_updated=last_updated)

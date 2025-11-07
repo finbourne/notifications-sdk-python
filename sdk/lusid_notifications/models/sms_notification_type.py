@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, List
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, conlist, constr, validator 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 class SmsNotificationType(BaseModel):
     """
@@ -27,7 +29,7 @@ class SmsNotificationType(BaseModel):
     """
     type:  StrictStr = Field(...,alias="type", description="The type of delivery mechanism for this notification") 
     body:  StrictStr = Field(...,alias="body", description="The body of the SMS") 
-    recipients: conlist(StrictStr) = Field(..., description="The phone numbers to which the SMS will be sent to (E.164 format)")
+    recipients: List[StrictStr] = Field(description="The phone numbers to which the SMS will be sent to (E.164 format)")
     __properties = ["type", "body", "recipients"]
 
     @validator('type')
@@ -80,14 +82,19 @@ class SmsNotificationType(BaseModel):
                                     'SchedulerJobResponse', 
                                     'SleepResponse',
                                     'Library',
-                                    'LibraryResponse']:
+                                    'LibraryResponse',
+                                    'DayRegularity',
+                                    'RelativeMonthRegularity',
+                                    'SpecificMonthRegularity',
+                                    'WeekRegularity',
+                                    'YearRegularity']:
            return value
         
         # Only validate the 'type' property of the class
         if "type" != "type":
             return value
 
-        if value not in ('Sms'):
+        if value not in ['Sms']:
             raise ValueError("must be one of enum values ('Sms')")
         return value
 
@@ -140,3 +147,5 @@ class SmsNotificationType(BaseModel):
             "recipients": obj.get("recipients")
         })
         return _obj
+
+SmsNotificationType.update_forward_refs()

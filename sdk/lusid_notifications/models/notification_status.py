@@ -17,16 +17,18 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
-from typing import Any, Dict, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr 
 
 class NotificationStatus(BaseModel):
     """
     The status object of a notification  # noqa: E501
     """
     result:  Optional[StrictStr] = Field(None,alias="result", description="The status of the notification") 
-    last_updated: Optional[datetime] = Field(None, alias="lastUpdated", description="The time at which the notification status was last updated")
+    last_updated: Optional[datetime] = Field(default=None, description="The time at which the notification status was last updated", alias="lastUpdated")
     __properties = ["result", "lastUpdated"]
 
     class Config:
@@ -82,3 +84,5 @@ class NotificationStatus(BaseModel):
             "last_updated": obj.get("lastUpdated")
         })
         return _obj
+
+NotificationStatus.update_forward_refs()

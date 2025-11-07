@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, constr, validator 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 class AzureServiceBusNotificationType(BaseModel):
     """
@@ -84,14 +86,19 @@ class AzureServiceBusNotificationType(BaseModel):
                                     'SchedulerJobResponse', 
                                     'SleepResponse',
                                     'Library',
-                                    'LibraryResponse']:
+                                    'LibraryResponse',
+                                    'DayRegularity',
+                                    'RelativeMonthRegularity',
+                                    'SpecificMonthRegularity',
+                                    'WeekRegularity',
+                                    'YearRegularity']:
            return value
         
         # Only validate the 'type' property of the class
         if "type" != "type":
             return value
 
-        if value not in ('AzureServiceBus'):
+        if value not in ['AzureServiceBus']:
             raise ValueError("must be one of enum values ('AzureServiceBus')")
         return value
 
@@ -148,3 +155,5 @@ class AzureServiceBusNotificationType(BaseModel):
             "client_secret": obj.get("clientSecret")
         })
         return _obj
+
+AzureServiceBusNotificationType.update_forward_refs()

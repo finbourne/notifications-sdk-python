@@ -5,17 +5,19 @@ Holds information about a Finbourne.Notifications.WebApi.Dtos.Notifications.Noti
 
 ```python
 from lusid_notifications.models.notification_type import NotificationType
-from typing import Any, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, ValidationError, validator
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 # Example with NotificationType 
 
 amazon_sqs_notification_type_instance = lusid_notifications.models.amazon_sqs_notification_type.AmazonSqsNotificationType(
                         type = 'AmazonSqs', 
-                        api_key_ref = '0', 
-                        api_secret_ref = '0', 
-                        body = ' Aa6w77ikCX*cKCmv|`K/V0', 
-                        queue_url_ref = '0', )
+                        api_key_ref = '', 
+                        api_secret_ref = '', 
+                        body = ' Aa6w77ikCX*cKCmv|`K/V', 
+                        queue_url_ref = '', )
 
 notification_type_instance = NotificationType(amazon_sqs_notification_type_instance)
 

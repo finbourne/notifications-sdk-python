@@ -19,9 +19,8 @@ import warnings
 from pydantic.v1 import validate_arguments, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
+from pydantic.v1 import Field, StrictStr
 from typing_extensions import Annotated
-from pydantic.v1 import Field, StrictStr, constr, validator
-
 from lusid_notifications.models.create_notification_request import CreateNotificationRequest
 from lusid_notifications.models.notification import Notification
 from lusid_notifications.models.resource_list_of_notification import ResourceListOfNotification
@@ -54,15 +53,15 @@ class NotificationsApi:
 
 
     @overload
-    async def create_notification(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], create_notification_request : Annotated[CreateNotificationRequest, Field(..., description="The data to create a notification")], **kwargs) -> Notification:  # noqa: E501
+    async def create_notification(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], create_notification_request : Annotated[CreateNotificationRequest, Field(description="The data to create a notification")], **kwargs) -> Notification:  # noqa: E501
         ...
 
     @overload
-    def create_notification(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], create_notification_request : Annotated[CreateNotificationRequest, Field(..., description="The data to create a notification")], async_req: Optional[bool]=True, **kwargs) -> Notification:  # noqa: E501
+    def create_notification(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], create_notification_request : Annotated[CreateNotificationRequest, Field(description="The data to create a notification")], async_req: Optional[bool]=True, **kwargs) -> Notification:  # noqa: E501
         ...
 
     @validate_arguments
-    def create_notification(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], create_notification_request : Annotated[CreateNotificationRequest, Field(..., description="The data to create a notification")], async_req: Optional[bool]=None, **kwargs) -> Union[Notification, Awaitable[Notification]]:  # noqa: E501
+    def create_notification(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], create_notification_request : Annotated[CreateNotificationRequest, Field(description="The data to create a notification")], async_req: Optional[bool]=None, **kwargs) -> Union[Notification, Awaitable[Notification]]:  # noqa: E501
         """CreateNotification: Add a Notification to a Subscription.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -96,7 +95,7 @@ class NotificationsApi:
         return self.create_notification_with_http_info(scope, code, create_notification_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_notification_with_http_info(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], create_notification_request : Annotated[CreateNotificationRequest, Field(..., description="The data to create a notification")], **kwargs) -> ApiResponse:  # noqa: E501
+    def create_notification_with_http_info(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], create_notification_request : Annotated[CreateNotificationRequest, Field(description="The data to create a notification")], **kwargs) -> ApiResponse:  # noqa: E501
         """CreateNotification: Add a Notification to a Subscription.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -716,15 +715,15 @@ class NotificationsApi:
 
 
     @overload
-    async def update_notification(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], id : Annotated[StrictStr, Field(..., description="The unique identifier of the notification")], update_notification_request : Annotated[UpdateNotificationRequest, Field(..., description="The data to update a notification")], **kwargs) -> Notification:  # noqa: E501
+    async def update_notification(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], id : Annotated[StrictStr, Field(..., description="The unique identifier of the notification")], update_notification_request : Annotated[UpdateNotificationRequest, Field(description="The data to update a notification")], **kwargs) -> Notification:  # noqa: E501
         ...
 
     @overload
-    def update_notification(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], id : Annotated[StrictStr, Field(..., description="The unique identifier of the notification")], update_notification_request : Annotated[UpdateNotificationRequest, Field(..., description="The data to update a notification")], async_req: Optional[bool]=True, **kwargs) -> Notification:  # noqa: E501
+    def update_notification(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], id : Annotated[StrictStr, Field(..., description="The unique identifier of the notification")], update_notification_request : Annotated[UpdateNotificationRequest, Field(description="The data to update a notification")], async_req: Optional[bool]=True, **kwargs) -> Notification:  # noqa: E501
         ...
 
     @validate_arguments
-    def update_notification(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], id : Annotated[StrictStr, Field(..., description="The unique identifier of the notification")], update_notification_request : Annotated[UpdateNotificationRequest, Field(..., description="The data to update a notification")], async_req: Optional[bool]=None, **kwargs) -> Union[Notification, Awaitable[Notification]]:  # noqa: E501
+    def update_notification(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], id : Annotated[StrictStr, Field(..., description="The unique identifier of the notification")], update_notification_request : Annotated[UpdateNotificationRequest, Field(description="The data to update a notification")], async_req: Optional[bool]=None, **kwargs) -> Union[Notification, Awaitable[Notification]]:  # noqa: E501
         """UpdateNotification: Update a Notification for a Subscription  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -760,7 +759,7 @@ class NotificationsApi:
         return self.update_notification_with_http_info(scope, code, id, update_notification_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_notification_with_http_info(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], id : Annotated[StrictStr, Field(..., description="The unique identifier of the notification")], update_notification_request : Annotated[UpdateNotificationRequest, Field(..., description="The data to update a notification")], **kwargs) -> ApiResponse:  # noqa: E501
+    def update_notification_with_http_info(self, scope : Annotated[StrictStr, Field(..., description="The scope that identifies a subscription")], code : Annotated[StrictStr, Field(..., description="The code that identifies a subscription")], id : Annotated[StrictStr, Field(..., description="The unique identifier of the notification")], update_notification_request : Annotated[UpdateNotificationRequest, Field(description="The data to update a notification")], **kwargs) -> ApiResponse:  # noqa: E501
         """UpdateNotification: Update a Notification for a Subscription  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an

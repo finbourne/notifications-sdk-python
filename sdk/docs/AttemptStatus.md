@@ -10,8 +10,10 @@ Name | Type | Description | Notes
 
 ```python
 from lusid_notifications.models.attempt_status import AttemptStatus
-from typing import Any, Dict, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, constr
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 result: StrictStr = "example_result"
 detailed_message: Optional[StrictStr] = "example_detailed_message"

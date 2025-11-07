@@ -11,12 +11,14 @@ Name | Type | Description | Notes
 
 ```python
 from lusid_notifications.models.sms_notification_type_response import SmsNotificationTypeResponse
-from typing import Any, Dict, List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist, validator
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 type: Optional[StrictStr] = "example_type"
 body: Optional[StrictStr] = "example_body"
-recipients: Optional[conlist(StrictStr)] = # Replace with your value
+recipients: Optional[List[StrictStr]] = # Replace with your value
 sms_notification_type_response_instance = SmsNotificationTypeResponse(type=type, body=body, recipients=recipients)
 
 ```

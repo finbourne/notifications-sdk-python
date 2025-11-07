@@ -17,9 +17,11 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
-from typing import Any, Dict, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, constr, validator 
 from lusid_notifications.models.notification_type_response import NotificationTypeResponse
 
 class Notification(BaseModel):
@@ -29,10 +31,10 @@ class Notification(BaseModel):
     notification_id:  StrictStr = Field(...,alias="notificationId", description="The identifier of the notification") 
     display_name:  StrictStr = Field(...,alias="displayName", description="The name of the notification") 
     description:  Optional[StrictStr] = Field(None,alias="description", description="The summary of the services provided by the notification") 
-    notification_type: NotificationTypeResponse = Field(..., alias="notificationType")
-    created_at: datetime = Field(..., alias="createdAt", description="The time at which the subscription was made")
+    notification_type: NotificationTypeResponse = Field(alias="notificationType")
+    created_at: datetime = Field(description="The time at which the subscription was made", alias="createdAt")
     user_id_created:  StrictStr = Field(...,alias="userIdCreated", description="The user who made the subscription") 
-    modified_at: datetime = Field(..., alias="modifiedAt", description="The time at which the subscription was last modified")
+    modified_at: datetime = Field(description="The time at which the subscription was last modified", alias="modifiedAt")
     user_id_modified:  StrictStr = Field(...,alias="userIdModified", description="The user who last modified the subscription") 
     href:  Optional[StrictStr] = Field(None,alias="href", description="A URI for retrieving this notification") 
     __properties = ["notificationId", "displayName", "description", "notificationType", "createdAt", "userIdCreated", "modifiedAt", "userIdModified", "href"]
@@ -105,3 +107,5 @@ class Notification(BaseModel):
             "href": obj.get("href")
         })
         return _obj
+
+Notification.update_forward_refs()

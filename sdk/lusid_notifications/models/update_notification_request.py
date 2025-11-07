@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, constr, validator 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 from lusid_notifications.models.notification_type import NotificationType
 
 class UpdateNotificationRequest(BaseModel):
@@ -28,7 +30,7 @@ class UpdateNotificationRequest(BaseModel):
     """
     display_name:  StrictStr = Field(...,alias="displayName", description="The name of the notification") 
     description:  Optional[StrictStr] = Field(None,alias="description", description="The summary of the services provided by the notification") 
-    notification_type: NotificationType = Field(..., alias="notificationType")
+    notification_type: NotificationType = Field(alias="notificationType")
     __properties = ["displayName", "description", "notificationType"]
 
     class Config:
@@ -88,3 +90,5 @@ class UpdateNotificationRequest(BaseModel):
             "notification_type": NotificationType.from_dict(obj.get("notificationType")) if obj.get("notificationType") is not None else None
         })
         return _obj
+
+UpdateNotificationRequest.update_forward_refs()

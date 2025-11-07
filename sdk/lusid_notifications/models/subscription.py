@@ -17,9 +17,11 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
 from datetime import datetime
-from typing import Any, Dict, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, constr 
 from lusid_notifications.models.matching_pattern import MatchingPattern
 from lusid_notifications.models.resource_id import ResourceId
 
@@ -27,14 +29,14 @@ class Subscription(BaseModel):
     """
     A subscription object  # noqa: E501
     """
-    id: ResourceId = Field(...)
+    id: ResourceId
     display_name:  StrictStr = Field(...,alias="displayName", description="The name of the subscription") 
     description:  Optional[StrictStr] = Field(None,alias="description", description="The summary of the services provided by the subscription") 
     status:  StrictStr = Field(...,alias="status", description="The current status of the subscription") 
-    matching_pattern: MatchingPattern = Field(..., alias="matchingPattern")
-    created_at: datetime = Field(..., alias="createdAt", description="The time at which the subscription was made")
+    matching_pattern: MatchingPattern = Field(alias="matchingPattern")
+    created_at: datetime = Field(description="The time at which the subscription was made", alias="createdAt")
     user_id_created:  StrictStr = Field(...,alias="userIdCreated", description="The user who made the subscription") 
-    modified_at: datetime = Field(..., alias="modifiedAt", description="The time at which the subscription was last modified")
+    modified_at: datetime = Field(description="The time at which the subscription was last modified", alias="modifiedAt")
     user_id_modified:  StrictStr = Field(...,alias="userIdModified", description="The user who last modified the subscription") 
     use_as_auth:  StrictStr = Field(...,alias="useAsAuth", description="The user to use as auth for the subscription") 
     href:  Optional[StrictStr] = Field(None,alias="href", description="A URI for retrieving this subscription") 
@@ -113,3 +115,5 @@ class Subscription(BaseModel):
             "href": obj.get("href")
         })
         return _obj
+
+Subscription.update_forward_refs()

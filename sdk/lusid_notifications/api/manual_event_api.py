@@ -19,9 +19,8 @@ import warnings
 from pydantic.v1 import validate_arguments, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
-from typing_extensions import Annotated
 from pydantic.v1 import Field
-
+from typing_extensions import Annotated
 from lusid_notifications.models.manual_event import ManualEvent
 from lusid_notifications.models.manual_event_request import ManualEventRequest
 
@@ -52,15 +51,15 @@ class ManualEventApi:
 
 
     @overload
-    async def trigger_manual_event(self, manual_event_request : Annotated[ManualEventRequest, Field(..., description="The data required to trigger a manual event.")], **kwargs) -> ManualEvent:  # noqa: E501
+    async def trigger_manual_event(self, manual_event_request : Annotated[ManualEventRequest, Field(description="The data required to trigger a manual event.")], **kwargs) -> ManualEvent:  # noqa: E501
         ...
 
     @overload
-    def trigger_manual_event(self, manual_event_request : Annotated[ManualEventRequest, Field(..., description="The data required to trigger a manual event.")], async_req: Optional[bool]=True, **kwargs) -> ManualEvent:  # noqa: E501
+    def trigger_manual_event(self, manual_event_request : Annotated[ManualEventRequest, Field(description="The data required to trigger a manual event.")], async_req: Optional[bool]=True, **kwargs) -> ManualEvent:  # noqa: E501
         ...
 
     @validate_arguments
-    def trigger_manual_event(self, manual_event_request : Annotated[ManualEventRequest, Field(..., description="The data required to trigger a manual event.")], async_req: Optional[bool]=None, **kwargs) -> Union[ManualEvent, Awaitable[ManualEvent]]:  # noqa: E501
+    def trigger_manual_event(self, manual_event_request : Annotated[ManualEventRequest, Field(description="The data required to trigger a manual event.")], async_req: Optional[bool]=None, **kwargs) -> Union[ManualEvent, Awaitable[ManualEvent]]:  # noqa: E501
         """TriggerManualEvent: Trigger a manual event.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -90,7 +89,7 @@ class ManualEventApi:
         return self.trigger_manual_event_with_http_info(manual_event_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def trigger_manual_event_with_http_info(self, manual_event_request : Annotated[ManualEventRequest, Field(..., description="The data required to trigger a manual event.")], **kwargs) -> ApiResponse:  # noqa: E501
+    def trigger_manual_event_with_http_info(self, manual_event_request : Annotated[ManualEventRequest, Field(description="The data required to trigger a manual event.")], **kwargs) -> ApiResponse:  # noqa: E501
         """TriggerManualEvent: Trigger a manual event.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an

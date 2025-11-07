@@ -18,8 +18,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional
-from pydantic.v1 import StrictStr, Field, BaseModel, Field, StrictStr, validator 
+from typing import List, Dict, Optional, Any, Union, TYPE_CHECKING
+from typing_extensions import Annotated
+from pydantic.v1 import BaseModel, StrictStr, StrictInt, StrictBool, StrictFloat, StrictBytes, Field, validator, ValidationError, conlist, constr
+from datetime import datetime
 
 class AmazonSqsNotificationTypeResponse(BaseModel):
     """
@@ -82,7 +84,12 @@ class AmazonSqsNotificationTypeResponse(BaseModel):
                                     'SchedulerJobResponse', 
                                     'SleepResponse',
                                     'Library',
-                                    'LibraryResponse']:
+                                    'LibraryResponse',
+                                    'DayRegularity',
+                                    'RelativeMonthRegularity',
+                                    'SpecificMonthRegularity',
+                                    'WeekRegularity',
+                                    'YearRegularity']:
            return value
         
         # Only validate the 'type' property of the class
@@ -92,7 +99,7 @@ class AmazonSqsNotificationTypeResponse(BaseModel):
         if value is None:
             return value
 
-        if not value == 'AmazonSqs':
+        if value not in ['AmazonSqs']:
             raise ValueError("must be one of enum values ('AmazonSqs')")
         return value
 
@@ -172,3 +179,5 @@ class AmazonSqsNotificationTypeResponse(BaseModel):
             "queue_url_ref": obj.get("queueUrlRef")
         })
         return _obj
+
+AmazonSqsNotificationTypeResponse.update_forward_refs()
