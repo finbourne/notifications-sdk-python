@@ -34,7 +34,8 @@ class AzureServiceBusNotificationType(BaseModel):
     tenant_id:  StrictStr = Field(...,alias="tenantId", description="Reference to tenant id from Configuration Store") 
     client_id:  StrictStr = Field(...,alias="clientId", description="Reference to client id from Configuration Store") 
     client_secret:  StrictStr = Field(...,alias="clientSecret", description="Reference to client secret from Configuration Store") 
-    __properties = ["type", "namespace", "queueName", "body", "tenantId", "clientId", "clientSecret"]
+    application_properties: Optional[Dict[str, Optional[StrictStr]]] = Field(default=None, description="Optional key-value pairs to attach to the Azure Service Bus message envelope.", alias="applicationProperties")
+    __properties = ["type", "namespace", "queueName", "body", "tenantId", "clientId", "clientSecret", "applicationProperties"]
 
     @validator('type')
     def type_validate_enum(cls, value):
@@ -68,6 +69,8 @@ class AzureServiceBusNotificationType(BaseModel):
                                     'TriggerParentTaskAction',
                                     'CreateChildTasksActionResponse', 
                                     'RunWorkerActionResponse',
+                                    'TriggerChildTasksAction',
+                                    'TriggerChildTasksActionResponse',
                                     'TriggerParentTaskActionResponse',
                                     'CreateNewTaskActivity',
                                     'UpdateMatchingTasksActivity',
@@ -93,7 +96,8 @@ class AzureServiceBusNotificationType(BaseModel):
                                     'WeekRegularity',
                                     'YearRegularity',
                                     'LusidEntityDataQualityCheck',
-                                    'LusidEntityDataQualityCheckResponse']:
+                                    'LusidEntityDataQualityCheckResponse',
+                                    'TriggerChildTasksActionResponse']:
            return value
         
         # Only validate the 'type' property of the class
@@ -136,6 +140,11 @@ class AzureServiceBusNotificationType(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # set to None if application_properties (nullable) is None
+        # and __fields_set__ contains the field
+        if self.application_properties is None and "application_properties" in self.__fields_set__:
+            _dict['applicationProperties'] = None
+
         return _dict
 
     @classmethod
@@ -154,7 +163,8 @@ class AzureServiceBusNotificationType(BaseModel):
             "body": obj.get("body"),
             "tenant_id": obj.get("tenantId"),
             "client_id": obj.get("clientId"),
-            "client_secret": obj.get("clientSecret")
+            "client_secret": obj.get("clientSecret"),
+            "application_properties": obj.get("applicationProperties")
         })
         return _obj
 

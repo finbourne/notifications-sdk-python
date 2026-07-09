@@ -64,6 +64,8 @@ class SmsNotificationType(BaseModel):
                                     'TriggerParentTaskAction',
                                     'CreateChildTasksActionResponse', 
                                     'RunWorkerActionResponse',
+                                    'TriggerChildTasksAction',
+                                    'TriggerChildTasksActionResponse',
                                     'TriggerParentTaskActionResponse',
                                     'CreateNewTaskActivity',
                                     'UpdateMatchingTasksActivity',
@@ -89,7 +91,8 @@ class SmsNotificationType(BaseModel):
                                     'WeekRegularity',
                                     'YearRegularity',
                                     'LusidEntityDataQualityCheck',
-                                    'LusidEntityDataQualityCheckResponse']:
+                                    'LusidEntityDataQualityCheckResponse',
+                                    'TriggerChildTasksActionResponse']:
            return value
         
         # Only validate the 'type' property of the class

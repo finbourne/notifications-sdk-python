@@ -68,6 +68,8 @@ class EmailNotificationTypeResponse(BaseModel):
                                     'TriggerParentTaskAction',
                                     'CreateChildTasksActionResponse', 
                                     'RunWorkerActionResponse',
+                                    'TriggerChildTasksAction',
+                                    'TriggerChildTasksActionResponse',
                                     'TriggerParentTaskActionResponse',
                                     'CreateNewTaskActivity',
                                     'UpdateMatchingTasksActivity',
@@ -93,7 +95,8 @@ class EmailNotificationTypeResponse(BaseModel):
                                     'WeekRegularity',
                                     'YearRegularity',
                                     'LusidEntityDataQualityCheck',
-                                    'LusidEntityDataQualityCheckResponse']:
+                                    'LusidEntityDataQualityCheckResponse',
+                                    'TriggerChildTasksActionResponse']:
            return value
         
         # Only validate the 'type' property of the class

@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **tenant_id_ref** | **str** | Reference to tenant id  from Configuration Store | [optional] 
 **client_id_ref** | **str** | Reference to client id from Configuration Store | [optional] 
 **client_secret_ref** | **str** | Reference to client secret from Configuration Store | [optional] 
+**application_properties** | **Dict[str, Optional[str]]** | Optional key-value pairs attached to the Azure Service Bus message envelope. | [optional] 
 ## Example
 
 ```python
@@ -27,7 +28,8 @@ body: Optional[StrictStr] = "example_body"
 tenant_id_ref: Optional[StrictStr] = "example_tenant_id_ref"
 client_id_ref: Optional[StrictStr] = "example_client_id_ref"
 client_secret_ref: Optional[StrictStr] = "example_client_secret_ref"
-azure_service_bus_type_response_instance = AzureServiceBusTypeResponse(type=type, namespace_ref=namespace_ref, queue_name_ref=queue_name_ref, body=body, tenant_id_ref=tenant_id_ref, client_id_ref=client_id_ref, client_secret_ref=client_secret_ref)
+application_properties: Optional[Dict[str, Optional[StrictStr]]] = # Replace with your value
+azure_service_bus_type_response_instance = AzureServiceBusTypeResponse(type=type, namespace_ref=namespace_ref, queue_name_ref=queue_name_ref, body=body, tenant_id_ref=tenant_id_ref, client_id_ref=client_id_ref, client_secret_ref=client_secret_ref, application_properties=application_properties)
 
 ```
 

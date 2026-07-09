@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **tenant_id** | **str** | Reference to tenant id from Configuration Store | 
 **client_id** | **str** | Reference to client id from Configuration Store | 
 **client_secret** | **str** | Reference to client secret from Configuration Store | 
+**application_properties** | **Dict[str, Optional[str]]** | Optional key-value pairs to attach to the Azure Service Bus message envelope. | [optional] 
 ## Example
 
 ```python
@@ -27,7 +28,8 @@ body: StrictStr = "example_body"
 tenant_id: StrictStr = "example_tenant_id"
 client_id: StrictStr = "example_client_id"
 client_secret: StrictStr = "example_client_secret"
-azure_service_bus_notification_type_instance = AzureServiceBusNotificationType(type=type, namespace=namespace, queue_name=queue_name, body=body, tenant_id=tenant_id, client_id=client_id, client_secret=client_secret)
+application_properties: Optional[Dict[str, Optional[StrictStr]]] = # Replace with your value
+azure_service_bus_notification_type_instance = AzureServiceBusNotificationType(type=type, namespace=namespace, queue_name=queue_name, body=body, tenant_id=tenant_id, client_id=client_id, client_secret=client_secret, application_properties=application_properties)
 
 ```
 
