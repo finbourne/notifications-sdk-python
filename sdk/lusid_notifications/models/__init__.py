@@ -21,6 +21,7 @@ from lusid_notifications.models.amazon_sqs_notification_type import AmazonSqsNot
 from lusid_notifications.models.amazon_sqs_notification_type_response import AmazonSqsNotificationTypeResponse
 from lusid_notifications.models.amazon_sqs_principal_auth_notification_type import AmazonSqsPrincipalAuthNotificationType
 from lusid_notifications.models.amazon_sqs_principal_auth_notification_type_response import AmazonSqsPrincipalAuthNotificationTypeResponse
+from lusid_notifications.models.api_endpoint import ApiEndpoint
 from lusid_notifications.models.attempt import Attempt
 from lusid_notifications.models.attempt_status import AttemptStatus
 from lusid_notifications.models.azure_service_bus_notification_type import AzureServiceBusNotificationType
@@ -52,6 +53,7 @@ from lusid_notifications.models.resource_list_of_delivery import ResourceListOfD
 from lusid_notifications.models.resource_list_of_event_type_schema import ResourceListOfEventTypeSchema
 from lusid_notifications.models.resource_list_of_notification import ResourceListOfNotification
 from lusid_notifications.models.resource_list_of_subscription import ResourceListOfSubscription
+from lusid_notifications.models.service_api_endpoints import ServiceApiEndpoints
 from lusid_notifications.models.sms_notification_type import SmsNotificationType
 from lusid_notifications.models.sms_notification_type_response import SmsNotificationTypeResponse
 from lusid_notifications.models.subscription import Subscription
@@ -69,6 +71,7 @@ __all__ = [
     "AmazonSqsNotificationTypeResponse",
     "AmazonSqsPrincipalAuthNotificationType",
     "AmazonSqsPrincipalAuthNotificationTypeResponse",
+    "ApiEndpoint",
     "Attempt",
     "AttemptStatus",
     "AzureServiceBusNotificationType",
@@ -100,6 +103,7 @@ __all__ = [
     "ResourceListOfEventTypeSchema",
     "ResourceListOfNotification",
     "ResourceListOfSubscription",
+    "ServiceApiEndpoints",
     "SmsNotificationType",
     "SmsNotificationTypeResponse",
     "Subscription",
